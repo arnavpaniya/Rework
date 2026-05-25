@@ -1,7 +1,8 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback, Fragment } from 'react'
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Play, Pause, Volume2, VolumeX, Maximize2 } from 'lucide-react'
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 const formatTime = (s) => {
@@ -14,401 +15,90 @@ const TOTAL = 108 // 1:48
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
-function CustomCursor() {
-  const cursorRef = useRef(null)
-  const ringRef = useRef(null)
-  const mouse = { x: useMotionValue(0), y: useMotionValue(0) }
-  const smoothX = useSpring(mouse.x, { stiffness: 500, damping: 40 })
-  const smoothY = useSpring(mouse.y, { stiffness: 500, damping: 40 })
-  const ringX = useSpring(mouse.x, { stiffness: 120, damping: 20 })
-  const ringY = useSpring(mouse.y, { stiffness: 120, damping: 20 })
-
-  useEffect(() => {
-    const move = (e) => { mouse.x.set(e.clientX); mouse.y.set(e.clientY) }
-    window.addEventListener('mousemove', move)
-    return () => window.removeEventListener('mousemove', move)
-  }, [])
-
-  return (
-    <>
-      <motion.div
-        className="cursor"
-        style={{ left: smoothX, top: smoothY }}
-      />
-      <motion.div
-        className="cursor-ring"
-        style={{ left: ringX, top: ringY }}
-      />
-    </>
-  )
-}
-
 function TopBar() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-12 pb-4 sm:pb-5 gap-3 sm:gap-0"
-      style={{ borderBottom: '0.5px solid var(--white-faint)' }}
-    >
+    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-12 pb-4 border-b-4 border-black gap-4 sm:gap-0">
       <div className="flex items-center gap-4">
-        <span
-          className="font-mono text-[10px] tracking-[0.15em] uppercase px-2.5 py-1 rounded-sm font-bold"
-          style={{ background: 'var(--gold)', color: 'var(--bg)' }}
-        >
+        <span className="font-bold text-xs sm:text-sm tracking-widest uppercase bg-[#e1e61b] text-black border-2 border-black px-3 py-1 shadow-[4px_4px_0_0_#000]">
           Showreel 2026
         </span>
-        <span className="font-mono text-[10px] tracking-[0.12em] uppercase" style={{ color: 'var(--white-dim)' }}>
-          Motion &amp; Identity
+        <span className="font-bold text-xs sm:text-sm tracking-widest uppercase text-black">
+          Motion & Identity
         </span>
       </div>
-      <div className="font-mono text-[10px] tracking-[0.08em]" style={{ color: 'var(--white-muted)' }}>
-        [04]&nbsp; FILE_SIZE:&nbsp;
-        <span style={{ color: 'var(--gold)' }}>2.4 GB</span>
-        &nbsp;·&nbsp; RES:&nbsp;
-        <span style={{ color: 'var(--gold)' }}>4K</span>
-        &nbsp;·&nbsp;
-        <span style={{ color: 'var(--gold)' }}>01:48</span>
+      <div className="font-bold text-xs sm:text-sm tracking-widest uppercase text-black flex gap-4">
+        <span>FILE_SIZE: 2.4 GB</span>
+        <span>RES: 4K</span>
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 function HeroTitle() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.75, delay: 0.1 }}
-      className="flex flex-wrap items-baseline mb-6 sm:mb-10 overflow-hidden gap-0"
-    >
-      <span
-        className="font-display leading-none tracking-tight select-none"
-        style={{ fontSize: 'clamp(40px, 9vw, 112px)', color: 'var(--white)' }}
-      >
-        The&nbsp;
-      </span>
-      <span
-        className="font-display leading-none tracking-tight gold-shimmer select-none"
-        style={{ fontSize: 'clamp(40px, 9vw, 112px)' }}
-      >
-        Portfolio
-      </span>
-      <span
-        className="font-display leading-none tracking-tight select-none"
-        style={{ fontSize: 'clamp(40px, 9vw, 112px)', color: 'var(--white-muted)' }}
-      >
-        .mp4
-      </span>
-    </motion.div>
-  )
-}
-
-function PlayerBlobs() {
-  return (
-    <>
-      <div
-        className="blob-1 absolute rounded-full pointer-events-none"
-        style={{
-          width: '55%', height: '130%',
-          top: '-20%', left: '5%',
-          background: 'radial-gradient(circle, rgba(42,31,0,0.9) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          opacity: 0.5,
-        }}
-      />
-      <div
-        className="blob-2 absolute rounded-full pointer-events-none"
-        style={{
-          width: '45%', height: '110%',
-          top: '-5%', right: '3%',
-          background: 'radial-gradient(circle, rgba(10,26,58,0.9) 0%, transparent 70%)',
-          filter: 'blur(80px)',
-          opacity: 0.45,
-        }}
-      />
-    </>
-  )
-}
-
-function PlayButton({ isPlaying, onClick }) {
-  const ref = useRef(null)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = (e) => {
-    if (!ref.current) return
-    const { clientX, clientY } = e
-    const { height, width, left, top } = ref.current.getBoundingClientRect()
-    const middleX = clientX - (left + width / 2)
-    const middleY = clientY - (top + height / 2)
-    setPosition({ x: middleX * 0.3, y: middleY * 0.3 })
-  }
-
-  const reset = () => setPosition({ x: 0, y: 0 })
-
-  return (
-    <motion.button
-      ref={ref}
-      onClick={onClick}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={reset}
-      animate={{ x: position.x, y: position.y }}
-      aria-label={isPlaying ? 'Pause' : 'Play showreel'}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.94 }}
-      className="relative flex items-center justify-center rounded-full outline-none border-none"
-      style={{
-        width: 'clamp(60px, 6vw, 76px)',
-        height: 'clamp(60px, 6vw, 76px)',
-        background: isPlaying ? 'var(--white)' : 'var(--gold)',
-        boxShadow: isPlaying
-          ? '0 0 0 12px rgba(245,244,240,0.06), 0 0 40px rgba(245,244,240,0.08)'
-          : '0 0 0 12px rgba(240,201,58,0.1), 0 0 40px rgba(240,201,58,0.15)',
-        cursor: 'none',
-        flexShrink: 0,
-      }}
-    >
-      <AnimatePresence mode="wait">
-        {isPlaying ? (
-          <motion.div
-            key="pause"
-            initial={{ scale: 0.6, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.6, opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="flex items-center gap-1"
-          >
-            <div className="w-1 h-5 rounded-sm" style={{ background: 'var(--bg)' }} />
-            <div className="w-1 h-5 rounded-sm" style={{ background: 'var(--bg)' }} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="play"
-            initial={{ scale: 0.6, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.6, opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            style={{
-              width: 0, height: 0,
-              borderStyle: 'solid',
-              borderWidth: '10px 0 10px 18px',
-              borderColor: `transparent transparent transparent var(--bg)`,
-              marginLeft: '3px',
-            }}
-          />
-        )}
-      </AnimatePresence>
-    </motion.button>
-  )
-}
-
-function WaveIndicator({ visible }) {
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className="flex items-end gap-[3px]"
-          style={{ height: '18px' }}
-        >
-          {[1,2,3,4,5].map(i => (
-            <div key={i} className="wave-bar" />
-          ))}
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
-
-function PlayerHUD({ elapsed, total }) {
-  return (
-    <div className="absolute top-0 left-0 right-0 flex justify-between items-center px-5 pt-4 z-10">
-      <div className="flex items-center gap-2">
-        <div
-          className="rec-dot w-2 h-2 rounded-full"
-          style={{ background: 'var(--gold)' }}
-        />
-        <span className="font-mono text-[9px] tracking-[0.1em] uppercase" style={{ color: 'rgba(245,244,240,0.35)' }}>
-          REC&nbsp;&nbsp;CAM_01&nbsp;·&nbsp;24.976 FPS
+    <div className="mb-8 sm:mb-12">
+      <h2 className="font-black text-6xl sm:text-[8rem] md:text-[10rem] leading-[0.85] tracking-tighter uppercase text-black break-words">
+        The <br />
+        <span className="text-white relative z-10 inline-block">
+          <span className="absolute inset-0 bg-[#FF007F] -z-10 translate-y-2 sm:translate-y-4 -translate-x-2 sm:-translate-x-4 border-4 border-black" />
+          <span className="relative text-stroke-black">Portfolio</span>
         </span>
-      </div>
-      <span className="font-mono text-[9px] tracking-[0.08em]" style={{ color: 'rgba(245,244,240,0.35)' }}>
-        {formatTime(elapsed)}&nbsp;/&nbsp;{formatTime(total)}
-      </span>
+      </h2>
     </div>
   )
 }
 
-function PlayerCenter({ isPlaying, onToggle }) {
-  return (
-    <AnimatePresence>
-      {!isPlaying && (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 text-center select-none bg-black/40 backdrop-blur-sm"
-        >
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="font-mono text-[9px] tracking-[0.28em] uppercase flex items-center gap-2"
-            style={{ color: 'var(--white-dim)' }}
-          >
-            <span style={{ color: 'var(--gold)', fontSize: '6px' }}>◆</span>
-            Reworks Showreel
-            <span style={{ color: 'var(--gold)', fontSize: '6px' }}>◆</span>
-          </motion.div>
+function ControlsBar({ isPlaying, elapsed, progress, onToggle, onSeek, isMuted, toggleMute }) {
+  const progressBarRef = useRef(null)
 
-          {/* 2 ◉ 26 */}
-          <div className="flex items-center" style={{ gap: 0, lineHeight: 1 }}>
-            <motion.span
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
-              className="font-display"
-              style={{
-                fontSize: 'clamp(72px, 9vw, 100px)',
-                color: 'var(--white)',
-                textShadow: '0 0 60px rgba(240,201,58,0.1)',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              2
-            </motion.span>
-
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-            >
-              <PlayButton isPlaying={isPlaying} onClick={onToggle} />
-            </motion.div>
-
-            <motion.span
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
-              className="font-display"
-              style={{
-                fontSize: 'clamp(72px, 9vw, 100px)',
-                color: 'var(--white)',
-                textShadow: '0 0 60px rgba(240,201,58,0.1)',
-                letterSpacing: '-0.02em',
-              }}
-            >
-              26
-            </motion.span>
-          </div>
-
-          {/* Stats line */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="font-mono text-[9px] tracking-[0.2em] uppercase flex items-center gap-3"
-            style={{ color: 'rgba(245,244,240,0.3)' }}
-          >
-            <span style={{ color: 'rgba(245,244,240,0.5)' }}>24 Works</span>
-            <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(245,244,240,0.2)', display: 'inline-block' }} />
-            <span style={{ color: 'rgba(245,244,240,0.5)' }}>12 Clients</span>
-            <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(245,244,240,0.2)', display: 'inline-block' }} />
-            <span style={{ color: 'rgba(245,244,240,0.5)' }}>4 Continents</span>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  )
-}
-
-function ControlsBar({ isPlaying, elapsed, progress, onToggle, onSeek }) {
-  const trackRef = useRef(null)
-
-  const handleTrackClick = (e) => {
-    const rect = trackRef.current.getBoundingClientRect()
-    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
+  const handleSeek = (e) => {
+    if (!progressBarRef.current) return
+    const rect = progressBarRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const pct = Math.max(0, Math.min(1, x / rect.width))
     onSeek(pct)
   }
 
   return (
-    <div
-      className="px-5 pb-4 pt-3 flex flex-col gap-3"
-      style={{ background: 'var(--surface2)', borderTop: '0.5px solid rgba(245,244,240,0.07)' }}
-    >
-      {/* Progress */}
-      <div className="progress-track" ref={trackRef} onClick={handleTrackClick}>
-        <div className="progress-fill" style={{ width: `${progress}%` }} />
+    <div className="bg-white border-t-4 border-black flex flex-col">
+      {/* Interactive Progress Bar */}
+      <div
+        ref={progressBarRef}
+        className="w-full h-8 sm:h-12 bg-gray-200 cursor-pointer relative border-b-4 border-black"
+        onClick={handleSeek}
+      >
+        <motion.div
+          className="absolute top-0 left-0 h-full bg-[#00E5FF] border-r-4 border-black"
+          style={{ width: `${progress}%` }}
+          layout
+        />
+        {/* Scrubber lines for aesthetic */}
+        <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '10px 100%' }} />
       </div>
 
-      {/* Controls row */}
-      <div className="flex items-center justify-between">
-        {/* Left */}
-        <div className="flex items-center gap-4">
+      {/* Buttons & Timers */}
+      <div className="flex items-center justify-between px-4 sm:px-6 py-4">
+        <div className="flex items-center gap-4 sm:gap-6">
           <button
             onClick={onToggle}
-            className="flex items-center p-1 transition-colors outline-none"
-            style={{ background: 'none', border: 'none', cursor: 'none', color: 'var(--white-dim)' }}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
+            className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-black hover:bg-[#FF007F] hover:-translate-y-1 hover:translate-x-1 transition-all active:translate-y-1 active:translate-x-0 shadow-[4px_4px_0_0_#e1e61b] hover:shadow-[8px_8px_0_0_#e1e61b] active:shadow-none"
           >
             {isPlaying ? (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-              </svg>
+              <Pause className="w-6 h-6 sm:w-8 sm:h-8 text-white fill-current" />
             ) : (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
+              <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white fill-current ml-1 sm:ml-2" />
             )}
           </button>
-
-          <span className="font-mono text-[10px]" style={{ color: 'var(--white-dim)', letterSpacing: '0.06em' }}>
-            {formatTime(elapsed)}&nbsp;
-            <span style={{ color: 'rgba(245,244,240,0.25)' }}>/&nbsp;01:48</span>
-          </span>
-
-          <WaveIndicator visible={isPlaying} />
+          <div className="flex items-baseline gap-2 font-black text-xl sm:text-3xl tracking-tighter">
+            <span>{formatTime(elapsed)}</span>
+            <span className="text-black/30">/</span>
+            <span className="text-black/30">{formatTime(TOTAL)}</span>
+          </div>
         </div>
 
-        {/* Right */}
-        <div className="flex items-center gap-3">
-          <button
-            className="p-1 outline-none"
-            style={{ background: 'none', border: 'none', cursor: 'none', color: 'var(--white-muted)' }}
-            aria-label="Volume"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-              <path d="M19.07 4.93a10 10 0 010 14.14"/>
-              <path d="M15.54 8.46a5 5 0 010 7.07"/>
-            </svg>
-          </button>
-          {['CC', 'HD'].map(label => (
-            <span
-              key={label}
-              className="font-mono text-[9px] tracking-[0.12em] px-2 py-1 rounded-sm"
-              style={{
-                border: label === 'HD'
-                  ? '0.5px solid rgba(240,201,58,0.3)'
-                  : '0.5px solid rgba(245,244,240,0.07)',
-                color: label === 'HD' ? 'var(--gold)' : 'var(--white-muted)',
-              }}
-            >
-              {label}
-            </span>
-          ))}
-          <button
-            className="p-1 outline-none"
-            style={{ background: 'none', border: 'none', cursor: 'none', color: 'var(--white-muted)' }}
-            aria-label="Fullscreen"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
-            </svg>
+        <div className="flex items-center gap-4">
+          <button onClick={toggleMute} className="p-2 sm:p-3 bg-white border-4 border-black hover:bg-[#e1e61b] transition-colors shadow-[4px_4px_0_0_#000]">
+            {isMuted ? <VolumeX className="w-6 h-6 sm:w-8 sm:h-8" /> : <Volume2 className="w-6 h-6 sm:w-8 sm:h-8" />}
           </button>
         </div>
       </div>
@@ -417,117 +107,35 @@ function ControlsBar({ isPlaying, elapsed, progress, onToggle, onSeek }) {
 }
 
 function StatsStrip() {
-  const stats = [
-    { num: '24', label: 'Works Delivered' },
-    { num: '12', label: 'Global Clients' },
-    { num: '04', label: 'Continents Active' },
-  ]
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5, duration: 0.6 }}
-      className="grid"
-      style={{
-        gridTemplateColumns: '1fr 1px 1fr 1px 1fr',
-        border: '0.5px solid rgba(245,244,240,0.07)',
-        borderTop: 'none',
-        borderRadius: '0 0 4px 4px',
-        overflow: 'hidden',
-        marginTop: '1.5px',
-      }}
-    >
-      {stats.map((s, i) => (
-        <Fragment key={s.label}>
-          <motion.div
-            className="flex flex-col gap-1 px-6 py-4"
-            style={{ background: 'var(--surface2)' }}
-            whileHover={{ background: '#1e1e1d' }}
-            transition={{ duration: 0.2 }}
-          >
-            <span
-              className="font-display"
-              style={{ fontSize: 30, color: 'var(--gold)', lineHeight: 1, letterSpacing: '0.02em' }}
-            >
-              {s.num}
-            </span>
-            <span className="font-mono text-[9px] tracking-[0.14em] uppercase" style={{ color: 'var(--white-muted)' }}>
-              {s.label}
-            </span>
-          </motion.div>
-          {i < 2 && (
-            <div style={{ background: 'rgba(245,244,240,0.07)', width: 1 }} />
-          )}
-        </Fragment>
+    <div className="grid grid-cols-2 md:grid-cols-4 border-t-4 border-black divide-x-0 sm:divide-x-4 divide-y-4 sm:divide-y-0 divide-black bg-white">
+      {[
+        { label: 'CLIENT', val: 'NIKE LABS' },
+        { label: 'ROLE', val: 'CGI / MOTION' },
+        { label: 'YEAR', val: '2026' },
+        { label: 'AWARDS', val: 'Awwwards SOTD' },
+      ].map((s, i) => (
+        <div key={i} className="px-6 py-4 flex flex-col justify-center">
+          <span className="text-[10px] font-black text-black/50 tracking-widest uppercase">{s.label}</span>
+          <span className="text-sm sm:text-lg font-black text-black uppercase tracking-tight">{s.val}</span>
+        </div>
       ))}
-    </motion.div>
-  )
-}
-
-function TickerBar() {
-  const items = ['Motion Design', '·', 'Brand Identity', '·', 'Digital Experiences', '·', 'Art Direction', '·', 'Campaign Films', '·']
-  const repeated = [...items, ...items]
-
-  return (
-    <div
-      className="overflow-hidden py-3 mt-px"
-      style={{ borderTop: '0.5px solid rgba(245,244,240,0.07)', borderBottom: '0.5px solid rgba(245,244,240,0.07)' }}
-    >
-      <div className="ticker-track flex items-center gap-6 whitespace-nowrap" style={{ width: 'max-content' }}>
-        {repeated.map((item, i) => (
-          <span
-            key={i}
-            className="font-mono text-[9px] tracking-[0.16em] uppercase"
-            style={{ color: item === '·' ? 'var(--gold)' : 'var(--white-muted)' }}
-          >
-            {item}
-          </span>
-        ))}
-      </div>
     </div>
   )
 }
 
-function CTARow() {
-  const [hovered, setHovered] = useState(false)
-
+function MarqueeTicker() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.65, duration: 0.6 }}
-      className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 sm:mt-8 gap-4 sm:gap-0"
-    >
-      <p className="font-body text-sm" style={{ color: 'var(--white-muted)', letterSpacing: '0.02em' }}>
-        Est. 2019 — Award-winning creative studio
-      </p>
-
-      <motion.button
-        onHoverStart={() => setHovered(true)}
-        onHoverEnd={() => setHovered(false)}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.97 }}
-        className="flex items-center gap-3 font-mono text-[10px] tracking-[0.18em] uppercase px-5 py-3 rounded-sm outline-none"
-        style={{
-          background: hovered ? 'var(--gold)' : 'transparent',
-          border: '0.5px solid rgba(240,201,58,0.35)',
-          color: hovered ? 'var(--bg)' : 'var(--gold)',
-          transition: 'background 0.25s, color 0.25s',
-          cursor: 'none',
-        }}
+    <div className="w-full bg-[#FF007F] border-t-4 border-black py-3 sm:py-4 overflow-hidden relative">
+      <motion.div
+        className="flex whitespace-nowrap text-black font-black text-2xl sm:text-4xl uppercase tracking-tighter items-center"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
       >
-        View All Work
-        <motion.svg
-          animate={{ x: hovered ? 4 : 0 }}
-          transition={{ duration: 0.2 }}
-          width="14" height="14" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="2"
-        >
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </motion.svg>
-      </motion.button>
-    </motion.div>
+        <span className="pr-8">▶ PLAY THE REEL ▶ PLAY THE REEL ▶ PLAY THE REEL ▶</span>
+        <span className="pr-8">▶ PLAY THE REEL ▶ PLAY THE REEL ▶ PLAY THE REEL ▶</span>
+      </motion.div>
+    </div>
   )
 }
 
@@ -535,6 +143,7 @@ function CTARow() {
 
 export default function ShowreelSection() {
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isMuted, setIsMuted] = useState(true)
   const [elapsed, setElapsed] = useState(0)
   const intervalRef = useRef(null)
   const videoRef = useRef(null)
@@ -549,6 +158,13 @@ export default function ShowreelSection() {
     setElapsed(Math.round(pct * TOTAL))
     if (videoRef.current) {
       videoRef.current.currentTime = pct * TOTAL
+    }
+  }, [])
+
+  const toggleMute = useCallback(() => {
+    setIsMuted(m => !m)
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
     }
   }, [])
 
@@ -569,79 +185,73 @@ export default function ShowreelSection() {
   }, [isPlaying])
 
   return (
-    <div
-      className="relative w-full max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-12"
-      style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
-    >
-      {/* Custom cursor - hidden on touch devices via CSS */}
-      <div className="hidden md:block">
-        <CustomCursor />
-      </div>
-      <TopBar />
-      <HeroTitle />
+    <div className="relative w-full bg-[#f5f5f0] border-t-4 border-black pt-16 pb-24 overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+        
+        <TopBar />
+        <HeroTitle />
 
-      {/* Player */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.7 }}
-        className="border-2 sm:border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] sm:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] bg-[var(--surface)] mt-4 z-10"
-      >
-        <div
-          className="scanlines relative overflow-hidden"
-          style={{
-            background: 'var(--surface)',
-          }}
-        >
-          {/* Noise Overlay */}
+        {/* The Brutalist Player Container */}
+        <div className="w-full border-4 border-black shadow-[16px_16px_0px_0px_#000] bg-white flex flex-col group relative z-10">
+          
+          {/* Video Area */}
           <div 
-            className="pointer-events-none absolute inset-0 z-30 opacity-[0.04] mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-            }}
-          />
-
-          {/* Gold right accent */}
-          <div
-            className="absolute right-0 top-0 bottom-0 w-0.5 z-20"
-            style={{ background: 'var(--gold)', opacity: 0.6 }}
-          />
-
-          {/* Video area */}
-          <div
-            className="relative flex items-center justify-center overflow-hidden cursor-pointer group"
-            style={{ aspectRatio: '16/8.2', background: '#0c0c0b' }}
+            className="relative w-full bg-black cursor-pointer overflow-hidden border-b-4 border-black flex items-center justify-center group"
+            style={{ aspectRatio: '16/9' }}
             onClick={togglePlay}
           >
+            {/* The Video loop */}
             <video
               ref={videoRef}
               src="https://videos.pexels.com/video-files/3163534/3163534-uhd_3840_2160_30fps.mp4"
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-              style={{ opacity: isPlaying ? 1 : 0.6 }}
+              className="absolute inset-0 w-full h-full object-cover opacity-80"
               loop
-              muted
+              muted={isMuted}
               playsInline
             />
-            <PlayerBlobs />
-            <PlayerHUD elapsed={elapsed} total={TOTAL} />
-            <PlayerCenter isPlaying={isPlaying} onToggle={(e) => { e.stopPropagation(); togglePlay(); }} />
+
+            {/* Giant Play Overlay when Paused */}
+            <AnimatePresence>
+              {!isPlaying && (
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-10"
+                >
+                  <div className="bg-[#e1e61b] border-4 border-black px-8 py-4 sm:px-12 sm:py-6 flex items-center gap-4 transform -rotate-3 shadow-[8px_8px_0_0_#FF007F]">
+                    <Play className="w-12 h-12 sm:w-16 sm:h-16 text-black fill-current" />
+                    <span className="font-black text-4xl sm:text-6xl uppercase tracking-tighter">Play</span>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Glitch Overlay Effect */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03] mix-blend-difference z-20"
+                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
           </div>
 
-          {/* Controls */}
           <ControlsBar
             isPlaying={isPlaying}
             elapsed={elapsed}
             progress={progress}
             onToggle={togglePlay}
             onSeek={handleSeek}
+            isMuted={isMuted}
+            toggleMute={toggleMute}
           />
+
+          <StatsStrip />
+          <MarqueeTicker />
         </div>
 
-        <StatsStrip />
-        <TickerBar />
-      </motion.div>
+        {/* Giant background text just for texture */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 -z-10 pointer-events-none overflow-hidden w-full opacity-5">
+          <h1 className="text-[30vw] font-black leading-none whitespace-nowrap">REEL 2026</h1>
+        </div>
 
-      <CTARow />
+      </div>
     </div>
   )
 }

@@ -197,7 +197,7 @@ export function BrandStatement() {
             </div>
             {/* Minimalist brutalist progress bar */}
             <div className="absolute bottom-0 left-0 h-1 bg-black w-full overflow-hidden">
-               <div className="h-full bg-[#e1e61b]" style={{ width: \`\${progress}%\` }} />
+               <div className="h-full bg-[#e1e61b]" style={{ width: `${progress}%` }} />
             </div>
           </button>
 
@@ -238,7 +238,7 @@ export function BrandStatement() {
         <LogoTicker />
       </motion.div>
       
-      <style jsx global>{\`
+      <style jsx global>{`
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
@@ -246,7 +246,7 @@ export function BrandStatement() {
         .blink-cursor {
           animation: blink 1s step-end infinite;
         }
-      \`}</style>
+      `}</style>
     </div>
   );
 }
