@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MapPin, Sparkles, Users, BarChart3, Code2 } from "lucide-react";
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { cn } from "@/lib/utils";
@@ -9,83 +10,74 @@ import { cn } from "@/lib/utils";
 
 function CodeWindowBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-2xl">
-      <div className="absolute inset-0 bg-[#111111]" />
+    <div className="absolute inset-0 overflow-hidden rounded-none bg-black">
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
-            "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
+            "linear-gradient(#ffffff 2px, transparent 2px), linear-gradient(90deg, #ffffff 2px, transparent 2px)",
           backgroundSize: "40px 40px",
         }}
       />
-      {/* Glow accent */}
-      <div className="absolute top-0 left-0 w-48 h-48 rounded-full bg-[#6c24d6]/30 blur-3xl" />
     </div>
   );
 }
 
 function StatsBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-2xl bg-[#e1e61b]">
+    <div className="absolute inset-0 overflow-hidden rounded-none bg-[#e1e61b]">
       <div
-        className="absolute inset-0 opacity-15"
+        className="absolute inset-0 opacity-100"
         style={{
-          backgroundImage: "radial-gradient(circle at 50% 50%, #000 1px, transparent 1px)",
-          backgroundSize: "18px 18px",
+          backgroundImage: "radial-gradient(circle at 50% 50%, #000 2px, transparent 2px)",
+          backgroundSize: "20px 20px",
         }}
       />
-      <div className="absolute -right-8 -top-8 w-48 h-48 rounded-full bg-black/10" />
-      <div className="absolute -left-4 -bottom-4 w-32 h-32 rounded-full bg-black/10" />
     </div>
   );
 }
 
 function LocationBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-2xl bg-[#6c24d6]">
+    <div className="absolute inset-0 overflow-hidden rounded-none bg-[#6c24d6]">
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-100"
         style={{
           backgroundImage:
-            "linear-gradient(45deg, #ffffff 25%, transparent 25%), linear-gradient(-45deg, #ffffff 25%, transparent 25%)",
-          backgroundSize: "8px 8px",
+            "linear-gradient(45deg, #ffffff 4px, transparent 4px), linear-gradient(-45deg, #ffffff 4px, transparent 4px)",
+          backgroundSize: "12px 12px",
         }}
       />
-      <div className="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-white/10" />
-      <div className="absolute top-0 left-0 w-24 h-24 rounded-full bg-white/5 blur-2xl" />
     </div>
   );
 }
 
 function AiBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-2xl bg-white">
-      <div className="absolute top-2 right-2 w-40 h-40 rounded-full bg-[#6c24d6]/10 blur-3xl" />
-      <div className="absolute bottom-2 left-2 w-28 h-28 rounded-full bg-[#e1e61b]/25 blur-2xl" />
+    <div className="absolute inset-0 overflow-hidden rounded-none bg-white">
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="absolute inset-0 opacity-100"
         style={{
           backgroundImage:
-            "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+            "linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px)",
           backgroundSize: "24px 24px",
         }}
       />
+      <div className="absolute inset-0 bg-white/80" />
     </div>
   );
 }
 
 function HeadlineBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden rounded-2xl bg-white">
+    <div className="absolute inset-0 overflow-hidden rounded-none bg-black">
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-20"
         style={{
-          backgroundImage: "radial-gradient(circle at 50% 50%, #6c24d6 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
+          backgroundImage: "radial-gradient(circle at 50% 50%, #6c24d6 2px, transparent 2px)",
+          backgroundSize: "32px 32px",
         }}
       />
-      <div className="absolute -right-12 top-0 bottom-0 w-56 bg-gradient-to-l from-[#e1e61b]/15 to-transparent" />
     </div>
   );
 }
@@ -100,11 +92,11 @@ const features = [
     href: "#about",
     cta: "Our philosophy",
     background: <CodeWindowBackground />,
-    className: "lg:row-start-1 lg:row-end-3 lg:col-start-2 lg:col-end-3 border border-white/10",
+    className: "lg:row-start-1 lg:row-end-3 lg:col-start-2 lg:col-end-3 border-4 border-black shadow-[8px_8px_0_0_#000]",
     iconClass: "text-[#e1e61b]",
-    nameClass: "text-white font-mono",
-    descClass: "text-white/70",
-    ctaClass: "text-[#e1e61b] hover:text-white",
+    nameClass: "text-white font-mono text-xl",
+    descClass: "text-white/90 font-bold",
+    ctaClass: "text-[#e1e61b] hover:text-white bg-black px-4 py-2 border-2 border-[#e1e61b]",
   },
   {
     Icon: BarChart3,
@@ -113,11 +105,11 @@ const features = [
     href: "#case-study",
     cta: "See case studies",
     background: <StatsBackground />,
-    className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 border-2 border-black",
+    className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#e1e61b]",
     iconClass: "text-black",
-    nameClass: "text-black",
-    descClass: "text-black/70",
-    ctaClass: "text-black hover:text-[#6c24d6]",
+    nameClass: "text-black text-xl bg-[#e1e61b] px-2 py-1 inline-block border-2 border-black",
+    descClass: "text-black font-bold bg-[#e1e61b] p-2 border-2 border-black mt-2",
+    ctaClass: "text-black hover:text-white hover:bg-black bg-white border-2 border-black px-4 py-2",
   },
   {
     Icon: MapPin,
@@ -126,11 +118,11 @@ const features = [
     href: "#about",
     cta: "Our story",
     background: <LocationBackground />,
-    className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 border-2 border-black",
-    iconClass: "text-white/80",
-    nameClass: "text-white",
-    descClass: "text-white/70",
-    ctaClass: "text-[#e1e61b] hover:text-white",
+    className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#6c24d6]",
+    iconClass: "text-white",
+    nameClass: "text-black text-xl bg-white px-2 py-1 inline-block border-2 border-black",
+    descClass: "text-black font-bold bg-white p-2 border-2 border-black mt-2",
+    ctaClass: "text-black hover:text-white hover:bg-black bg-[#e1e61b] border-2 border-black px-4 py-2",
   },
   {
     Icon: Sparkles,
@@ -139,11 +131,11 @@ const features = [
     href: "#services",
     cta: "Our services",
     background: <AiBackground />,
-    className: "lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 border-2 border-black",
-    iconClass: "text-[#6c24d6]",
-    nameClass: "text-black",
-    descClass: "text-black/70",
-    ctaClass: "text-[#6c24d6] hover:text-[#e1e61b]",
+    className: "lg:col-start-3 lg:col-end-4 lg:row-start-1 lg:row-end-2 border-4 border-black shadow-[8px_8px_0_0_#000] bg-white",
+    iconClass: "text-black",
+    nameClass: "text-black text-xl font-black",
+    descClass: "text-black font-bold",
+    ctaClass: "text-white bg-black border-2 border-black hover:bg-white hover:text-black px-4 py-2",
   },
   {
     Icon: Users,
@@ -152,11 +144,11 @@ const features = [
     href: "#team",
     cta: "Meet the team",
     background: <HeadlineBackground />,
-    className: "lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 border-2 border-black",
-    iconClass: "text-black",
-    nameClass: "text-black",
-    descClass: "text-black/70",
-    ctaClass: "text-black hover:text-[#6c24d6]",
+    className: "lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-black",
+    iconClass: "text-white",
+    nameClass: "text-black text-xl bg-[#e1e61b] px-2 py-1 inline-block border-2 border-black",
+    descClass: "text-white font-bold",
+    ctaClass: "text-black bg-white hover:bg-[#e1e61b] border-2 border-black px-4 py-2",
   },
 ];
 
@@ -177,12 +169,11 @@ function BrandBentoCard({
 }: (typeof features)[0]) {
   return (
     <motion.div
-      whileHover={{ scale: 1.025 }}
-      transition={{ type: "spring", stiffness: 300, damping: 22 }}
+      whileHover={{ scale: 1.02, y: -4 }}
+      whileTap={{ scale: 0.98, y: 0 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
-        "group relative col-span-3 flex flex-col overflow-hidden rounded-2xl cursor-pointer",
-        "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
-        "transition-shadow duration-200 ease-out hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]",
+        "group relative col-span-3 flex flex-col overflow-hidden rounded-none cursor-pointer bg-white",
         className
       )}
     >
@@ -192,14 +183,16 @@ function BrandBentoCard({
       {/* Content — always visible, no translate-y tricks that cause clipping */}
       <div className="relative z-10 flex h-full flex-col justify-between p-6 gap-4">
         {/* Top: icon + name + description */}
-        <div className="flex flex-col gap-2">
-          <Icon
-            className={cn(
-              "h-7 w-7 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
-              iconClass
-            )}
-          />
-          <h3 className={cn("text-base font-black tracking-tight leading-tight", nameClass)}>
+        <div className="flex flex-col gap-3 items-start">
+          <div className="p-2 border-2 border-black bg-white rounded-none shadow-[2px_2px_0_0_#000]">
+            <Icon
+              className={cn(
+                "h-6 w-6",
+                iconClass
+              )}
+            />
+          </div>
+          <h3 className={cn("font-black tracking-tight leading-tight uppercase", nameClass)}>
             {name}
           </h3>
           <p className={cn("text-sm leading-relaxed", descClass)}>{description}</p>
@@ -209,17 +202,14 @@ function BrandBentoCard({
         <a
           href={href}
           className={cn(
-            "flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest transition-colors duration-200 w-fit",
+            "flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-colors duration-200 w-fit",
             ctaClass
           )}
         >
           {cta}
-          <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-1" />
+          <ArrowRight className="h-4 w-4" />
         </a>
       </div>
-
-      {/* Subtle inner glow on hover */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ring-2 ring-inset ring-white/20 z-20" />
     </motion.div>
   );
 }
@@ -227,16 +217,21 @@ function BrandBentoCard({
 // ─── Section ──────────────────────────────────────────────────────────────────
 
 export function AboutStudio() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yHeader = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
   return (
     <section
-      className="relative w-full py-16 sm:py-24 md:py-32 overflow-hidden border-t border-black/10"
+      ref={containerRef}
+      className="relative w-full py-16 sm:py-24 md:py-32 overflow-hidden border-b-4 border-black bg-[#f4f4f0]"
       style={{
-        // Subtle noise/linen texture on a warm off-white so it's never pure white
-        backgroundColor: "#f7f6f2",
         backgroundImage: `
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"),
-          radial-gradient(ellipse at 10% 90%, rgba(108,36,214,0.06) 0%, transparent 55%),
-          radial-gradient(ellipse at 90% 10%, rgba(225,230,27,0.10) 0%, transparent 55%)
+          url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20z' fill='%23000000' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E")
         `,
       }}
     >
@@ -244,32 +239,28 @@ export function AboutStudio() {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8"
+          style={{ y: yHeader }}
+          className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8 z-10 relative"
         >
           <div>
-            <div className="inline-flex items-center gap-2 border border-black/20 rounded-full px-4 py-1.5 mb-6 bg-white/60 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-[#6c24d6]" />
-              <span className="text-xs font-bold uppercase tracking-widest text-black/60">
+            <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-2 mb-6 bg-white shadow-[4px_4px_0_0_#000]">
+              <span className="w-3 h-3 bg-[#6c24d6] border border-black" />
+              <span className="text-xs font-black uppercase tracking-widest text-black">
                 About Studio
               </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] uppercase">
               We don&apos;t do{" "}
-              <span className="text-[#6c24d6] italic">ordinary.</span>
+              <span className="text-white bg-black px-2 border-4 border-black transform -rotate-1 inline-block">ordinary.</span>
               <br />
               We do{" "}
-              <span className="relative inline-block">
+              <span className="relative inline-block bg-[#e1e61b] px-2 border-4 border-black shadow-[6px_6px_0_0_#000] transform rotate-1 mt-2">
                 <span className="relative z-10">conversion.</span>
-                <span className="absolute inset-x-0 bottom-0 h-3 bg-[#e1e61b] -z-0 rounded-sm" />
               </span>
             </h2>
           </div>
 
-          <p className="text-base md:text-lg text-black/55 leading-relaxed max-w-sm md:max-w-xs font-medium">
+          <p className="text-base md:text-xl text-black font-bold leading-relaxed max-w-sm md:max-w-sm border-l-4 border-black pl-4">
             A Gen Z-led creative studio partnering with founders and CMOs to rework scattered ideas into bold, conversion-ready brands.
           </p>
         </motion.div>
@@ -281,7 +272,7 @@ export function AboutStudio() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <BentoGrid className="lg:grid-rows-2 lg:auto-rows-[260px] gap-4 sm:gap-6">
+          <BentoGrid className="lg:grid-rows-2 lg:auto-rows-[300px] gap-6 sm:gap-8 max-w-none">
             {features.map((feature) => (
               <BrandBentoCard key={feature.name} {...feature} />
             ))}
@@ -294,18 +285,18 @@ export function AboutStudio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="mt-12 flex flex-wrap items-center gap-4"
+          className="mt-16 flex flex-wrap items-center gap-6"
         >
           {/* Yellow primary button */}
-          <button className="group flex items-center gap-2 rounded-full bg-[#e1e61b] px-7 py-3 text-xs font-bold uppercase tracking-wider text-black border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:border-[#6c24d6] hover:shadow-[6px_6px_0px_0px_rgba(108,36,214,0.4)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]">
+          <button className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#e1e61b] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#e1e61b]">
             Our Story
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
 
           {/* White secondary button */}
-          <button className="group flex items-center gap-2 rounded-full bg-white px-7 py-3 text-xs font-bold uppercase tracking-wider text-black border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all duration-200 hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.3)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]">
+          <button className="group flex items-center gap-3 bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
             Read Case Studies
-            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </motion.div>
 

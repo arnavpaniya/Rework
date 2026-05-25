@@ -12,7 +12,7 @@ const testimonials = [
     text: "They didn't just build us a brand. They built us a cult following. Our conversion rate tripled in exactly 4 weeks.",
     name: "Alex Sterling",
     role: "Founder, Zenith Tech",
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=150&auto=format&fit=crop",
     color: "#e1e61b",
     textColor: "#000",
   },
@@ -20,7 +20,7 @@ const testimonials = [
     text: "The speed and quality are unmatched. It feels less like an agency and more like having a world-class team in your own office.",
     name: "Sarah Jenkins",
     role: "CMO, Bloom Studio",
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop",
     color: "#6c24d6",
     textColor: "#fff",
   },
@@ -28,7 +28,7 @@ const testimonials = [
     text: "Brutal honesty combined with brilliant execution. They scrapped our 10-week discovery phase and just started shipping hits.",
     name: "Omar Farooq",
     role: "CEO, Desert Ventures",
-    image: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
     color: "#fff",
     textColor: "#000",
   },
@@ -36,7 +36,7 @@ const testimonials = [
     text: "I've worked with top-tier global agencies, but ReWorks brought a Gen Z energy that completely redefined our market presence.",
     name: "Emily Chen",
     role: "Director of Marketing, Nexa",
-    image: "https://i.pravatar.cc/150?u=a042581f4e29026703d",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop",
     color: "#0ea5e9",
     textColor: "#fff",
   },
@@ -44,7 +44,7 @@ const testimonials = [
     text: "They took our scattered, confused brand guidelines and turned them into a conversion machine. Absolutely relentless team.",
     name: "Marcus Thorne",
     role: "Co-Founder, Catalyst",
-    image: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150&auto=format&fit=crop",
     color: "#ec4899",
     textColor: "#fff",
   },
@@ -52,7 +52,7 @@ const testimonials = [
     text: "If you want traditional, slow-moving advertising, go elsewhere. If you want results yesterday, hire them.",
     name: "Nina Kraviz",
     role: "VP Growth, Sonic",
-    image: "https://i.pravatar.cc/150?u=a048581f4e29026701d",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop",
     color: "#22c55e",
     textColor: "#fff",
   },
@@ -174,10 +174,15 @@ export function TestimonialsSection() {
 
             <div className="flex items-center gap-4">
               <div className="flex -space-x-4">
-                {[1, 2, 3, 4].map((i) => (
+                {[
+                  "1573497019940-1c28c88b4f3e",
+                  "1580489944761-15a19d654956",
+                  "1507003211169-0a1dd7228f2d",
+                  "1534528741775-53994a69daeb"
+                ].map((id, i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-2 border-black overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10">
                     <Image
-                      src={`https://i.pravatar.cc/150?u=a042581f4e29026024${i}`}
+                      src={`https://images.unsplash.com/photo-${id}?q=80&w=150&auto=format&fit=crop`}
                       alt="Avatar"
                       fill
                       className="object-cover"

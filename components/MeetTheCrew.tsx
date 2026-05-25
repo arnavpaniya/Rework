@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -15,7 +14,7 @@ const crew = [
     tag: "DIRECTOR",
     tagColor: "#6c24d6",
     bio: "Leads the vision. Turns chaos into brand clarity.",
-    img: "/team/member-1.png",
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop",
   },
   {
     name: "Priya Nair",
@@ -24,7 +23,7 @@ const crew = [
     tagColor: "#e1e61b",
     tagText: "#000",
     bio: "Builds frameworks that make brands impossible to ignore.",
-    img: "/team/member-2.png",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop",
   },
   {
     name: "Zaid Al-Rashid",
@@ -32,7 +31,7 @@ const crew = [
     tag: "MOTION",
     tagColor: "#0ea5e9",
     bio: "If it doesn't move people, he makes it move.",
-    img: "/team/member-3.png",
+    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000&auto=format&fit=crop",
   },
   {
     name: "Meera Kapoor",
@@ -40,7 +39,7 @@ const crew = [
     tag: "SOCIAL",
     tagColor: "#ec4899",
     bio: "Grows communities with content that actually lands.",
-    img: "/team/member-4.png",
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1000&auto=format&fit=crop",
   },
   {
     name: "Rahul Verma",
@@ -48,192 +47,107 @@ const crew = [
     tag: "DEV",
     tagColor: "#22c55e",
     bio: "Ships fast. Breaks nothing. Builds everything.",
-    img: "/team/member-5.png",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop",
   },
 ];
 
-const CARD_WIDTH_SM = 220;
-const CARD_HEIGHT_SM = 320;
-const CARD_WIDTH = 280;
-const CARD_HEIGHT = 400;
+// Duplicate the array to allow for infinite wrapping
+const extendedCrew = [...crew, ...crew];
 
-// ─── Spread positions for the fan stack ───────────────────────────────────────
+const getWaveY = (x: number, t: number) => {
+  const time = t * 0.001;
+  const wave1 = Math.sin(x * 0.002 - time * 1.5) * 45;
+  const wave2 = Math.sin(x * 0.0035 + time * 0.8) * 25;
+  const wave3 = Math.sin(x * 0.001 + time * 2) * 15;
+  return wave1 + wave2 + wave3 + 120;
+};
 
-function getCardStyle(index: number, active: number, total: number, isMobile: boolean): {
-  rotate: number;
-  x: number;
-  y: number;
-  scale: number;
-  zIndex: number;
-  opacity: number;
-} {
-  const offset = index - active;
-  const absOffset = Math.abs(offset);
-
-  if (absOffset > 2) {
-    return { rotate: 0, x: 0, y: 0, scale: 0.7, zIndex: 0, opacity: 0 };
-  }
-
-  const spreadDesktop = [
-    { rotate: -18, x: -220, y: 30, scale: 0.78, zIndex: 1, opacity: 0.7 },
-    { rotate: -9, x: -110, y: 12, scale: 0.88, zIndex: 2, opacity: 0.85 },
-    { rotate: 0, x: 0, y: 0, scale: 1, zIndex: 5, opacity: 1 },
-    { rotate: 9, x: 110, y: 12, scale: 0.88, zIndex: 2, opacity: 0.85 },
-    { rotate: 18, x: 220, y: 30, scale: 0.78, zIndex: 1, opacity: 0.7 },
-  ];
-
-  const spreadMobile = [
-    { rotate: -14, x: -120, y: 20, scale: 0.75, zIndex: 1, opacity: 0.6 },
-    { rotate: -7, x: -60, y: 8, scale: 0.85, zIndex: 2, opacity: 0.8 },
-    { rotate: 0, x: 0, y: 0, scale: 1, zIndex: 5, opacity: 1 },
-    { rotate: 7, x: 60, y: 8, scale: 0.85, zIndex: 2, opacity: 0.8 },
-    { rotate: 14, x: 120, y: 20, scale: 0.75, zIndex: 1, opacity: 0.6 },
-  ];
-
-  const spread = isMobile ? spreadMobile : spreadDesktop;
-  const mapIndex = offset + 2;
-  return spread[mapIndex] ?? { rotate: 0, x: 0, y: 0, scale: 0.7, zIndex: 0, opacity: 0 };
-}
-
-// ─── Single Card ──────────────────────────────────────────────────────────────
-
-function TeamCard({
-  member,
-  style,
-  isActive,
-  onClick,
-  isMobile,
-}: {
-  member: (typeof crew)[0];
-  style: ReturnType<typeof getCardStyle>;
-  isActive: boolean;
-  onClick: () => void;
-  isMobile: boolean;
-}) {
-  const w = isMobile ? CARD_WIDTH_SM : CARD_WIDTH;
-  const h = isMobile ? CARD_HEIGHT_SM : CARD_HEIGHT;
-  return (
-    <motion.div
-      animate={{
-        rotate: style.rotate,
-        x: style.x,
-        y: style.y,
-        scale: style.scale,
-        opacity: style.opacity,
-        zIndex: style.zIndex,
-      }}
-      transition={{ type: "spring", stiffness: 280, damping: 26, mass: 0.9 }}
-      style={{
-        width: w,
-        height: h,
-        position: "absolute",
-        cursor: isActive ? "default" : "pointer",
-        transformOrigin: "bottom center",
-      }}
-      onClick={onClick}
-      whileHover={isActive ? {} : { y: style.y - 10 }}
-    >
-      <div
-        className={cn(
-          "relative w-full h-full rounded-3xl overflow-hidden border-2 border-black",
-          "shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
-          isActive && "shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]"
-        )}
-      >
-        {/* Photo — lazy loaded */}
-        <Image
-          src={member.img}
-          alt={member.name}
-          fill
-          sizes="280px"
-          className="object-cover object-top"
-          loading="lazy"
-        />
-
-        {/* Dark gradient overlay at bottom */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-
-        {/* Tag pill */}
-        <div
-          className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-black/20 shadow-sm"
-          style={{
-            backgroundColor: member.tagColor,
-            color: (member as { tagText?: string }).tagText ?? "#fff",
-          }}
-        >
-          {member.tag}
-        </div>
-
-        {/* Bottom info — only fully visible on active card */}
-        <div className="absolute bottom-0 left-0 right-0 p-5">
-          <h3 className="text-white font-black text-lg leading-tight tracking-tight">
-            {member.name}
-          </h3>
-          <p className="text-white/70 text-xs font-bold uppercase tracking-widest mt-0.5">
-            {member.role}
-          </p>
-          <AnimatePresence>
-            {isActive && (
-              <motion.p
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.25 }}
-                className="text-white/60 text-sm mt-2 leading-snug"
-              >
-                {member.bio}
-              </motion.p>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-// ─── Section ──────────────────────────────────────────────────────────────────
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export function MeetTheCrew() {
-  const [active, setActive] = useState(2);
-  const [isMobile, setIsMobile] = useState(false);
-  const total = crew.length;
-  const dragStartX = useRef(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const stringsRef = useRef<(SVGLineElement | null)[]>([]);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    let animationId: number;
+    const speedX = 40; // Pixels per second horizontal scroll
 
-  const prev = useCallback(() => setActive((a) => Math.max(0, a - 1)), []);
-  const next = useCallback(() => setActive((a) => Math.min(total - 1, a + 1)), [total]);
+    const animate = (timestamp: number) => {
+      const timeSec = timestamp * 0.001;
+      const width = containerRef.current?.clientWidth || window.innerWidth;
+      
+      // Draw SVG Path
+      let pathD = "";
+      const points = 150;
+      for (let i = -10; i <= points + 10; i++) {
+        const x = (i / points) * width;
+        const y = getWaveY(x, timestamp);
+        if (i === -10) pathD += `M ${x} ${y} `;
+        else pathD += `L ${x} ${y} `;
+      }
+      if (pathRef.current) {
+        pathRef.current.setAttribute("d", pathD);
+      }
 
-  // Keyboard navigation
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
+      // Position Cards
+      const spacing = 400;
+      const totalCards = extendedCrew.length;
+      const totalW = totalCards * spacing; // 4000px
+
+      extendedCrew.forEach((_, idx) => {
+        let targetX = (spacing * idx + timeSec * speedX) % totalW;
+        targetX -= spacing; // Start slightly offscreen to the left
+
+        // The card is 260px wide, so its center is targetX + 130
+        const centerX = targetX + 130;
+        const y = getWaveY(centerX, timestamp);
+
+        const stringElem = stringsRef.current[idx];
+        if (stringElem) {
+          stringElem.setAttribute("x1", centerX.toString());
+          stringElem.setAttribute("y1", y.toString());
+          stringElem.setAttribute("x2", centerX.toString());
+          stringElem.setAttribute("y2", (y + 50).toString());
+        }
+
+        const cardElem = cardsRef.current[idx];
+        if (cardElem) {
+          cardElem.style.transform = `translate(${targetX}px, ${y + 50}px)`;
+        }
+      });
+
+      animationId = requestAnimationFrame(animate);
     };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [prev, next]);
+
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
 
   return (
     <section
-      className="w-full py-24 md:py-32 overflow-hidden border-t border-black/10"
-      style={{ backgroundColor: "#111111" }}
+      ref={containerRef}
+      className="w-full relative overflow-hidden border-t border-black/10"
+      style={{ backgroundColor: "#111111", minHeight: "800px" }}
       id="team"
     >
-      <div className="max-w-7xl mx-auto px-6">
+      <style>{`
+        @keyframes sway {
+          0% { transform: rotate(-3deg); }
+          50% { transform: rotate(3deg); }
+          100% { transform: rotate(-3deg); }
+        }
+      `}</style>
 
+      <div className="max-w-7xl mx-auto px-6 pt-24 md:pt-32 relative z-20 pointer-events-none">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-20"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
           <div>
             <div className="inline-flex items-center gap-2 border border-white/20 rounded-full px-4 py-1.5 mb-6">
@@ -243,101 +157,97 @@ export function MeetTheCrew() {
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-white leading-[1.05]">
-              Meet the{" "}
-              <span className="text-[#e1e61b] italic">crew.</span>
+              Meet the <span className="text-[#e1e61b] italic">crew.</span>
             </h2>
           </div>
           <p className="text-base text-white/50 max-w-xs font-medium leading-relaxed">
             38 humans. One obsession. Making brands that actually work.
           </p>
         </motion.div>
+      </div>
 
-        {/* Card Fan */}
-        <div
-          className="relative flex items-center justify-center"
-          style={{ height: (isMobile ? CARD_HEIGHT_SM : CARD_HEIGHT) + 60 }}
-          // Touch / swipe support
-          onTouchStart={(e) => { dragStartX.current = e.touches[0].clientX; }}
-          onTouchEnd={(e) => {
-            const delta = dragStartX.current - e.changedTouches[0].clientX;
-            if (delta > 40) next();
-            else if (delta < -40) prev();
-          }}
-        >
-          {crew.map((member, i) => (
-            <TeamCard
-              key={member.name}
-              member={member}
-              style={getCardStyle(i, active, total, isMobile)}
-              isActive={i === active}
-              onClick={() => setActive(i)}
-              isMobile={isMobile}
+      {/* Physics Container */}
+      <div className="absolute inset-0 top-[200px] pointer-events-none">
+        {/* Thread SVG */}
+        <svg className="absolute inset-0 w-full h-[300px] overflow-visible">
+          <path
+            ref={pathRef}
+            stroke="rgba(255,255,255,0.2)"
+            strokeWidth="2"
+            fill="none"
+          />
+          {extendedCrew.map((_, i) => (
+            <line
+              key={`string-${i}`}
+              ref={(el) => { stringsRef.current[i] = el; }}
+              stroke="rgba(255,255,255,0.4)"
+              strokeWidth="2"
+              strokeDasharray="4 4"
             />
           ))}
-        </div>
+        </svg>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-center gap-6 mt-12">
-          {/* Prev — 48px min tap target */}
-          <button
-            onClick={prev}
-            disabled={active === 0}
-            aria-label="Previous team member"
-            className={cn(
-              "flex items-center justify-center w-12 h-12 rounded-full border-2 border-white/20 text-white",
-              "transition-all duration-200 hover:bg-white hover:text-black hover:border-white",
-              "disabled:opacity-30 disabled:pointer-events-none",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e1e61b]"
-            )}
+        {/* Cards */}
+        {extendedCrew.map((member, i) => (
+          <div
+            key={i}
+            ref={(el) => { cardsRef.current[i] = el; }}
+            className="absolute top-0 left-0 pointer-events-auto"
+            style={{ willChange: "transform" }}
           >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
+            <div
+              className="bg-white flex flex-col relative overflow-hidden"
+              style={{
+                width: "260px",
+                height: "380px",
+                transformOrigin: "top center",
+                animation: "sway 4s ease-in-out infinite",
+                animationDelay: `${i * -0.4}s`,
+              }}
+            >
+              {/* Photo */}
+              <div className="relative h-56 w-full filter grayscale hover:grayscale-0 transition-all duration-500">
+                <Image
+                  src={member.img}
+                  alt={member.name}
+                  fill
+                  className="object-cover object-center"
+                  sizes="260px"
+                />
+              </div>
 
-          {/* Dot indicators */}
-          <div className="flex items-center gap-2.5">
-            {crew.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                aria-label={`Go to ${crew[i].name}`}
-                className={cn(
-                  "rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e1e61b]",
-                  i === active
-                    ? "w-6 h-2.5 bg-[#e1e61b]"
-                    : "w-2.5 h-2.5 bg-white/30 hover:bg-white/60"
-                )}
-              />
-            ))}
+              {/* Pin/tape visual at top center */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#e1e61b] rounded-full shadow-sm -mt-2 border-2 border-black" />
+
+              {/* Tag pill */}
+              <div
+                className="absolute top-3 right-3 px-2 py-1 text-[9px] font-black uppercase tracking-widest backdrop-blur-md"
+                style={{
+                  backgroundColor: member.tagColor,
+                  color: (member as { tagText?: string }).tagText ?? "#fff",
+                }}
+              >
+                {member.tag}
+              </div>
+
+              {/* Details */}
+              <div
+                className="p-5 flex-1 flex flex-col justify-between"
+                style={{ backgroundColor: "#111", color: "white" }}
+              >
+                <div>
+                  <h3 className="font-black text-xl tracking-tight">{member.name}</h3>
+                  <p className="text-[#e1e61b] text-[10px] font-bold uppercase tracking-widest mt-1">
+                    {member.role}
+                  </p>
+                </div>
+                <p className="text-sm font-medium text-white/60 leading-tight">
+                  {member.bio}
+                </p>
+              </div>
+            </div>
           </div>
-
-          {/* Next — 48px min tap target */}
-          <button
-            onClick={next}
-            disabled={active === total - 1}
-            aria-label="Next team member"
-            className={cn(
-              "flex items-center justify-center w-12 h-12 rounded-full border-2 border-white/20 text-white",
-              "transition-all duration-200 hover:bg-white hover:text-black hover:border-white",
-              "disabled:opacity-30 disabled:pointer-events-none",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e1e61b]"
-            )}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Active member name below nav */}
-        <motion.div
-          key={active}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mt-6"
-        >
-          <p className="text-white/40 text-xs font-bold uppercase tracking-widest">
-            {active + 1} / {total} — {crew[active].name}
-          </p>
-        </motion.div>
-
+        ))}
       </div>
     </section>
   );

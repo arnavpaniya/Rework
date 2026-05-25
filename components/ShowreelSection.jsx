@@ -133,9 +133,27 @@ function PlayerBlobs() {
 }
 
 function PlayButton({ isPlaying, onClick }) {
+  const ref = useRef(null)
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return
+    const { clientX, clientY } = e
+    const { height, width, left, top } = ref.current.getBoundingClientRect()
+    const middleX = clientX - (left + width / 2)
+    const middleY = clientY - (top + height / 2)
+    setPosition({ x: middleX * 0.3, y: middleY * 0.3 })
+  }
+
+  const reset = () => setPosition({ x: 0, y: 0 })
+
   return (
     <motion.button
+      ref={ref}
       onClick={onClick}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={reset}
+      animate={{ x: position.x, y: position.y }}
       aria-label={isPlaying ? 'Pause' : 'Play showreel'}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.94 }}
@@ -226,76 +244,85 @@ function PlayerHUD({ elapsed, total }) {
 
 function PlayerCenter({ isPlaying, onToggle }) {
   return (
-    <div className="relative z-10 flex flex-col items-center gap-4 text-center select-none">
-      {/* Eyebrow */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="font-mono text-[9px] tracking-[0.28em] uppercase flex items-center gap-2"
-        style={{ color: 'var(--white-dim)' }}
-      >
-        <span style={{ color: 'var(--gold)', fontSize: '6px' }}>◆</span>
-        Reworks Showreel
-        <span style={{ color: 'var(--gold)', fontSize: '6px' }}>◆</span>
-      </motion.div>
-
-      {/* 2 ◉ 26 */}
-      <div className="flex items-center" style={{ gap: 0, lineHeight: 1 }}>
-        <motion.span
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, type: 'spring', stiffness: 120 }}
-          className="font-display"
-          style={{
-            fontSize: 'clamp(72px, 9vw, 100px)',
-            color: 'var(--white)',
-            textShadow: '0 0 60px rgba(240,201,58,0.1)',
-            letterSpacing: '-0.02em',
-          }}
+    <AnimatePresence>
+      {!isPlaying && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 text-center select-none bg-black/40 backdrop-blur-sm"
         >
-          2
-        </motion.span>
+          {/* Eyebrow */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="font-mono text-[9px] tracking-[0.28em] uppercase flex items-center gap-2"
+            style={{ color: 'var(--white-dim)' }}
+          >
+            <span style={{ color: 'var(--gold)', fontSize: '6px' }}>◆</span>
+            Reworks Showreel
+            <span style={{ color: 'var(--gold)', fontSize: '6px' }}>◆</span>
+          </motion.div>
 
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.75, type: 'spring', stiffness: 200 }}
-        >
-          <PlayButton isPlaying={isPlaying} onClick={onToggle} />
+          {/* 2 ◉ 26 */}
+          <div className="flex items-center" style={{ gap: 0, lineHeight: 1 }}>
+            <motion.span
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
+              className="font-display"
+              style={{
+                fontSize: 'clamp(72px, 9vw, 100px)',
+                color: 'var(--white)',
+                textShadow: '0 0 60px rgba(240,201,58,0.1)',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              2
+            </motion.span>
+
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
+            >
+              <PlayButton isPlaying={isPlaying} onClick={onToggle} />
+            </motion.div>
+
+            <motion.span
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, type: 'spring', stiffness: 120 }}
+              className="font-display"
+              style={{
+                fontSize: 'clamp(72px, 9vw, 100px)',
+                color: 'var(--white)',
+                textShadow: '0 0 60px rgba(240,201,58,0.1)',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              26
+            </motion.span>
+          </div>
+
+          {/* Stats line */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="font-mono text-[9px] tracking-[0.2em] uppercase flex items-center gap-3"
+            style={{ color: 'rgba(245,244,240,0.3)' }}
+          >
+            <span style={{ color: 'rgba(245,244,240,0.5)' }}>24 Works</span>
+            <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(245,244,240,0.2)', display: 'inline-block' }} />
+            <span style={{ color: 'rgba(245,244,240,0.5)' }}>12 Clients</span>
+            <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(245,244,240,0.2)', display: 'inline-block' }} />
+            <span style={{ color: 'rgba(245,244,240,0.5)' }}>4 Continents</span>
+          </motion.div>
         </motion.div>
-
-        <motion.span
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, type: 'spring', stiffness: 120 }}
-          className="font-display"
-          style={{
-            fontSize: 'clamp(72px, 9vw, 100px)',
-            color: 'var(--white)',
-            textShadow: '0 0 60px rgba(240,201,58,0.1)',
-            letterSpacing: '-0.02em',
-          }}
-        >
-          26
-        </motion.span>
-      </div>
-
-      {/* Stats line */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.9 }}
-        className="font-mono text-[9px] tracking-[0.2em] uppercase flex items-center gap-3"
-        style={{ color: 'rgba(245,244,240,0.3)' }}
-      >
-        <span style={{ color: 'rgba(245,244,240,0.5)' }}>24 Works</span>
-        <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(245,244,240,0.2)', display: 'inline-block' }} />
-        <span style={{ color: 'rgba(245,244,240,0.5)' }}>12 Clients</span>
-        <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(245,244,240,0.2)', display: 'inline-block' }} />
-        <span style={{ color: 'rgba(245,244,240,0.5)' }}>4 Continents</span>
-      </motion.div>
-    </div>
+      )}
+    </AnimatePresence>
   )
 }
 
@@ -508,8 +535,9 @@ function CTARow() {
 
 export default function ShowreelSection() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [elapsed, setElapsed] = useState(19)
+  const [elapsed, setElapsed] = useState(0)
   const intervalRef = useRef(null)
+  const videoRef = useRef(null)
 
   const progress = (elapsed / TOTAL) * 100
 
@@ -519,10 +547,14 @@ export default function ShowreelSection() {
 
   const handleSeek = useCallback((pct) => {
     setElapsed(Math.round(pct * TOTAL))
+    if (videoRef.current) {
+      videoRef.current.currentTime = pct * TOTAL
+    }
   }, [])
 
   useEffect(() => {
     if (isPlaying) {
+      if (videoRef.current) videoRef.current.play()
       intervalRef.current = setInterval(() => {
         setElapsed(e => {
           if (e >= TOTAL) { setIsPlaying(false); return 0 }
@@ -530,6 +562,7 @@ export default function ShowreelSection() {
         })
       }, 1000)
     } else {
+      if (videoRef.current) videoRef.current.pause()
       clearInterval(intervalRef.current)
     }
     return () => clearInterval(intervalRef.current)
@@ -552,15 +585,22 @@ export default function ShowreelSection() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.7 }}
+        className="border-2 sm:border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] sm:shadow-[16px_16px_0px_0px_rgba(0,0,0,1)] bg-[var(--surface)] mt-4 z-10"
       >
         <div
           className="scanlines relative overflow-hidden"
           style={{
-            border: '0.5px solid rgba(245,244,240,0.07)',
-            borderRadius: '4px 4px 0 0',
             background: 'var(--surface)',
           }}
         >
+          {/* Noise Overlay */}
+          <div 
+            className="pointer-events-none absolute inset-0 z-30 opacity-[0.04] mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+            }}
+          />
+
           {/* Gold right accent */}
           <div
             className="absolute right-0 top-0 bottom-0 w-0.5 z-20"
@@ -569,12 +609,22 @@ export default function ShowreelSection() {
 
           {/* Video area */}
           <div
-            className="relative flex items-center justify-center overflow-hidden"
+            className="relative flex items-center justify-center overflow-hidden cursor-pointer group"
             style={{ aspectRatio: '16/8.2', background: '#0c0c0b' }}
+            onClick={togglePlay}
           >
+            <video
+              ref={videoRef}
+              src="https://videos.pexels.com/video-files/3163534/3163534-uhd_3840_2160_30fps.mp4"
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+              style={{ opacity: isPlaying ? 1 : 0.6 }}
+              loop
+              muted
+              playsInline
+            />
             <PlayerBlobs />
             <PlayerHUD elapsed={elapsed} total={TOTAL} />
-            <PlayerCenter isPlaying={isPlaying} onToggle={togglePlay} />
+            <PlayerCenter isPlaying={isPlaying} onToggle={(e) => { e.stopPropagation(); togglePlay(); }} />
           </div>
 
           {/* Controls */}

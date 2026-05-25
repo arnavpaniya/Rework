@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Syne } from "next/font/google";
 import "./globals.css";
+
+const syne = Syne({
+  weight: ['400', '600', '700', '800'],
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+});
 
 const metropolis = localFont({
   src: [
@@ -42,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${metropolis.variable} font-sans h-full antialiased`}
+      className={`${metropolis.variable} ${syne.variable} font-sans h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <main className="flex-1">{children}</main>

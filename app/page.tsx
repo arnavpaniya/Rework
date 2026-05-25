@@ -1,4 +1,5 @@
 import { Hero } from "../components/Hero";
+import { BrandStatement } from "../components/BrandStatement";
 import { ContactSection } from "@/components/ContactSection";
 import { ContactMarquee } from "@/components/ContactMarquee";
 import { FloatingNavDemo } from "@/components/FloatingNav";
@@ -23,15 +24,18 @@ export default function Home() {
         {/* Hero */}
         <section
           id="home"
-          className="min-h-screen"
+          className="w-full"
         >
           <Hero />
         </section>
 
-        {/* Logo Ticker Integration */}
-        <div className="relative z-20">
-          <LogoTicker />
-        </div>
+        {/* Brand Statement (Previously Hero) */}
+        <section
+          id="brand-statement"
+          className="w-full bg-white relative z-20"
+        >
+          <BrandStatement />
+        </section>
 
         {/* What We Do — Disciplines */}
         <section
@@ -56,10 +60,14 @@ export default function Home() {
         <AboutStudio />
 
         {/* Meet the Crew */}
-        <MeetTheCrew />
+        <div id="team">
+          <MeetTheCrew />
+        </div>
 
         {/* Testimonials */}
-        <TestimonialsSection />
+        <div id="testimonials">
+          <TestimonialsSection />
+        </div>
 
         {/* Marquee Separator */}
         <ContactMarquee />

@@ -8,27 +8,27 @@ export function FloatingNavDemo() {
   const navItems = [
     {
       name: "HOME",
-      link: "#home",
+      link: "/#home",
     },
     {
       name: "ABOUT",
-      link: "#about",
+      link: "/#about",
     },
     {
       name: "SERVICES",
-      link: "#services",
+      link: "/services",
     },
     {
       name: "CASE STUDY",
-      link: "#case-study",
+      link: "/case-study",
     },
     {
       name: "TEAM",
-      link: "#team",
+      link: "/#team",
     },
     {
       name: "TESTIMONIALS",
-      link: "#testimonials",
+      link: "/#testimonials",
     },
   ];
 
