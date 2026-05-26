@@ -85,13 +85,6 @@ export const FloatingNav = ({
             className
           )}
         >
-          {/* Logo Section */}
-          {logo && (
-            <div className="flex-shrink-0 origin-left scale-[0.75] sm:scale-90 md:scale-100">
-              {logo}
-            </div>
-          )}
-
           {/* Navbar Box */}
           <div
             className="
@@ -112,6 +105,13 @@ export const FloatingNav = ({
                 className="absolute top-0 left-0 right-0 h-[4px] bg-[#6c24d6] origin-left"
               />
             </div>
+
+            {/* Logo Section */}
+            {logo && (
+              <div className="flex-shrink-0 origin-left scale-[0.6] sm:scale-75 md:scale-90 mr-4">
+                {logo}
+              </div>
+            )}
             
             {/* Navigation Links — hidden below lg */}
             <div className="hidden lg:flex items-center gap-1 pl-2" onMouseLeave={() => setHoveredIndex(null)}>
