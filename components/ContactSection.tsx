@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // ─── Form Input Components ──────────────────────────────────────────────────
 
@@ -53,14 +55,23 @@ function Select({ label, options }: { label: string, options: string[] }) {
 // ─── Main Component ─────────────────────────────────────────────────────────
 
 export function ContactSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const yFace2 = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
   return (
     <section 
+      ref={sectionRef}
       id="contact" 
       className="relative w-full py-24 md:py-32 overflow-hidden bg-black border-y-4 border-white"
     >
       {/* ─── Brutalist Grid Background ─── */}
       <div 
-        className="absolute inset-0 opacity-20 pointer-events-none" 
+        className="absolute inset-0 opacity-15 pointer-events-none z-0" 
         style={{ 
           backgroundImage: "linear-gradient(#fff 2px, transparent 2px), linear-gradient(90deg, #fff 2px, transparent 2px)", 
           backgroundSize: "64px 64px" 
@@ -79,14 +90,16 @@ export function ContactSection() {
               </span>
             </div>
 
-            <h2 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white uppercase leading-[0.9] mb-8">
-              Let&apos;s <span className="text-[#e1e61b]">rework</span><br />
-              something<br />
-              <span className="text-transparent" style={{ WebkitTextStroke: "2px white" }}>big.</span>
-            </h2>
+            <div className="relative flex items-center justify-between gap-4 mb-8">
+              <h2 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white uppercase leading-[0.9] flex-1">
+                Let&apos;s <span className="text-[#e1e61b]">rework</span><br />
+                something<br />
+                <span className="text-transparent" style={{ WebkitTextStroke: "2px white" }}>big.</span>
+              </h2>
+            </div>
 
             <p className="text-xl text-white font-bold uppercase leading-snug mb-12 max-w-md border-l-4 border-[#e1e61b] pl-4">
-              Send a line — or request a free brand audit. We read every message and respond within one business day.
+              Ready to rework your brand? Work with a digital marketing agency in Mumbai and Dubai that actually moves — from first brief to final launch. We respond within one business day.
             </p>
           </div>
 
@@ -129,6 +142,34 @@ export function ContactSection() {
         {/* ─── Right: Brutalist Form ─── */}
         <div className="flex-1 w-full max-w-xl mx-auto lg:mx-0">
           <div className="relative">
+            {/* Interactive Chrome Eye Sticker connected to top-right corner of contactbox */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.7, rotate: -20 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: -5 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.1, rotate: 5, filter: "brightness(1.15) drop-shadow(0 0 15px rgba(255,255,255,0.4))" }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="absolute z-30 pointer-events-auto select-none
+                w-[130px] h-[130px] top-[-65px] right-[-30px] 
+                sm:w-[170px] sm:h-[170px] sm:top-[-85px] sm:right-[-45px] 
+                md:w-[200px] md:h-[200px] md:top-[-100px] md:right-[-60px]
+                filter drop-shadow-[8px_8px_0_rgba(0,0,0,0.15)]"
+            >
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="w-full h-full"
+              >
+                <Image 
+                  src="/y2k/chrome-eye.png" 
+                  alt="Chrome Eye Sticker"
+                  width={200}
+                  height={200}
+                  className="object-contain"
+                />
+              </motion.div>
+            </motion.div>
+
             {/* Form Container */}
             <div className="relative w-full bg-black border-4 border-white p-6 sm:p-10 flex flex-col gap-6 sm:gap-8 shadow-[16px_16px_0px_0px_rgba(255,255,255,1)]">
               
@@ -174,6 +215,28 @@ export function ContactSection() {
         </div>
 
       </div>
+
+      {/* Decorative Large Chrome Sticker */}
+      <motion.div 
+        style={{ y: yFace2 }}
+        className="absolute left-[-120px] bottom-[-40px] w-[350px] h-[350px] pointer-events-none select-none hidden 2xl:block opacity-85 z-0"
+      >
+        <motion.div
+          animate={{ y: [0, 15, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.08, rotate: 30 }}
+          className="w-full h-full pointer-events-auto"
+        >
+          <Image 
+            src="/y2k/chrome-face-2.png" 
+            alt="Chrome Face Sticker"
+            width={350}
+            height={350}
+            className="object-contain filter drop-shadow-[12px_12px_0_rgba(255,255,255,0.05)] transition-all duration-300 hover:brightness-110"
+          />
+        </motion.div>
+      </motion.div>
+
     </section>
   );
 }

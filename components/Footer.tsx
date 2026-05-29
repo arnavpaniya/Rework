@@ -71,7 +71,7 @@ export function Footer() {
               The <span className="text-[#6c24d6]">Internet.</span>
             </h2>
             <p className="text-black text-xl font-bold uppercase leading-snug max-w-sm border-l-4 border-black pl-4">
-              A Gen Z-led digital marketing agency in Dubai. We don't do boring. 
+              A Gen Z-led digital marketing agency in Mumbai & Dubai. Serving FMCG, entertainment & hospitality brands across India and the UAE.
             </p>
           </div>
 

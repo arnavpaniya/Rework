@@ -180,17 +180,40 @@ export function HowWeWork() {
     offset: ["start start", "end end"],
   });
 
+  const yCursor = useTransform(scrollYProgress, [0, 1], [50, 450]);
+
   return (
     <ReactLenis root>
       <div ref={container} className="relative bg-white border-y-4 border-black overflow-hidden">
         {/* Background grid pattern for brutalist feel */}
         <div 
-          className="absolute inset-0 opacity-10 pointer-events-none" 
+          className="absolute inset-0 opacity-10 pointer-events-none z-0" 
           style={{ 
             backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)", 
             backgroundSize: "40px 40px" 
           }} 
         />
+        
+        {/* Decorative Large Chrome Cursor Sticker - Left Side peeking */}
+        <motion.div 
+          style={{ y: yCursor }}
+          className="absolute left-[-100px] top-[8%] w-[280px] h-[280px] pointer-events-none select-none hidden 2xl:block opacity-90 z-10"
+        >
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.08, rotate: -5 }}
+            className="w-full h-full pointer-events-auto"
+          >
+            <Image 
+              src="/y2k/chrome-cursor.png" 
+              alt="Chrome Cursor Sticker"
+              width={280}
+              height={280}
+              className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.06)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
+            />
+          </motion.div>
+        </motion.div>
         
         {/* ── Section header ──────────────────────────────────────── */}
         <section className="relative z-20 pt-20 sm:pt-32 pb-12 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">

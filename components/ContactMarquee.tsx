@@ -21,7 +21,16 @@ export function ContactMarquee() {
       </span>
       <span className="text-[#e1e61b]">✦</span>
       <span className="text-[#e1e61b]">✦</span>
-      <span>Free Brand Audit</span>
+      <span 
+        className="cursor-pointer hover:text-white hover:underline decoration-[#e1e61b] decoration-2 underline-offset-4 transition-all duration-200"
+        onClick={() => {
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(new CustomEvent("open-lead-popup"));
+          }
+        }}
+      >
+        Free Brand Audit
+      </span>
       <span className="text-[#e1e61b]">✦</span>
     </div>
   );

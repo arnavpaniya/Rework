@@ -191,9 +191,16 @@ export const FloatingNav = ({
                 <div className="h-2 w-2 rounded-full bg-[#6c24d6] animate-pulse" />
                 <span className="text-[11px] sm:text-[13px] font-black uppercase tracking-widest text-black">{time || "00:00:00"}</span>
               </div>
-              <Link href="#contact" className="hidden sm:block border-2 border-black bg-[#e1e61b] px-4 sm:px-6 py-2 sm:py-2.5 text-[11px] sm:text-[13px] font-black uppercase tracking-wider text-black transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none text-center">
+              <button 
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("open-lead-popup"));
+                  }
+                }}
+                className="hidden sm:block border-2 border-black bg-[#e1e61b] px-4 sm:px-6 py-2 sm:py-2.5 text-[11px] sm:text-[13px] font-black uppercase tracking-wider text-black transition-all duration-300 hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-[2px] active:shadow-none text-center"
+              >
                 Free Brand Audit
-              </Link>
+              </button>
 
               {/* Hamburger — visible below lg */}
               <button
@@ -275,13 +282,17 @@ export const FloatingNav = ({
                   <div className="h-2 w-2 rounded-full bg-[#6c24d6] animate-pulse" />
                   <span className="text-xs font-black uppercase text-black tracking-widest">{time || "00:00:00"}</span>
                 </div>
-                <Link
-                  href="#contact"
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    if (typeof window !== "undefined") {
+                      window.dispatchEvent(new CustomEvent("open-lead-popup"));
+                    }
+                  }}
                   className="w-full border-2 border-black bg-[#e1e61b] px-6 py-4 text-xs font-black uppercase tracking-wider text-black text-center transition-all active:translate-y-[2px] shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000]"
                 >
                   Free Brand Audit
-                </Link>
+                </button>
               </div>
             </motion.div>
           </div>

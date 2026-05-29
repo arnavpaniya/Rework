@@ -134,9 +134,17 @@ export function MeetTheCrew() {
     >
       <style>{`
         @keyframes sway {
-          0% { transform: rotate(-3deg); }
-          50% { transform: rotate(3deg); }
-          100% { transform: rotate(-3deg); }
+          0% { transform: rotate(-3.5deg); }
+          50% { transform: rotate(3.5deg); }
+          100% { transform: rotate(-3.5deg); }
+        }
+        .crew-card {
+          transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.25);
+        }
+        .crew-card:hover {
+          box-shadow: 12px 12px 0px 0px var(--hover-color);
+          border-color: var(--hover-color) !important;
         }
       `}</style>
 
@@ -196,32 +204,33 @@ export function MeetTheCrew() {
             style={{ willChange: "transform" }}
           >
             <div
-              className="bg-white flex flex-col relative overflow-hidden"
+              className="bg-[#111] flex flex-col relative overflow-hidden crew-card group border-4 border-white"
               style={{
                 width: "260px",
                 height: "380px",
                 transformOrigin: "top center",
                 animation: "sway 4s ease-in-out infinite",
                 animationDelay: `${i * -0.4}s`,
-              }}
+                "--hover-color": member.tagColor,
+              } as React.CSSProperties}
             >
               {/* Photo */}
-              <div className="relative h-56 w-full filter grayscale hover:grayscale-0 transition-all duration-500">
+              <div className="relative h-56 w-full filter grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden">
                 <Image
                   src={member.img}
                   alt={member.name}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   sizes="260px"
                 />
               </div>
 
               {/* Pin/tape visual at top center */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-[#e1e61b] rounded-full shadow-sm -mt-2 border-2 border-black" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-5 bg-white/30 backdrop-blur-md border border-white/20 -mt-2.5 rotate-[-2deg] z-30 shadow-sm transition-all duration-300 group-hover:bg-white/50 group-hover:rotate-[1deg]" />
 
               {/* Tag pill */}
               <div
-                className="absolute top-3 right-3 px-2 py-1 text-[9px] font-black uppercase tracking-widest backdrop-blur-md"
+                className="absolute top-3 right-3 px-2.5 py-1 text-[9px] font-black uppercase tracking-widest border-2 border-black z-20 shadow-[2px_2px_0_0_#000]"
                 style={{
                   backgroundColor: member.tagColor,
                   color: (member as { tagText?: string }).tagText ?? "#fff",
@@ -232,16 +241,17 @@ export function MeetTheCrew() {
 
               {/* Details */}
               <div
-                className="p-5 flex-1 flex flex-col justify-between"
-                style={{ backgroundColor: "#111", color: "white" }}
+                className="p-5 flex-1 flex flex-col justify-between border-t-4 border-white transition-all duration-300 group-hover:border-t-[var(--hover-color)] bg-[#111]"
               >
                 <div>
-                  <h3 className="font-black text-xl tracking-tight">{member.name}</h3>
-                  <p className="text-[#e1e61b] text-[10px] font-bold uppercase tracking-widest mt-1">
+                  <h3 className="font-black text-xl tracking-tight text-white transition-colors duration-300 group-hover:text-[var(--hover-color)]">
+                    {member.name}
+                  </h3>
+                  <p className="text-[#e1e61b] text-[10px] font-black uppercase tracking-widest mt-1">
                     {member.role}
                   </p>
                 </div>
-                <p className="text-sm font-medium text-white/60 leading-tight">
+                <p className="text-sm font-semibold text-white/60 leading-tight transition-colors duration-300 group-hover:text-white/80">
                   {member.bio}
                 </p>
               </div>

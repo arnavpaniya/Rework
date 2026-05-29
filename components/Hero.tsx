@@ -90,11 +90,13 @@ export function Hero() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-black text-[14vw] sm:text-[11vw] md:text-[9vw] leading-[0.85] font-black uppercase tracking-tighter mix-blend-normal z-30 relative"
+            className="text-black text-[13vw] sm:text-[10vw] md:text-[8vw] leading-[0.85] font-black uppercase tracking-tighter mix-blend-normal z-30 relative"
           >
-            <span className="block">WE DON'T</span>
-            <span className="block text-transparent" style={{ WebkitTextStroke: "4px black" }}>REWORK.</span>
-            <span className="block bg-black text-white px-4 md:px-8 inline-block mt-4 md:mt-8 shadow-[12px_12px_0px_0px_rgba(108,36,214,1)] border-4 border-black transform -rotate-2">WE REVOLUTIONIZE.</span>
+            <span className="block text-[6vw] sm:text-[4.5vw] md:text-[3.6vw] leading-tight font-black tracking-tight mb-2">DIGITAL MARKETING AGENCY IN</span>
+            <span className="block text-transparent text-[11vw] sm:text-[9vw] md:text-[7.2vw] font-black leading-none" style={{ WebkitTextStroke: "2.5px black" }}>MUMBAI &amp; DUBAI</span>
+            <span className="block bg-black text-white text-[3vw] sm:text-[2.2vw] md:text-[1.6vw] tracking-wider px-6 py-2.5 inline-block mt-8 border-4 border-black transform -rotate-1 relative z-30 font-black uppercase shadow-[6px_6px_0px_0px_#6c24d6]">
+              WHERE STRATEGY MEETS CULTURE
+            </span>
           </motion.h1>
         </div>
 

@@ -221,7 +221,7 @@ export function BrandStatement() {
             Rework to <span className="bg-[#e1e61b] px-2 border-2 border-black transform inline-block rotate-1">Revolutionize.</span>
             <br />
             <span className="block mt-4 text-base sm:text-xl font-bold tracking-normal normal-case">
-              We turn scattered brands into sharp, scroll-stopping systems — built to move brands in Dubai and across the UAE.
+              We turn scattered brands into sharp, scroll-stopping systems — built to move brands from Mumbai to Dubai and across India and the UAE.
             </span>
           </p>
         </motion.div>

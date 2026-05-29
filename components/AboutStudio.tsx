@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MapPin, Sparkles, Users, BarChart3, Code2 } from "lucide-react";
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 // ─── Background slot components ──────────────────────────────────────────────
 
@@ -33,6 +34,7 @@ function StatsBackground() {
           backgroundSize: "20px 20px",
         }}
       />
+      <div className="absolute inset-0 bg-[#e1e61b]/80 z-0" />
     </div>
   );
 }
@@ -48,6 +50,7 @@ function LocationBackground() {
           backgroundSize: "12px 12px",
         }}
       />
+      <div className="absolute inset-0 bg-[#6c24d6]/80 z-0" />
     </div>
   );
 }
@@ -63,7 +66,7 @@ function AiBackground() {
           backgroundSize: "24px 24px",
         }}
       />
-      <div className="absolute inset-0 bg-white/80" />
+      <div className="absolute inset-0 bg-white/85 z-0" />
     </div>
   );
 }
@@ -114,7 +117,7 @@ const features = [
   {
     Icon: MapPin,
     name: "Dubai ↔ Mumbai",
-    description: "Rooted in Mumbai. Scaling across the UAE and beyond.",
+    description: "Rooted in Mumbai. Scaling across Dubai, India, and the UAE.",
     href: "#about",
     cta: "Our story",
     background: <LocationBackground />,
@@ -224,6 +227,8 @@ export function AboutStudio() {
   });
 
   const yHeader = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const yRose = useTransform(scrollYProgress, [0, 1], [150, -150]);
+  const yCherries = useTransform(scrollYProgress, [0, 1], [-100, 100]);
 
   return (
     <section
@@ -243,7 +248,7 @@ export function AboutStudio() {
           className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8 z-10 relative"
         >
           <div>
-            <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-2 mb-6 bg-white shadow-[4px_4px_0_0_#000]">
+            <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-2 mb-6 bg-white shadow-[4px_4px_0_0_#000] relative">
               <span className="w-3 h-3 bg-[#6c24d6] border border-black" />
               <span className="text-xs font-black uppercase tracking-widest text-black">
                 About Studio
@@ -261,7 +266,7 @@ export function AboutStudio() {
           </div>
 
           <p className="text-base md:text-xl text-black font-bold leading-relaxed max-w-sm md:max-w-sm border-l-4 border-black pl-4">
-            A Gen Z-led creative studio partnering with founders and CMOs to rework scattered ideas into bold, conversion-ready brands.
+            A Gen Z-led digital marketing agency in Mumbai & Dubai, partnering with founders and CMOs across India and the UAE to rework scattered ideas into bold, conversion-ready brands — for FMCG, entertainment, and hospitality.
           </p>
         </motion.div>
 
@@ -277,6 +282,70 @@ export function AboutStudio() {
               <BrandBentoCard key={feature.name} {...feature} />
             ))}
           </BentoGrid>
+        </motion.div>
+
+        {/* Why Brands Choose ReWorks Section (Change 7) */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="mt-12 bg-black border-4 border-black text-white p-8 md:p-12 shadow-[8px_8px_0_0_#000] relative overflow-hidden"
+        >
+          {/* Subtle grid backdrop */}
+          <div 
+            className="absolute inset-0 opacity-[0.03]" 
+            style={{ 
+              backgroundImage: "linear-gradient(#fff 2px, transparent 2px), linear-gradient(90deg, #fff 2px, transparent 2px)", 
+              backgroundSize: "20px 20px" 
+            }} 
+          />
+          <div className="relative z-10 w-full">
+            <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-center md:text-left mb-8 text-[#e1e61b]">
+              Why Brands in Mumbai &amp; Dubai Choose ReWorks
+            </h3>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+              {/* Point 1 */}
+              <div className="group border-2 border-white/10 p-6 bg-white/5 transition-colors hover:border-[#e1e61b]/30">
+                <span className="text-xs font-black uppercase tracking-widest text-[#e1e61b] bg-[#e1e61b]/10 border border-[#e1e61b]/20 px-3 py-1 inline-block mb-4">
+                  01. Culture
+                </span>
+                <h4 className="text-lg font-black uppercase tracking-tight text-white mb-2">
+                  Gen Z Instinct
+                </h4>
+                <p className="text-white/60 text-sm font-semibold leading-relaxed">
+                  ➔ We don&apos;t study culture, we live it. Scroll-speed creative built for fast-moving platforms.
+                </p>
+              </div>
+
+              {/* Point 2 */}
+              <div className="group border-2 border-white/10 p-6 bg-white/5 transition-colors hover:border-[#6c24d6]/30">
+                <span className="text-xs font-black uppercase tracking-widest text-[#6c24d6] bg-[#6c24d6]/10 border border-[#6c24d6]/20 px-3 py-1 inline-block mb-4">
+                  02. Automation
+                </span>
+                <h4 className="text-lg font-black uppercase tracking-tight text-white mb-2">
+                  AI-Powered Systems
+                </h4>
+                <p className="text-white/60 text-sm font-semibold leading-relaxed">
+                  ➔ Faster builds, sharper briefs, better output. Combining intelligence with pristine visual craftsmanship.
+                </p>
+              </div>
+
+              {/* Point 3 */}
+              <div className="group border-2 border-white/10 p-6 bg-white/5 transition-colors hover:border-white/20">
+                <span className="text-xs font-black uppercase tracking-widest text-white bg-white/10 border border-white/20 px-3 py-1 inline-block mb-4">
+                  03. Presence
+                </span>
+                <h4 className="text-lg font-black uppercase tracking-tight text-white mb-2">
+                  Mumbai to Dubai
+                </h4>
+                <p className="text-white/60 text-sm font-semibold leading-relaxed">
+                  ➔ One agency across two of the world&apos;s fastest-growing brand markets. Built to move seamlessly across India &amp; the UAE.
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Footer CTAs */}
@@ -301,6 +370,49 @@ export function AboutStudio() {
         </motion.div>
 
       </div>
+
+      {/* Decorative Large Chrome Sticker - Left Side peeking out */}
+      <motion.div 
+        style={{ y: yRose }}
+        className="absolute left-[-100px] bottom-[15%] w-[320px] h-[320px] pointer-events-none select-none hidden 2xl:block opacity-90 z-0"
+      >
+        <motion.div
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.08, rotate: -5 }}
+          className="w-full h-full pointer-events-auto"
+        >
+          <Image 
+            src="/y2k/chrome-rose.png" 
+            alt="Chrome Rose Sticker"
+            width={320}
+            height={320}
+            className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Decorative Large Chrome Sticker - Right Side peeking out */}
+      <motion.div 
+        style={{ y: yCherries }}
+        className="absolute right-[-100px] top-[10%] w-[320px] h-[320px] pointer-events-none select-none hidden 2xl:block opacity-90 z-0"
+      >
+        <motion.div
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          whileHover={{ scale: 1.08, rotate: 25 }}
+          className="w-full h-full pointer-events-auto"
+        >
+          <Image 
+            src="/y2k/chrome-cherries.png" 
+            alt="Chrome Cherries Sticker"
+            width={320}
+            height={320}
+            className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
+          />
+        </motion.div>
+      </motion.div>
+
     </section>
   );
 }

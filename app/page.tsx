@@ -11,6 +11,8 @@ import { AboutStudio } from "@/components/AboutStudio";
 import ShowreelSection from "@/components/ShowreelSection";
 import { MeetTheCrew } from "@/components/MeetTheCrew";
 import { TestimonialsSection } from "@/components/Testimonials";
+import { IndustriesSection } from "@/components/IndustriesSection";
+import { FaqSection } from "@/components/FaqSection";
 
 export default function Home() {
   return (
@@ -51,6 +53,9 @@ export default function Home() {
         {/* How We Work */}
         <HowWeWork />
 
+        {/* Industries We Serve */}
+        <IndustriesSection />
+
         {/* Showreel Section */}
         <section className="bg-[#0c0c0b]">
           <ShowreelSection />
@@ -71,6 +76,9 @@ export default function Home() {
 
         {/* Marquee Separator */}
         <ContactMarquee />
+
+        {/* FAQ Section */}
+        <FaqSection />
 
         {/* Contact */}
         <ContactSection />

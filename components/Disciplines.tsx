@@ -82,8 +82,8 @@ export function Disciplines() {
               What We Do
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] max-w-2xl">
-            Four <span className="text-[#e1e61b] drop-shadow-lg italic" style={{ WebkitTextStroke: "1px #282727ff" }} >Disciplines</span>,<br />one <span className="text-[#6c24d6]">Studio.</span>
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] max-w-4xl uppercase">
+            Digital Marketing Services<br />We Offer in <span className="text-[#e1e61b] drop-shadow-lg italic" style={{ WebkitTextStroke: "1px #282727ff" }} >Mumbai</span> &amp; <span className="text-[#6c24d6]">Dubai.</span>
           </h2>
         </div>
 
