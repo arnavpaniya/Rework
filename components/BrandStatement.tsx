@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { LogoTicker } from "./LogoTicker";
+import Image from "next/image";
 
 // ── Brutalist entrance timing ────────────────────────────────────────────────
 const SNAP_UP = (delay: number): Variants => ({
@@ -209,22 +210,40 @@ export function BrandStatement() {
           </button>
         </motion.div>
 
-        {/* Tagline */}
-        <motion.div
-          variants={SNAP_UP(0.8)}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-center max-w-2xl px-6 sm:px-4 mx-auto mt-12 sm:mt-16 pb-12 sm:pb-16 z-10"
-        >
-          <p className="text-xl sm:text-2xl md:text-3xl text-black font-black uppercase leading-[1.1] tracking-tight">
-            Rework to <span className="bg-[#e1e61b] px-2 border-2 border-black transform inline-block rotate-1">Revolutionize.</span>
-            <br />
-            <span className="block mt-4 text-base sm:text-xl font-bold tracking-normal normal-case">
-              We turn scattered brands into sharp, scroll-stopping systems — built to move brands from Mumbai to Dubai and across India and the UAE.
-            </span>
-          </p>
-        </motion.div>
+        {/* Tagline Section with Chrome Ring */}
+        <div className="relative w-full overflow-visible flex flex-col items-center justify-center my-16 sm:my-24 md:my-32 py-24 sm:py-36 md:py-44">
+          {/* Chrome Ring (Silver Orbit) - Sized extremely large to fit text inside */}
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none overflow-visible">
+            <div className="relative w-[210vw] sm:w-[180vw] md:w-[155vw] lg:w-[135vw] max-w-[1750px] aspect-[2/1] opacity-100 flex items-center justify-center scale-120 sm:scale-130 md:scale-140">
+              <Image
+                src="/y2k/chrome-ring.png"
+                alt="Chrome Ring"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Tagline */}
+          <motion.div
+            variants={SNAP_UP(0.8)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-center max-w-xl sm:max-w-2xl px-6 sm:px-4 mx-auto relative z-10 pointer-events-none flex flex-col items-center justify-center"
+          >
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black font-black uppercase leading-none tracking-tight mb-4 pointer-events-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
+              <span>Rework to</span>
+              <span className="bg-[#e1e61b] text-black px-4 py-1.5 border-4 border-black transform inline-block rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black uppercase tracking-tight">
+                Revolutionize.
+              </span>
+            </h2>
+            <p className="block mt-6 text-xs sm:text-sm md:text-base font-bold tracking-normal normal-case leading-relaxed text-black/80 pointer-events-auto max-w-sm sm:max-w-md mx-auto">
+              We turn scattered brands into sharp, scroll-stopping systems — built to move brands from <strong className="font-black text-black">Mumbai to Dubai</strong> and across <strong className="font-black text-black">India</strong> and <strong className="font-black text-black">the UAE</strong>.
+            </p>
+          </motion.div>
+        </div>
       </div>
 
       {/* ── Layer 5: Logo ticker (last) ────────────────────────────────────── */}
