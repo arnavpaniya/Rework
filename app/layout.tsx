@@ -36,7 +36,7 @@ const metropolis = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Agency Mumbai & Dubai & India UAE | ReWorks",
+  title: "ReWork | Digital Marketing Agency in Mumbai & Dubai & India UAE",
   description:
     "ReWorks is a digital marketing agency in Mumbai & Dubai offering branding, social media, video, and digital development for FMCG, entertainment, and hospitality brands. Let's build something.",
 };
