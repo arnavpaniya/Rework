@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 type Discipline = {
   number: string;
@@ -71,20 +72,62 @@ const gridClasses = [
 
 export function Disciplines() {
   return (
-    <section className="w-full bg-white py-16 sm:py-24 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <section className="w-full bg-white py-16 sm:py-24 md:py-32 overflow-hidden relative">
+      
+      {/* ─── Premium Architectural/Editorial Grid Lines ─── */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
+        style={{
+          backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+          backgroundSize: "60px 60px"
+        }}
+      />
+      {/* Soft Horizontal Lined Grid (Notebook Grid) */}
+      <div 
+        className="absolute inset-x-0 top-0 bottom-0 opacity-[0.02] pointer-events-none z-0"
+        style={{
+          backgroundImage: "linear-gradient(#000 1px, transparent 1px)",
+          backgroundSize: "100% 40px"
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Header */}
-        <div className="mb-10 sm:mb-16">
-          <div className="inline-flex items-center gap-2 border border-black/20 rounded-full px-4 py-1.5 mb-6 sm:mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#6c24d6]" />
-            <span className="text-xs font-bold uppercase tracking-widest text-black/60">
-              What We Do
-            </span>
+        <div className="mb-12 sm:mb-20 relative flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-0">
+          
+          <div className="max-w-4xl relative z-10">
+            <div className="inline-flex items-center gap-2 border border-black/20 rounded-full px-4 py-1.5 mb-6 sm:mb-8 bg-white shadow-sm relative z-10">
+              <span className="w-2 h-2 rounded-full bg-[#6c24d6]" />
+              <span className="text-xs font-bold uppercase tracking-widest text-black/60">
+                What We Do
+              </span>
+            </div>
+
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] uppercase relative z-10 pointer-events-none">
+              <span className="block pointer-events-auto">Digital Marketing Services</span>
+              <span className="block pointer-events-auto">
+                We Offer in <span className="text-[#e1e61b] drop-shadow-lg italic font-black" style={{ WebkitTextStroke: "1px #282727ff" }} >Mumbai</span> &amp; <span className="text-[#6c24d6] font-black pointer-events-auto">Dubai.</span>
+              </span>
+            </h2>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] max-w-4xl uppercase">
-            Digital Marketing Services<br />We Offer in <span className="text-[#e1e61b] drop-shadow-lg italic" style={{ WebkitTextStroke: "1px #282727ff" }} >Mumbai</span> &amp; <span className="text-[#6c24d6]">Dubai.</span>
-          </h2>
+
+          {/* Symmetrical large Y2K Chrome Spike Star with revolving ring (orbit) */}
+          <div className="absolute right-[-80px] md:right-[-4%] lg:right-[-6%] xl:right-[-8%] top-[-40px] sm:top-[-60px] md:top-[-80px] w-[320px] h-[340px] sm:w-[440px] sm:h-[465px] md:w-[580px] md:h-[610px] pointer-events-none select-none hidden sm:block z-20 overflow-visible">
+            {/* Soft Lime/Yellow Radial Glow Backdrop behind the star */}
+            <div className="absolute bottom-[15%] right-[25%] w-[200px] h-[200px] sm:w-[280px] sm:h-[280px] bg-[#e1e61b] rounded-full blur-[90px] sm:blur-[120px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
+            
+            <div className="w-full h-full relative z-10">
+              <Image 
+                src="/y2k/chrome-star1.png" 
+                alt="Premium Y2K Chrome Orbit Star"
+                fill
+                className="object-contain filter drop-shadow-[12px_12px_24px_rgba(0,0,0,0.15)]"
+                priority
+              />
+            </div>
+          </div>
+
         </div>
 
         {/* Bento Box Grid */}
