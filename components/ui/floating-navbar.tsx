@@ -241,7 +241,7 @@ export const FloatingNav = ({
             >
               {/* Top Header of Sidebar */}
               <div className="flex items-center justify-between mb-10">
-                <div className="scale-75 origin-left">
+                <div className="scale-75 origin-left" onClick={() => setMobileOpen(false)}>
                   {logo}
                 </div>
                 <button

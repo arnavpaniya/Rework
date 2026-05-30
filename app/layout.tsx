@@ -44,7 +44,6 @@ export const metadata: Metadata = {
 import { Footer } from "@/components/Footer";
 import { GamifiedPreloader } from "@/components/GamifiedPreloader";
 import { LeadPopup } from "@/components/LeadPopup";
-import { CustomChromeCursor } from "@/components/ui/CustomChromeCursor";
 
 export default function RootLayout({
   children,
@@ -156,7 +155,6 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <CustomChromeCursor />
         <GamifiedPreloader />
         <LeadPopup />
         <main className="flex-1">{children}</main>
