@@ -64,7 +64,7 @@ export function Hero() {
              style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
            />
            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-             <span className="text-[25vw] font-black text-black opacity-10 rotate-[-5deg] whitespace-nowrap">NO BAKWAAS</span>
+             <span className="text-[25vw] font-black text-black opacity-10 rotate-[-5deg] whitespace-nowrap">NO NONSENSE</span>
            </div>
         </div>
       </motion.div>
@@ -81,7 +81,7 @@ export function Hero() {
           className="flex flex-wrap items-center justify-center gap-4 mb-12 sm:mb-20 z-20 relative pointer-events-auto"
         >
           <Badge text="REWORKS.AGENCY" subtext="ESTD. 2017" rotate={-4} className="border-2 border-black shadow-[4px_4px_0_0_#000]" />
-          <Tape color="black" text="SIRF RESULTS." rotate={2} className="border-2 border-black" />
+          <Tape color="black" text="ONLY RESULTS." rotate={2} className="border-2 border-black" />
         </motion.div>
 
         {/* Massive Headline */}
@@ -108,9 +108,9 @@ export function Hero() {
           transition={{ delay: 0.6 }}
           className="mt-16 sm:mt-24 relative flex flex-col sm:flex-row items-center gap-6 z-20 pointer-events-auto"
         >
-          <Tape color="purple" text="STRATEGIC DIMAG." rotate={-3} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
-          <Tape color="pink" text="CREATIVE DIL." rotate={2} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
-          <Tape color="yellow" text="TECHNOLOGY KA JUGAAD." rotate={-1} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
+          <Tape color="purple" text="STRATEGIC MIND." rotate={-3} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
+          <Tape color="pink" text="CREATIVE HEART." rotate={2} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
+          <Tape color="yellow" text="SMART TECH." rotate={-1} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
         </motion.div>
 
         {/* CTA Button */}

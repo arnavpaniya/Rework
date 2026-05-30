@@ -63,27 +63,30 @@ export function LeadPopup() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm pointer-events-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm pointer-events-auto cursor-pointer"
+          onClick={handleClose}
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="w-full max-w-lg bg-[#f4f4f0] border-4 border-black shadow-[12px_12px_0_0_#000] relative overflow-hidden"
+            transition={{ type: "spring", stiffness: 450, damping: 30 }}
+            className="w-full max-w-lg bg-[#f4f4f0] border-4 border-black shadow-[12px_12px_0_0_#000] relative overflow-hidden cursor-default"
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Header Control Bar */}
-            <div className="bg-black text-white px-5 py-3 flex items-center justify-between border-b-4 border-black">
-              <span className="font-mono text-xs font-black tracking-widest uppercase flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#e1e61b] animate-spin" />
-                REWORK_INQUIRY_PROMPT.TXT
-              </span>
-              <button
-                onClick={handleClose}
-                className="bg-[#ff3366] text-white border-2 border-white p-1 hover:bg-white hover:text-black transition-all active:translate-y-0.5 active:shadow-none"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </div>
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-4 right-4 z-50 bg-[#ff3366] text-white border-2 border-black p-1.5 hover:bg-black hover:text-white transition-all active:translate-y-0.5 active:shadow-none shadow-[2px_2px_0_0_#000]"
+              aria-label="Close dialog"
+            >
+              <X className="w-4 h-4" />
+            </button>
 
             {/* Content viewports */}
             <div className="p-6 md:p-8">
@@ -202,7 +205,7 @@ export function LeadPopup() {
               )}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
