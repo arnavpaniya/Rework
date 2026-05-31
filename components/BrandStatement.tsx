@@ -219,6 +219,7 @@ export function BrandStatement() {
                 src="/y2k/chrome-ring.png"
                 alt="Chrome Ring"
                 fill
+                sizes="(max-width: 640px) 210vw, (max-width: 768px) 180vw, (max-width: 1024px) 155vw, 135vw"
                 className="object-contain"
                 priority
               />

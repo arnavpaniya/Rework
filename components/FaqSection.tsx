@@ -154,6 +154,7 @@ export function FaqSection() {
               alt="Premium Chrome Rose Stem Sticker"
               width={360}
               height={580}
+              style={{ width: "auto", height: "auto" }}
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>
@@ -181,6 +182,7 @@ export function FaqSection() {
               alt="Premium Chrome Rose Sticker"
               width={360}
               height={360}
+              style={{ width: "auto", height: "auto" }}
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>

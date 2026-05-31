@@ -34,6 +34,7 @@ export function IndustriesSection() {
             src="/y2k/chrome-rose-stem.png" 
             alt="Premium Chrome Rose Stem"
             fill
+            sizes="(max-width: 640px) 380px, (max-width: 768px) 500px, 600px"
             className="object-contain filter drop-shadow-[15px_15px_0_rgba(0,0,0,0.3)]"
           />
         </motion.div>

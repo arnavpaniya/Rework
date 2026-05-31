@@ -31,6 +31,11 @@ export default function Home() {
           <Hero />
         </section>
 
+        {/* Showreel Section */}
+        <section className="bg-[#0c0c0b] w-full">
+          <ShowreelSection />
+        </section>
+
         {/* Brand Statement (Previously Hero) */}
         <section
           id="brand-statement"
@@ -55,11 +60,6 @@ export default function Home() {
 
         {/* Industries We Serve */}
         <IndustriesSection />
-
-        {/* Showreel Section */}
-        <section className="bg-[#0c0c0b]">
-          <ShowreelSection />
-        </section>
 
         {/* About Studio (Bento Grid) */}
         <AboutStudio />

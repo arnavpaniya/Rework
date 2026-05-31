@@ -154,7 +154,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-full flex flex-col">
+      <body className="relative min-h-full flex flex-col">
         <GamifiedPreloader />
         <LeadPopup />
         <main className="flex-1">{children}</main>

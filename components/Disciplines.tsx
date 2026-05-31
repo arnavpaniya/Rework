@@ -122,6 +122,7 @@ export function Disciplines() {
                 src="/y2k/chrome-star1.png" 
                 alt="Premium Y2K Chrome Orbit Star"
                 fill
+                sizes="(max-width: 640px) 320px, (max-width: 768px) 440px, 580px"
                 className="object-contain filter drop-shadow-[12px_12px_24px_rgba(0,0,0,0.15)]"
                 priority
               />

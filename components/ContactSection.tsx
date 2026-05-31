@@ -165,6 +165,7 @@ export function ContactSection() {
                   alt="Chrome Eye Sticker"
                   width={200}
                   height={200}
+                  style={{ width: "auto", height: "auto" }}
                   className="object-contain"
                 />
               </motion.div>
