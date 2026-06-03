@@ -194,7 +194,7 @@ export function TestimonialsSection() {
               Don&apos;t just <br />
               take our <br />
               <span className="bg-[#e1e61b] px-2 leading-none inline-block mt-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black italic">
-                word for it.
+                word for it
               </span>
             </h2>
 

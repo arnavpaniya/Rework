@@ -94,7 +94,7 @@ export function ContactSection() {
               <h2 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-white uppercase leading-[0.9] flex-1">
                 Let&apos;s <span className="text-[#e1e61b]">rework</span><br />
                 something<br />
-                <span className="text-transparent" style={{ WebkitTextStroke: "2px white" }}>big.</span>
+                <span className="text-transparent" style={{ WebkitTextStroke: "2px white" }}>big</span>
               </h2>
             </div>
 

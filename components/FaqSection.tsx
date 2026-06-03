@@ -73,7 +73,7 @@ export function FaqSection() {
 
           {/* Main Title Matching Screenshot Layout */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-black tracking-tighter uppercase leading-[0.95] mb-5 font-heading">
-            COMMON <span className="text-transparent" style={{ WebkitTextStroke: "2.5px black" }}>QUESTIONS.</span>
+            COMMON <span className="text-transparent" style={{ WebkitTextStroke: "2.5px black" }}>QUESTIONS</span>
           </h2>
           
           {/* Subtitle */}

@@ -202,7 +202,7 @@ export function HowWeWork() {
             <h2 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-black uppercase leading-[0.9]">
               Four steps.
               <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: "2px black" }}>Zero fluff.</span>
+              <span className="text-transparent" style={{ WebkitTextStroke: "2px black" }}>Zero fluff</span>
             </h2>
           </div>
           <p className="max-w-sm text-base text-black font-bold uppercase leading-snug lg:pb-3 border-l-4 border-black pl-4">

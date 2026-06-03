@@ -89,7 +89,7 @@ export function IndustriesSection() {
           <h2 className="text-3xl sm:text-5xl md:text-[4.2rem] font-black tracking-tighter uppercase leading-[0.95] mb-8 font-heading">
             ENTERTAINMENT, FMCG &amp; <br />
             <span className="text-transparent" style={{ WebkitTextStroke: "2px white" }}>HOSPITALITY BRANDS</span><br />
-            IN INDIA &amp; THE UAE.
+            IN INDIA &amp; THE UAE
           </h2>
 
           <p className="text-base md:text-lg text-neutral-300 font-semibold leading-relaxed max-w-2xl border-l-4 border-[#e1e61b] pl-4">

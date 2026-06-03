@@ -181,7 +181,7 @@ export function MeetTheCrew() {
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-white leading-[1.05]">
-              Meet the <span className="text-[#e1e61b] italic">crew.</span>
+              Meet the <span className="text-[#e1e61b] italic">crew</span>
             </h2>
           </div>
           <p className="text-base text-white/50 max-w-xs font-medium leading-relaxed">

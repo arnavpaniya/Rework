@@ -106,7 +106,7 @@ const features = [
     Icon: MapPin,
     name: "Dubai ↔ Mumbai",
     description: "Rooted in Mumbai. Scaling across Dubai, India, and the UAE.",
-    href: "#about",
+    href: "/#brand-statement",
     cta: "Our story",
     background: <LocationBackground />,
     className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#6c24d6]",
@@ -345,7 +345,7 @@ export function AboutStudio() {
           className="mt-16 flex flex-wrap items-center gap-6"
         >
           {/* Yellow primary button */}
-          <Link href="#about" className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
+          <Link href="/#brand-statement" className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
             Our Story
             <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
