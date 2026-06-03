@@ -207,7 +207,7 @@ function BrandBentoCard({
   );
 }
 
-// ─── Section ──────────────────────────────────────────────────────────────────
+// ─── Section ────────────────────────────────────────────────────────────────────
 
 export function AboutStudio() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -218,7 +218,7 @@ export function AboutStudio() {
 
   const yHeader = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const yRose = useTransform(scrollYProgress, [0, 1], [150, -150]);
-  const yCherries = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+  const yFace = useTransform(scrollYProgress, [0, 1], [-120, 120]);
 
   return (
     <section
@@ -230,7 +230,55 @@ export function AboutStudio() {
         `,
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      {/* Decorative Large Chrome Sticker - Left Side peeking out */}
+      <div 
+        className="hidden xl:block absolute xl:left-[calc(50%-920px)] 2xl:left-[calc(50%-980px)] bottom-[15%] w-[260px] h-[260px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
+      >
+        <motion.div 
+          style={{ y: yRose }}
+          className="w-full h-full relative z-10"
+        >
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.08, rotate: -5 }}
+            className="w-full h-full pointer-events-auto relative"
+          >
+            <Image 
+              src="/y2k/chrome-rose.png" 
+              alt="Chrome Rose Sticker"
+              fill
+              className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Decorative Large Chrome Sticker - Right Side peeking out */}
+      <div 
+        className="hidden xl:block absolute xl:right-[calc(50%-920px)] 2xl:right-[calc(50%-980px)] top-[10%] w-[260px] h-[260px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
+      >
+        <motion.div 
+          style={{ y: yFace }}
+          className="w-full h-full relative z-10"
+        >
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            whileHover={{ scale: 1.08, rotate: 25 }}
+            className="w-full h-full pointer-events-auto relative"
+          >
+            <Image 
+              src="/y2k/chrome-face-2.png" 
+              alt="Chrome Face Sticker"
+              fill
+              className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-8 sm:px-6 relative z-10 bg-transparent lg:bg-[#f4f4f0]">
 
         {/* Header */}
         <motion.div
@@ -360,46 +408,6 @@ export function AboutStudio() {
         </motion.div>
 
       </div>
-
-      {/* Decorative Large Chrome Sticker - Left Side peeking out */}
-      <motion.div 
-        style={{ y: yRose }}
-        className="absolute left-[-40px] sm:left-[-60px] md:left-[-80px] 2xl:left-[-100px] bottom-[15%] w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
-      >
-        <motion.div
-          animate={{ y: [0, -12, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          whileHover={{ scale: 1.08, rotate: -5 }}
-          className="w-full h-full pointer-events-auto"
-        >
-          <Image 
-            src="/y2k/chrome-rose.png" 
-            alt="Chrome Rose Sticker"
-            width={320}
-            height={320}
-            className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* Decorative Large Chrome Sticker - Right Side peeking out */}
-      <div 
-        className="absolute right-[-40px] sm:right-[-60px] md:right-[-80px] 2xl:right-[-100px] top-[10%] w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
-      >
-        <motion.div
-          whileHover={{ scale: 1.08, rotate: 25 }}
-          className="w-full h-full pointer-events-auto"
-        >
-          <Image 
-            src="/y2k/chrome-face-2.png" 
-            alt="Chrome Face Sticker"
-            width={320}
-            height={320}
-            className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
-          />
-        </motion.div>
-      </div>
-
     </section>
   );
 }

@@ -48,7 +48,7 @@ export function FaqSection() {
     <section 
       ref={sectionRef}
       id="faq" 
-      className="relative w-full py-24 md:py-32 overflow-hidden bg-white border-t-4 border-black text-black"
+      className="relative w-full pt-12 md:pt-16 pb-24 md:pb-32 overflow-hidden bg-white border-t-4 border-black text-black"
     >
       {/* Cyber Grid Backdrop */}
       <div 
@@ -135,7 +135,7 @@ export function FaqSection() {
       </div>
 
       {/* Decorative Large Premium Chrome Rose Stem Sticker - Left Side */}
-      <div className="absolute left-[-40px] lg:left-[-160px] xl:left-[calc(50%-690px)] 2xl:left-[calc(50%-750px)] top-[2%] lg:top-[18%] w-[110px] h-[180px] lg:w-[320px] lg:h-[520px] xl:w-[360px] xl:h-[580px] pointer-events-none select-none z-0">
+      <div className="hidden xl:block absolute xl:left-[calc(50%-828px)] 2xl:left-[calc(50%-860px)] top-[18%] xl:w-[360px] xl:h-[580px] pointer-events-none select-none z-0">
         {/* Soft Purple Radial Glow Backdrop */}
         <div className="absolute top-[20%] left-[20%] w-[80px] h-[80px] lg:w-[280px] lg:h-[280px] bg-[#6c24d6] rounded-full blur-[30px] lg:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
         
@@ -147,14 +147,12 @@ export function FaqSection() {
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.06, rotate: -4 }}
-            className="w-full h-full pointer-events-auto flex items-center justify-center"
+            className="w-full h-full pointer-events-auto flex items-center justify-center relative"
           >
             <Image 
               src="/y2k/chrome-rose-stem.png" 
               alt="Premium Chrome Rose Stem Sticker"
-              width={360}
-              height={580}
-              style={{ width: "auto", height: "auto" }}
+              fill
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>
@@ -163,7 +161,7 @@ export function FaqSection() {
       </div>
 
       {/* Decorative Large Premium Chrome Rose Sticker - Right Side */}
-      <div className="absolute right-[-30px] lg:right-[-160px] xl:right-[calc(50%-690px)] 2xl:right-[calc(50%-750px)] bottom-[2%] lg:bottom-[8%] w-[90px] h-[90px] lg:w-[320px] lg:h-[320px] xl:w-[360px] xl:h-[360px] pointer-events-none select-none z-0">
+      <div className="hidden xl:block absolute xl:right-[calc(50%-828px)] 2xl:right-[calc(50%-860px)] bottom-[8%] xl:w-[360px] xl:h-[360px] pointer-events-none select-none z-0">
         {/* Soft Purple Radial Glow Backdrop */}
         <div className="absolute top-[15%] left-[20%] w-[70px] h-[70px] lg:w-[300px] lg:h-[300px] bg-[#6c24d6] rounded-full blur-[30px] lg:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
         
@@ -175,14 +173,12 @@ export function FaqSection() {
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.06, rotate: 15 }}
-            className="w-full h-full pointer-events-auto flex items-center justify-center"
+            className="w-full h-full pointer-events-auto flex items-center justify-center relative"
           >
             <Image 
               src="/y2k/chrome-rose.png" 
               alt="Premium Chrome Rose Sticker"
-              width={360}
-              height={360}
-              style={{ width: "auto", height: "auto" }}
+              fill
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>

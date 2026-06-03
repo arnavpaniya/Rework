@@ -159,7 +159,7 @@ export function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="w-full py-12 sm:py-20 md:py-32 bg-white overflow-hidden border-t-4 border-black relative"
+      className="w-full pt-12 sm:pt-20 md:pt-32 pb-8 sm:pb-12 md:pb-16 bg-white overflow-hidden border-t-4 border-black relative"
     >
       {/* Dot pattern background */}
       <div
