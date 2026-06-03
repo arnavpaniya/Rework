@@ -197,24 +197,8 @@ export function BrandStatement() {
           </button>
         </motion.div>
 
-        {/* Tagline Section with Chrome Starburst */}
-        <div className="relative w-full overflow-visible flex flex-col items-center justify-center my-16 sm:my-24 md:my-32 py-24 sm:py-36 md:py-44">
-          {/* Chrome Starburst (Silver Sparkle) - Sized perfectly with rotating animation */}
-          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none overflow-visible">
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-              className="relative w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] opacity-70"
-            >
-              <Image
-                src="/y2k/chrome-star-burst.png"
-                alt="Chrome Starburst"
-                fill
-                className="object-contain"
-                priority
-              />
-            </motion.div>
-          </div>
+        {/* Tagline Section */}
+        <div className="relative w-full overflow-visible flex flex-col items-center justify-center my-8 sm:my-12 md:my-16 py-8 sm:py-12 md:py-16">
 
           {/* Tagline */}
           <motion.div

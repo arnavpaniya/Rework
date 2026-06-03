@@ -150,9 +150,10 @@ export function ContactSection() {
               whileHover={{ scale: 1.1, rotate: 5, filter: "brightness(1.15) drop-shadow(0 0 15px rgba(255,255,255,0.4))" }}
               transition={{ type: "spring", stiffness: 200, damping: 15 }}
               className="absolute z-30 pointer-events-auto select-none
-                w-[130px] h-[130px] top-[-65px] right-[-30px] 
-                sm:w-[170px] sm:h-[170px] sm:top-[-85px] sm:right-[-45px] 
-                md:w-[200px] md:h-[200px] md:top-[-100px] md:right-[-60px]
+                w-[90px] h-[90px] top-[-45px] right-[-15px] 
+                sm:w-[120px] sm:h-[120px] sm:top-[-60px] sm:right-[-25px] 
+                md:w-[140px] md:h-[140px] md:top-[-70px] md:right-[-30px]
+                lg:w-[160px] lg:h-[160px] lg:top-[-80px] lg:right-[-40px]
                 filter drop-shadow-[8px_8px_0_rgba(0,0,0,0.15)]"
             >
               <motion.div

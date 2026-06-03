@@ -96,7 +96,7 @@ const features = [
     href: "#about",
     cta: "Read manifesto",
     background: <ManifestoBackground />,
-    className: "lg:row-start-1 lg:row-end-3 lg:col-start-2 lg:col-end-3 border-4 border-black shadow-[8px_8px_0_0_#000]",
+    className: "lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-3 border-4 border-black shadow-[8px_8px_0_0_#000]",
     iconClass: "text-black",
     nameClass: "text-white font-mono text-xl",
     descClass: "text-white/90 font-bold",
@@ -109,7 +109,7 @@ const features = [
     href: "#about",
     cta: "Our story",
     background: <LocationBackground />,
-    className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#6c24d6]",
+    className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#6c24d6]",
     iconClass: "text-black",
     nameClass: "text-black text-xl bg-white px-2 py-1 inline-block border-2 border-black",
     descClass: "text-black font-bold bg-white p-2 border-2 border-black mt-2",
@@ -135,7 +135,7 @@ const features = [
     href: "#team",
     cta: "Meet the team",
     background: <HeadlineBackground />,
-    className: "lg:col-start-3 lg:col-end-4 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-black",
+    className: "lg:col-start-2 lg:col-end-4 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-black",
     iconClass: "text-black",
     nameClass: "text-black text-xl bg-[#e1e61b] px-2 py-1 inline-block border-2 border-black",
     descClass: "text-white font-bold",
@@ -265,7 +265,7 @@ export function AboutStudio() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <BentoGrid className="lg:grid-rows-2 lg:auto-rows-[300px] gap-6 sm:gap-8 max-w-none">
+          <BentoGrid className="lg:grid-rows-2 lg:auto-rows-[280px] gap-6 sm:gap-8 max-w-none">
             {features.map((feature) => (
               <BrandBentoCard key={feature.name} {...feature} />
             ))}

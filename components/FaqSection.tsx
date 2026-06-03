@@ -135,9 +135,9 @@ export function FaqSection() {
       </div>
 
       {/* Decorative Large Premium Chrome Rose Stem Sticker - Left Side */}
-      <div className="absolute left-[-160px] xl:left-[calc(50%-690px)] 2xl:left-[calc(50%-750px)] top-[18%] w-[320px] h-[520px] xl:w-[360px] xl:h-[580px] pointer-events-none select-none hidden lg:block z-0">
+      <div className="absolute left-[-40px] lg:left-[-160px] xl:left-[calc(50%-690px)] 2xl:left-[calc(50%-750px)] top-[2%] lg:top-[18%] w-[110px] h-[180px] lg:w-[320px] lg:h-[520px] xl:w-[360px] xl:h-[580px] pointer-events-none select-none z-0">
         {/* Soft Purple Radial Glow Backdrop */}
-        <div className="absolute top-[20%] left-[20%] w-[220px] h-[220px] sm:w-[280px] sm:h-[280px] bg-[#6c24d6] rounded-full blur-[80px] sm:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
+        <div className="absolute top-[20%] left-[20%] w-[80px] h-[80px] lg:w-[280px] lg:h-[280px] bg-[#6c24d6] rounded-full blur-[30px] lg:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
         
         <motion.div 
           style={{ y: yRoseStem }}
@@ -163,9 +163,9 @@ export function FaqSection() {
       </div>
 
       {/* Decorative Large Premium Chrome Rose Sticker - Right Side */}
-      <div className="absolute right-[-160px] xl:right-[calc(50%-690px)] 2xl:right-[calc(50%-750px)] bottom-[8%] w-[320px] h-[320px] xl:w-[360px] xl:h-[360px] pointer-events-none select-none hidden lg:block z-0">
+      <div className="absolute right-[-30px] lg:right-[-160px] xl:right-[calc(50%-690px)] 2xl:right-[calc(50%-750px)] bottom-[2%] lg:bottom-[8%] w-[90px] h-[90px] lg:w-[320px] lg:h-[320px] xl:w-[360px] xl:h-[360px] pointer-events-none select-none z-0">
         {/* Soft Purple Radial Glow Backdrop */}
-        <div className="absolute top-[15%] left-[20%] w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] bg-[#6c24d6] rounded-full blur-[80px] sm:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
+        <div className="absolute top-[15%] left-[20%] w-[70px] h-[70px] lg:w-[300px] lg:h-[300px] bg-[#6c24d6] rounded-full blur-[30px] lg:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
         
         <motion.div 
           style={{ y: yRosePremium }}
@@ -187,7 +187,6 @@ export function FaqSection() {
             />
           </motion.div>
         </motion.div>
-
 
       </div>
 
