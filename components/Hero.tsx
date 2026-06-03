@@ -80,8 +80,8 @@ export function Hero() {
           transition={{ delay: 0.2 }}
           className="flex flex-wrap items-center justify-center gap-4 mb-12 sm:mb-20 z-20 relative pointer-events-auto"
         >
-          <Badge text="REWORKS.AGENCY" subtext="ESTD. 2017" rotate={-4} className="border-2 border-black shadow-[4px_4px_0_0_#000]" />
-          <Tape color="black" text="ONLY RESULTS." rotate={2} className="border-2 border-black" />
+          <Badge text="REWORKS.AGENCY" subtext="ESTD. 2020" rotate={-4} className="border-2 border-black shadow-[4px_4px_0_0_#000]" />
+          <Tape color="black" text="ONLY RESULTS" rotate={2} className="border-2 border-black" />
         </motion.div>
 
         {/* Massive Headline */}
@@ -108,9 +108,9 @@ export function Hero() {
           transition={{ delay: 0.6 }}
           className="mt-16 sm:mt-24 relative flex flex-col sm:flex-row items-center gap-6 z-20 pointer-events-auto"
         >
-          <Tape color="purple" text="STRATEGIC MIND." rotate={-3} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
-          <Tape color="pink" text="CREATIVE HEART." rotate={2} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
-          <Tape color="yellow" text="SMART TECH." rotate={-1} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
+          <Tape color="purple" text="STRATEGIC MIND" rotate={-3} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
+          <Tape color="pink" text="CREATIVE HEART" rotate={2} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
+          <Tape color="yellow" text="SMART TECH" rotate={-1} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
         </motion.div>
 
         {/* CTA Button */}

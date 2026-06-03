@@ -36,6 +36,11 @@ export default function Home() {
           <ShowreelSection />
         </section>
 
+        {/* About Studio (Bento Grid) */}
+        <section id="about" className="w-full">
+          <AboutStudio />
+        </section>
+
         {/* Brand Statement (Previously Hero) */}
         <section
           id="brand-statement"
@@ -46,7 +51,7 @@ export default function Home() {
 
         {/* What We Do — Disciplines */}
         <section
-          id="about"
+          id="disciplines"
           className="min-h-screen"
         >
           <Disciplines />
@@ -60,9 +65,6 @@ export default function Home() {
 
         {/* Industries We Serve */}
         <IndustriesSection />
-
-        {/* About Studio (Bento Grid) */}
-        <AboutStudio />
 
         {/* Meet the Crew */}
         <div id="team">

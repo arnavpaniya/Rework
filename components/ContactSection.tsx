@@ -161,8 +161,8 @@ export function ContactSection() {
                 className="w-full h-full"
               >
                 <Image 
-                  src="/y2k/chrome-eye.png" 
-                  alt="Chrome Eye Sticker"
+                  src="/y2k/chrome-star2.png" 
+                  alt="Chrome Star Sticker"
                   width={200}
                   height={200}
                   style={{ width: "auto", height: "auto" }}

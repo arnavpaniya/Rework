@@ -2,14 +2,15 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, MapPin, Sparkles, Users, BarChart3, Code2 } from "lucide-react";
+import { ArrowRight, MapPin, Sparkles, Users, BarChart3, Flame } from "lucide-react";
 import { BentoGrid } from "@/components/ui/bento-grid";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 // ─── Background slot components ──────────────────────────────────────────────
 
-function CodeWindowBackground() {
+function ManifestoBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden rounded-none bg-black">
       <div
@@ -89,30 +90,17 @@ function HeadlineBackground() {
 
 const features = [
   {
-    Icon: Code2,
-    name: "we_believe.md",
-    description: "Clarity over clutter. Strategy over guesswork. Presence over decoration. Structure before scale.",
+    Icon: Flame,
+    name: "MANIFESTO.TXT",
+    description: "Stop playing it safe. Stop blending in. Stop posting for likes instead of revenue. We design high-impact campaigns and scroll-stopping identities that convert.",
     href: "#about",
-    cta: "Our philosophy",
-    background: <CodeWindowBackground />,
+    cta: "Read manifesto",
+    background: <ManifestoBackground />,
     className: "lg:row-start-1 lg:row-end-3 lg:col-start-2 lg:col-end-3 border-4 border-black shadow-[8px_8px_0_0_#000]",
     iconClass: "text-black",
     nameClass: "text-white font-mono text-xl",
     descClass: "text-white/90 font-bold",
     ctaClass: "text-[#e1e61b] hover:text-white bg-black px-4 py-2 border-2 border-[#e1e61b]",
-  },
-  {
-    Icon: BarChart3,
-    name: "247+ Projects Shipped",
-    description: "Across 12 countries, for founders and CMOs who are done waiting for results.",
-    href: "#case-study",
-    cta: "See case studies",
-    background: <StatsBackground />,
-    className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-2 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#e1e61b]",
-    iconClass: "text-black",
-    nameClass: "text-black text-xl bg-[#e1e61b] px-2 py-1 inline-block border-2 border-black",
-    descClass: "text-black font-bold bg-[#e1e61b] p-2 border-2 border-black mt-2",
-    ctaClass: "text-black hover:text-white hover:bg-black bg-white border-2 border-black px-4 py-2",
   },
   {
     Icon: MapPin,
@@ -121,7 +109,7 @@ const features = [
     href: "#about",
     cta: "Our story",
     background: <LocationBackground />,
-    className: "lg:col-start-1 lg:col-end-2 lg:row-start-2 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#6c24d6]",
+    className: "lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3 border-4 border-black shadow-[8px_8px_0_0_#000] bg-[#6c24d6]",
     iconClass: "text-black",
     nameClass: "text-black text-xl bg-white px-2 py-1 inline-block border-2 border-black",
     descClass: "text-black font-bold bg-white p-2 border-2 border-black mt-2",
@@ -130,7 +118,7 @@ const features = [
   {
     Icon: Sparkles,
     name: "AI-Powered Creative",
-    description: "We build with the latest AI tools to produce faster, sharper, and more effective creative at scale.",
+    description: "Build with the latest AI tools to produce faster, sharper, and more effective creative at scale.",
     href: "#services",
     cta: "Our services",
     background: <AiBackground />,
@@ -142,8 +130,8 @@ const features = [
   },
   {
     Icon: Users,
-    name: "Gen Z-Led Studio",
-    description: "Founded in 2019. 38 humans on board. We think fast, move faster, and never stop shipping.",
+    name: "Gen-z led Agency",
+    description: "Gen Z led with Global Standard. We don't study culture; we live it. Our team brings native understanding of what works in Dubai and Mumbai right now, not six months ago.",
     href: "#team",
     cta: "Meet the team",
     background: <HeadlineBackground />,
@@ -251,7 +239,7 @@ export function AboutStudio() {
             <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-2 mb-6 bg-white shadow-[4px_4px_0_0_#000] relative">
               <span className="w-3 h-3 bg-[#6c24d6] border border-black" />
               <span className="text-xs font-black uppercase tracking-widest text-black">
-                About Studio
+                About ReWork
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] uppercase">
@@ -357,16 +345,16 @@ export function AboutStudio() {
           className="mt-16 flex flex-wrap items-center gap-6"
         >
           {/* Yellow primary button */}
-          <button className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#e1e61b] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#e1e61b]">
+          <Link href="#about" className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
             Our Story
             <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-          </button>
+          </Link>
 
           {/* White secondary button */}
-          <button className="group flex items-center gap-3 bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
+          <Link href="/case-study" className="group flex items-center gap-3 bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
             Read Case Studies
             <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-          </button>
+          </Link>
         </motion.div>
 
       </div>

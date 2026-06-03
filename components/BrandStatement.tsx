@@ -69,7 +69,7 @@ export function BrandStatement() {
   const togglePlay = () => setIsPlaying(!isPlaying);
 
   // ── Typing effect ──────────────────────────────────────────────────────────
-  const words = ["works.", "brand.", "design.", "build.", "develop."];
+  const words = ["work", "brand", "design", "build", "develop"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -123,7 +123,7 @@ export function BrandStatement() {
             viewport={{ once: true }}
             className="pointer-events-auto bg-white border-4 border-black shadow-[12px_12px_0_0_#000] flex flex-col md:flex-row items-center w-[94%] sm:w-[90%] max-w-3xl gap-4 sm:gap-8 transition-transform hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0_0_#000] duration-200 ease-out"
           >
-            <div className="w-full bg-[#f4f4f0] p-6 sm:p-8 md:p-10 relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 sm:gap-0">
+            <div className="w-full bg-[#f4f4f0] p-6 sm:p-8 md:p-10 relative overflow-hidden flex items-center justify-center">
               
               {/* Decorative grid */}
               <div 
@@ -151,19 +151,6 @@ export function BrandStatement() {
                     _
                   </span>
                 </h1>
-              </motion.div>
-
-              {/* CTA button */}
-              <motion.div
-                variants={SNAP_UP(0.6)}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                className="z-10 sm:mt-auto sm:pt-0 self-start sm:self-end"
-              >
-                <Link href="#contact" className="bg-[#e1e61b] hover:bg-black hover:text-[#e1e61b] text-black px-8 py-4 border-4 border-black text-sm sm:text-base font-black uppercase tracking-widest shadow-[4px_4px_0_0_#000] hover:shadow-[6px_6px_0_0_#000] active:shadow-none active:translate-y-[4px] active:translate-x-[4px] transition-all duration-100 inline-block text-center">
-                  Get started
-                </Link>
               </motion.div>
             </div>
           </motion.div>
@@ -210,20 +197,23 @@ export function BrandStatement() {
           </button>
         </motion.div>
 
-        {/* Tagline Section with Chrome Ring */}
+        {/* Tagline Section with Chrome Starburst */}
         <div className="relative w-full overflow-visible flex flex-col items-center justify-center my-16 sm:my-24 md:my-32 py-24 sm:py-36 md:py-44">
-          {/* Chrome Ring (Silver Orbit) - Sized extremely large to fit text inside */}
+          {/* Chrome Starburst (Silver Sparkle) - Sized perfectly with rotating animation */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none overflow-visible">
-            <div className="relative w-[210vw] sm:w-[180vw] md:w-[155vw] lg:w-[135vw] max-w-[1750px] aspect-[2/1] opacity-100 flex items-center justify-center scale-120 sm:scale-130 md:scale-140">
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+              className="relative w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] md:w-[500px] md:h-[500px] opacity-70"
+            >
               <Image
-                src="/y2k/chrome-ring.png"
-                alt="Chrome Ring"
+                src="/y2k/chrome-star-burst.png"
+                alt="Chrome Starburst"
                 fill
-                sizes="(max-width: 640px) 210vw, (max-width: 768px) 180vw, (max-width: 1024px) 155vw, 135vw"
                 className="object-contain"
                 priority
               />
-            </div>
+            </motion.div>
           </div>
 
           {/* Tagline */}
@@ -237,7 +227,7 @@ export function BrandStatement() {
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-black font-black uppercase leading-none tracking-tight mb-4 pointer-events-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-3">
               <span>Rework to</span>
               <span className="bg-[#e1e61b] text-black px-4 py-1.5 border-4 border-black transform inline-block rotate-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black uppercase tracking-tight">
-                Revolutionize.
+                Revolutionize
               </span>
             </h2>
             <p className="block mt-6 text-xs sm:text-sm md:text-base font-bold tracking-normal normal-case leading-relaxed text-black/80 pointer-events-auto max-w-sm sm:max-w-md mx-auto">

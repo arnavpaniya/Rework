@@ -69,7 +69,7 @@ export function GamifiedPreloader() {
               </motion.div>
               
               <div className="mt-6 flex justify-center items-center gap-4 text-xs font-black uppercase tracking-widest text-neutral-500">
-                <span>ESTD. 2017</span>
+                <span>ESTD. 2020</span>
                 <span className="w-1.5 h-1.5 bg-[#e1e61b]" />
                 <span>MUMBAI ↔ DUBAI</span>
               </div>

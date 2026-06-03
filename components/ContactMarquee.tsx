@@ -15,12 +15,6 @@ export function ContactMarquee() {
         reworks.agency@gmail.com
       </span>
       <span className="text-[#e1e61b]">✦</span>
-      <span className="flex items-center gap-1">
-        <Star className="w-4 h-4 fill-white" />
-        4.9 / 5
-      </span>
-      <span className="text-[#e1e61b]">✦</span>
-      <span className="text-[#e1e61b]">✦</span>
       <span 
         className="cursor-pointer hover:text-white hover:underline decoration-[#e1e61b] decoration-2 underline-offset-4 transition-all duration-200"
         onClick={() => {

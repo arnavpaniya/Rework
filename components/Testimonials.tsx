@@ -185,7 +185,7 @@ export function TestimonialsSection() {
             <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-1.5 mb-8 bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
               <span className="w-2 h-2 bg-[#6c24d6]" />
               <span className="text-xs font-black uppercase tracking-widest text-black">
-                The Verdict
+                Testimonials
               </span>
             </div>
 
@@ -241,7 +241,7 @@ export function TestimonialsSection() {
                   ))}
                 </div>
                 <span className="text-xs font-bold uppercase tracking-widest text-black/50 mt-1">
-                  From 247+ clients
+                  From clients
                 </span>
               </div>
             </div>

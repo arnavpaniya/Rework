@@ -47,9 +47,9 @@ export function Footer() {
   return (
     <footer className="relative w-full bg-white border-t-4 border-black overflow-hidden flex flex-col">
       {/* ─── Mega Marquee ─── */}
-      <div className="relative w-full overflow-hidden border-b-4 border-black bg-[#e1e61b] flex items-center py-4 sm:py-6">
+      <div className="relative w-full overflow-hidden border-b-4 border-black bg-[#e1e61b] flex items-center py-2 sm:py-3">
         <motion.div 
-          className="flex whitespace-nowrap text-black font-black text-6xl sm:text-8xl md:text-[10rem] leading-none tracking-tighter items-center uppercase"
+          className="flex whitespace-nowrap text-black font-black text-xl sm:text-4xl md:text-5xl leading-none tracking-tighter items-center uppercase"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
         >
@@ -61,38 +61,38 @@ export function Footer() {
       <div className="w-full flex flex-col lg:flex-row divide-y-4 lg:divide-y-0 lg:divide-x-4 divide-black border-b-4 border-black bg-white">
         
         {/* ─── Left Panel: Branding & CTA ─── */}
-        <div className="flex-1 p-8 sm:p-12 md:p-16 flex flex-col items-start justify-between">
-          <div className="w-full flex flex-col gap-6">
-            <div className="scale-75 sm:scale-100 origin-left">
+        <div className="flex-1 p-4 sm:p-8 md:p-10 flex flex-col items-start justify-between">
+          <div className="w-full flex flex-col gap-3 sm:gap-4">
+            <div className="scale-[0.65] sm:scale-90 origin-left">
               <Logo />
             </div>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter text-black uppercase leading-[0.9]">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black uppercase leading-[0.9]">
               Let's Break <br/>
               The <span className="text-[#6c24d6]">Internet.</span>
             </h2>
-            <p className="text-black text-xl font-bold uppercase leading-snug max-w-sm border-l-4 border-black pl-4">
+            <p className="text-black/80 text-xs sm:text-sm font-semibold normal-case leading-relaxed max-w-sm border-l-4 border-black pl-3">
               A Gen Z-led digital marketing agency in Mumbai & Dubai. Serving FMCG, entertainment & hospitality brands across India and the UAE.
             </p>
           </div>
 
-          <Link href="#contact" className="mt-12 inline-flex items-center gap-4 bg-black border-4 border-black px-8 py-5 text-xl font-black uppercase tracking-widest text-white shadow-[8px_8px_0px_0px_#e1e61b] transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-[12px_12px_0px_0px_#e1e61b] active:translate-y-1 active:-translate-x-1 active:shadow-[0px_0px_0px_0px_#e1e61b]">
-            Start a Project <ArrowRight className="w-6 h-6 text-[#e1e61b]" strokeWidth={3} />
+          <Link href="#contact" className="mt-6 sm:mt-8 inline-flex items-center gap-2 sm:gap-3 bg-black border-4 border-black px-4 py-2.5 sm:px-6 sm:py-3.5 text-xs sm:text-sm font-black uppercase tracking-widest text-white shadow-[4px_4px_0px_0px_#e1e61b] sm:shadow-[6px_6px_0px_0px_#e1e61b] transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-[8px_8px_0px_0px_#e1e61b] active:translate-y-1 active:-translate-x-1 active:shadow-[0px_0px_0px_0px_#e1e61b]">
+            Start a Project <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#e1e61b]" strokeWidth={3} />
           </Link>
         </div>
 
         {/* ─── Right Panel: Grid Links ─── */}
         <div className="flex-1 flex flex-col sm:flex-row divide-y-4 sm:divide-y-0 sm:divide-x-4 divide-black">
           
-          <div className="flex-1 p-8 sm:p-12 md:p-16 flex flex-col gap-8 bg-[#f5f5f0]">
-            <h3 className="text-black font-black uppercase tracking-widest text-sm flex items-center gap-3 border-4 border-black bg-white px-4 py-2 shadow-[4px_4px_0_0_#000] w-fit">
-              <div className="w-3 h-3 bg-[#e1e61b] border-2 border-black" />
+          <div className="flex-1 p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 bg-[#f5f5f0]">
+            <h3 className="text-black font-black uppercase tracking-widest text-[10px] sm:text-xs flex items-center gap-2 border-2 border-black bg-white px-2 py-0.5 sm:px-3 sm:py-1 shadow-[2px_2px_0_0_#000] w-fit">
+              <div className="w-2 h-2 bg-[#e1e61b] border-2 border-black" />
               Explore
             </h3>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-2.5 sm:gap-4">
               {QUICK_LINKS.map(link => (
                 <li key={link.name}>
-                  <Link href={link.href} className="group flex items-center gap-4 text-2xl font-black uppercase tracking-tighter text-black hover:text-[#6c24d6] transition-colors">
-                    <span className="w-0 h-1 bg-black transition-all duration-300 group-hover:w-8" />
+                  <Link href={link.href} className="group flex items-center gap-2 sm:gap-3 text-sm sm:text-lg font-black uppercase tracking-tighter text-black hover:text-[#6c24d6] transition-colors">
+                    <span className="w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4 sm:group-hover:w-6" />
                     {link.name}
                   </Link>
                 </li>
@@ -100,16 +100,16 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="flex-1 p-8 sm:p-12 md:p-16 flex flex-col gap-8 bg-white">
-            <h3 className="text-black font-black uppercase tracking-widest text-sm flex items-center gap-3 border-4 border-black bg-[#e1e61b] px-4 py-2 shadow-[4px_4px_0_0_#000] w-fit">
-              <div className="w-3 h-3 bg-white border-2 border-black" />
+          <div className="flex-1 p-4 sm:p-8 md:p-10 flex flex-col gap-4 sm:gap-6 bg-white">
+            <h3 className="text-black font-black uppercase tracking-widest text-[10px] sm:text-xs flex items-center gap-2 border-2 border-black bg-[#e1e61b] px-2 py-0.5 sm:px-3 sm:py-1 shadow-[2px_2px_0_0_#000] w-fit">
+              <div className="w-2 h-2 bg-white border-2 border-black" />
               Connect
             </h3>
-            <ul className="flex flex-col gap-6">
+            <ul className="flex flex-col gap-2.5 sm:gap-4">
               {SIGNALS.map(link => (
                 <li key={link.name}>
-                  <Link href={link.href} className="group flex items-center gap-4 text-2xl font-black uppercase tracking-tighter text-black hover:text-[#6c24d6] transition-colors">
-                    <span className="w-0 h-1 bg-black transition-all duration-300 group-hover:w-8" />
+                  <Link href={link.href} className="group flex items-center gap-2 sm:gap-3 text-sm sm:text-lg font-black uppercase tracking-tighter text-black hover:text-[#6c24d6] transition-colors">
+                    <span className="w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4 sm:group-hover:w-6" />
                     {link.name}
                   </Link>
                 </li>
@@ -121,16 +121,16 @@ export function Footer() {
       </div>
 
       {/* ─── Bottom Bar ─── */}
-      <div className="w-full flex flex-col sm:flex-row justify-between items-center bg-black text-white px-6 py-4 gap-4">
-        <div className="text-xs font-black uppercase tracking-widest text-center sm:text-left">
+      <div className="w-full flex flex-col sm:flex-row justify-between items-center bg-black text-white px-4 py-3 sm:px-6 sm:py-4 gap-3 sm:gap-4">
+        <div className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-center sm:text-left">
           © {new Date().getFullYear()} REWORKS AGENCY • BUILT DIFFERENT
         </div>
         
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          <div className="flex items-center gap-2 border-2 border-white px-3 py-1 text-xs font-black tracking-widest">
+        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-1.5 border-2 border-white px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-black tracking-widest">
             DXB <span className="font-mono text-[#e1e61b]">{dubaiTime || "..."}</span>
           </div>
-          <div className="flex items-center gap-2 border-2 border-white px-3 py-1 text-xs font-black tracking-widest">
+          <div className="flex items-center gap-1.5 border-2 border-white px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-black tracking-widest">
             BOM <span className="font-mono text-[#e1e61b]">{mumbaiTime || "..."}</span>
           </div>
         </div>
