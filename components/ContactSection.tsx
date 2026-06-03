@@ -208,7 +208,7 @@ export function ContactSection() {
                 <button
                   className="w-full flex items-center justify-center gap-4 bg-[#e1e61b] border-4 border-black px-8 py-5 text-xl font-black uppercase tracking-widest text-black shadow-[8px_8px_0px_0px_#fff] transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-[12px_12px_0px_0px_#fff] active:translate-y-1 active:-translate-x-1 active:shadow-[0px_0px_0px_0px_#fff]"
                 >
-                  TRANSMIT <ArrowUpRight className="w-8 h-8" strokeWidth={3} />
+                  PING US <ArrowUpRight className="w-8 h-8" strokeWidth={3} />
                 </button>
               </div>
 

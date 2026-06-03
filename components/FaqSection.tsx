@@ -178,7 +178,7 @@ export function FaqSection() {
             className="w-full h-full pointer-events-auto flex items-center justify-center"
           >
             <Image 
-              src="/y2k/chrome-rose-premium.png" 
+              src="/y2k/chrome-rose.png" 
               alt="Premium Chrome Rose Sticker"
               width={360}
               height={360}

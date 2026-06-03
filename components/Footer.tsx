@@ -68,7 +68,7 @@ export function Footer() {
             </div>
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter text-black uppercase leading-[0.9]">
               Let's Break <br/>
-              The <span className="text-[#6c24d6]">Internet.</span>
+              The <span className="text-[#6c24d6]">Internet</span>
             </h2>
             <p className="text-black/80 text-xs sm:text-sm font-semibold normal-case leading-relaxed max-w-sm border-l-4 border-black pl-3">
               A Gen Z-led digital marketing agency in Mumbai & Dubai. Serving FMCG, entertainment & hospitality brands across India and the UAE.
