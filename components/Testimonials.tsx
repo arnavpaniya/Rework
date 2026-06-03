@@ -83,7 +83,7 @@ const TestimonialsColumn = (props: {
   reverse?: boolean;
 }) => {
   return (
-    <div className={cn("overflow-hidden relative", props.className)}>
+    <div className={cn("h-full overflow-hidden relative", props.className)}>
       {/* Top and Bottom faded masks */}
       <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
@@ -159,7 +159,7 @@ export function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="w-full py-24 md:py-32 bg-white overflow-hidden border-t-4 border-black relative"
+      className="w-full py-12 sm:py-20 md:py-32 bg-white overflow-hidden border-t-4 border-black relative"
     >
       {/* Dot pattern background */}
       <div
@@ -247,7 +247,7 @@ export function TestimonialsSection() {
             </div>
 
             {/* Chrome Atom decorative element */}
-            <div className="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] select-none mx-auto lg:mx-0">
+            <div className="relative w-[140px] h-[140px] sm:w-[240px] sm:h-[240px] select-none mx-auto lg:mx-0">
               <Image
                 src="/y2k/chrome-atom.png"
                 alt="Chrome Atom"
@@ -260,7 +260,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Right: Scrolling Columns */}
-        <div className="flex-1 w-full h-[400px] sm:h-[600px] lg:h-[800px] flex gap-3 sm:gap-4 lg:gap-5 justify-center relative">
+        <div className="flex-1 w-full h-[320px] sm:h-[600px] lg:h-[800px] flex gap-3 sm:gap-4 lg:gap-5 justify-center relative">
           <TestimonialsColumn
             testimonials={col1}
             duration={25}

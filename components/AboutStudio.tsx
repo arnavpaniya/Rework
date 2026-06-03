@@ -381,25 +381,22 @@ export function AboutStudio() {
       </motion.div>
 
       {/* Decorative Large Chrome Sticker - Right Side peeking out */}
-      <motion.div 
-        style={{ y: yCherries }}
+      <div 
         className="absolute right-[-40px] sm:right-[-60px] md:right-[-80px] 2xl:right-[-100px] top-[10%] w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
       >
         <motion.div
-          animate={{ y: [0, 12, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           whileHover={{ scale: 1.08, rotate: 25 }}
           className="w-full h-full pointer-events-auto"
         >
           <Image 
-            src="/y2k/chrome-cherries.png" 
-            alt="Chrome Cherries Sticker"
+            src="/y2k/chrome-face-2.png" 
+            alt="Chrome Face Sticker"
             width={320}
             height={320}
             className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
           />
         </motion.div>
-      </motion.div>
+      </div>
 
     </section>
   );
