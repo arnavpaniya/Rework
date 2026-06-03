@@ -185,7 +185,7 @@ export function MeetTheCrew() {
             </h2>
           </div>
           <p className="text-base text-white/50 max-w-xs font-medium leading-relaxed">
-            38 humans. One obsession. Making brands that actually work.
+            One Team. One obsession. Making brands that actually work.
           </p>
         </motion.div>
       </div>

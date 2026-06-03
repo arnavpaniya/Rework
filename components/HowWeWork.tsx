@@ -13,7 +13,7 @@ const steps = [
     step: "01",
     title: "Audit",
     description:
-      "Tear down what's not working. We find the gap between how you're showing up and how you should be — fast, sharp, and without the corporate hand-holding.",
+      "Tear down what's not working. We find the gap between how you're showing up and how you should be. Fast, sharp, and without the corporate hand-holding.",
     cta: "Start your audit",
     color: "#e1e61b",
     textColor: "#000000",
@@ -24,7 +24,7 @@ const steps = [
     step: "02",
     title: "Rework",
     description:
-      "Reshape the strategy, the story, the system. Clarity over clutter, every time. We don't just tweak — we rebuild the narrative from the ground up.",
+      "Reshape the strategy, the story, the system. Clarity over clutter, every time. We don't just tweak. We rebuild the narrative from the ground up.",
     cta: "See case studies",
     color: "#ff3366",
     textColor: "#000000",
@@ -46,7 +46,7 @@ const steps = [
     step: "04",
     title: "Launch",
     description:
-      "Go live, measure, iterate. The scoreboard is the brief from here on out. We don't disappear after launch — we scale what's working.",
+      "Go live, measure, iterate. The scoreboard is the brief from here on out. We don't disappear after launch. We scale what's working.",
     cta: "Get started",
     color: "#000000",
     textColor: "#ffffff",

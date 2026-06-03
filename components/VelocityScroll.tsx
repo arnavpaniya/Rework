@@ -232,7 +232,7 @@ export function VelocityScrollSection() {
           className="text-xl md:text-3xl"
         >
           <span className="block font-black uppercase text-white tracking-tighter leading-[0.8] pr-8">
-            REWORKS —
+            REWORKS.
           </span>
         </ScrollVelocityRow>
         
@@ -246,7 +246,7 @@ export function VelocityScrollSection() {
             className="block font-black uppercase text-[#e1e61b] italic tracking-tighter leading-[0.8] pr-8"
             style={{ WebkitTextStroke: "1px #e1e61b" }}
           >
-            REWORKS —
+            REWORKS.
           </span>
         </ScrollVelocityRow>
 
@@ -260,7 +260,7 @@ export function VelocityScrollSection() {
             className="block font-black uppercase text-transparent tracking-tighter leading-[0.8] pr-8"
             style={{ WebkitTextStroke: "1px #6c24d6" }}
           >
-            REWORKS —
+            REWORKS.
           </span>
         </ScrollVelocityRow>
 

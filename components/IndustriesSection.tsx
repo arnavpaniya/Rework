@@ -93,7 +93,7 @@ export function IndustriesSection() {
           </h2>
 
           <p className="text-base md:text-lg text-neutral-300 font-semibold leading-relaxed max-w-2xl border-l-4 border-[#e1e61b] pl-4">
-            We work across entertainment, FMCG, and hospitality — three of India and the UAE&apos;s most competitive brand categories. We understand the pace of a product launch, the cultural nuance of a campaign in Mumbai &amp; Dubai, and the visual standards that premium brands demand.
+            We work across three of the most competitive brand categories in India and the UAE: entertainment, FMCG, and hospitality. We understand the pace of a product launch, the cultural nuance of a campaign in Mumbai &amp; Dubai, and the visual standards that premium brands demand.
           </p>
         </motion.div>
 
@@ -121,7 +121,7 @@ export function IndustriesSection() {
                   Entertainment
                 </h3>
                 <p className="text-neutral-400 text-xs font-semibold leading-relaxed">
-                  Campaigns built for scroll-speed audiences. OTT, live events, music, film — we know how entertainment brands earn attention in Mumbai and Dubai.
+                  Campaigns built for scroll-speed audiences. OTT, live events, music, film. We know how entertainment brands earn attention in Mumbai and Dubai.
                 </p>
               </div>
               <div className="text-[3.5rem] font-black text-neutral-800/40 uppercase select-none leading-none text-right transition-all duration-300 group-hover:text-[#e1e61b]/30 group-hover:tracking-widest">
@@ -181,7 +181,7 @@ export function IndustriesSection() {
                   Hospitality
                 </h3>
                 <p className="text-neutral-400 text-xs font-semibold leading-relaxed">
-                  From boutique hotels to F&amp;B chains — digital marketing for hospitality brands in Mumbai &amp; Dubai that converts browsers into bookings.
+                  From boutique hotels to F&amp;B chains, we build digital marketing for hospitality brands in Mumbai &amp; Dubai that converts browsers into bookings.
                 </p>
               </div>
               <div className="text-[3.5rem] font-black text-neutral-800/40 uppercase select-none leading-none text-right transition-all duration-300 group-hover:text-white/30 group-hover:tracking-widest">

@@ -97,7 +97,7 @@ export function LeadPopup() {
                       Let&apos;s Build <span className="bg-[#e1e61b] px-1 border-2 border-black inline-block transform -rotate-1 shadow-[2px_2px_0_0_#000]">What&apos;s Next</span>
                     </h3>
                     <p className="text-neutral-600 text-xs font-bold uppercase tracking-wider">
-                      Tell us what needs a rework — we respond within 1 business day
+                      Tell us what needs a rework. We respond within 1 business day.
                     </p>
                   </div>
 

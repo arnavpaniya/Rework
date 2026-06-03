@@ -91,10 +91,10 @@ function HeadlineBackground() {
 const features = [
   {
     Icon: Flame,
-    name: "MANIFESTO.TXT",
+    name: "Our Manifesto",
     description: "Stop playing it safe. Stop blending in. Stop posting for likes instead of revenue. We design high-impact campaigns and scroll-stopping identities that convert.",
     href: "#about",
-    cta: "Read manifesto",
+    cta: "",
     background: <ManifestoBackground />,
     className: "lg:row-start-1 lg:row-end-2 lg:col-start-1 lg:col-end-3 border-4 border-black shadow-[8px_8px_0_0_#000]",
     iconClass: "text-black",
@@ -190,16 +190,18 @@ function BrandBentoCard({
         </div>
 
         {/* Bottom: CTA always visible */}
-        <a
-          href={href}
-          className={cn(
-            "flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-colors duration-200 w-fit",
-            ctaClass
-          )}
-        >
-          {cta}
-          <ArrowRight className="h-4 w-4" />
-        </a>
+        {cta && (
+          <a
+            href={href}
+            className={cn(
+              "flex items-center gap-2 text-xs font-black uppercase tracking-widest transition-colors duration-200 w-fit",
+              ctaClass
+            )}
+          >
+            {cta}
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        )}
       </div>
     </motion.div>
   );
@@ -239,7 +241,7 @@ export function AboutStudio() {
             <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-2 mb-6 bg-white shadow-[4px_4px_0_0_#000] relative">
               <span className="w-3 h-3 bg-[#6c24d6] border border-black" />
               <span className="text-xs font-black uppercase tracking-widest text-black">
-                About ReWork
+                About ReWorks
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] uppercase">
@@ -254,7 +256,7 @@ export function AboutStudio() {
           </div>
 
           <p className="text-base md:text-xl text-black font-bold leading-relaxed max-w-sm md:max-w-sm border-l-4 border-black pl-4">
-            A Gen Z-led digital marketing agency in Mumbai & Dubai, partnering with founders and CMOs across India and the UAE to rework scattered ideas into bold, conversion-ready brands — for FMCG, entertainment, and hospitality.
+            A Gen Z-led digital marketing agency in Mumbai & Dubai, partnering with founders and CMOs across India and the UAE to rework scattered ideas into bold, conversion-ready brands, focusing on FMCG, entertainment, and hospitality.
           </p>
         </motion.div>
 

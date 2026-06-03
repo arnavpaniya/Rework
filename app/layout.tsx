@@ -36,7 +36,7 @@ const metropolis = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ReWork | Digital Marketing Agency in Mumbai & Dubai & India UAE",
+  title: "ReWorks | Digital Marketing Agency in Mumbai & Dubai & India UAE",
   description:
     "ReWorks is a digital marketing agency in Mumbai & Dubai offering branding, social media, video, and digital development for FMCG, entertainment, and hospitality brands. Let's build something.",
 };
@@ -69,7 +69,7 @@ export default function RootLayout({
                   "name": "What does a digital marketing agency in Mumbai and Dubai do?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "A digital marketing agency in Mumbai & Dubai handles branding, social media, video production, and digital development — helping brands build presence and convert audiences across India and the UAE.",
+                    "text": "They handle branding, social media, video production, and digital development, helping brands build presence and convert audiences across India and the UAE.",
                   },
                 },
                 {
@@ -77,7 +77,7 @@ export default function RootLayout({
                   "name": "How is ReWorks different from other agencies in India and the UAE?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "ReWorks combines Gen Z cultural instinct with AI-powered creative systems. We move faster, think sharper, and operate across Mumbai & Dubai — one team, two markets.",
+                    "text": "ReWorks combines Gen Z cultural instinct with AI-powered creative systems. We move faster, think sharper, and operate across Mumbai & Dubai. One team, two markets.",
                   },
                 },
                 {
@@ -85,7 +85,7 @@ export default function RootLayout({
                   "name": "Which industries does ReWorks work with?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "We specialise in entertainment, FMCG, and hospitality — three of India and the UAE's most competitive brand categories.",
+                    "text": "We specialise in entertainment, FMCG, and hospitality, three of India and the UAE's most competitive brand categories.",
                   },
                 },
                 {

@@ -7,15 +7,15 @@ import Image from "next/image";
 const faqs = [
   {
     q: "What does a digital marketing agency in Mumbai and Dubai do?",
-    a: "A digital marketing agency in Mumbai & Dubai handles branding, social media, video production, and digital development — helping brands build presence and convert audiences across India and the UAE.",
+    a: "They handle branding, social media, video production, and digital development, helping brands build presence and convert audiences across India and the UAE.",
   },
   {
     q: "How is ReWorks different from other agencies in India and the UAE?",
-    a: "ReWorks combines Gen Z cultural instinct with AI-powered creative systems. We move faster, think sharper, and operate across Mumbai & Dubai — one team, two markets.",
+    a: "ReWorks combines Gen Z cultural instinct with AI-powered creative systems. We move faster, think sharper, and operate across Mumbai & Dubai. One team, two markets.",
   },
   {
     q: "Which industries does ReWorks work with?",
-    a: "We specialise in entertainment, FMCG, and hospitality — three of India and the UAE's most competitive brand categories.",
+    a: "We specialise in entertainment, FMCG, and hospitality, three of India and the UAE's most competitive brand categories.",
   },
   {
     q: "Do you work with brands outside Mumbai and Dubai?",
@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     q: "How do you measure the success of a campaign?",
-    a: "We measure success based on real business outcomes — conversion rates, sales growth, and brand equity. No vanity metrics or generic impressions dashboards.",
+    a: "We measure success based on real business outcomes, including conversion rates, sales growth, and brand equity. No vanity metrics or generic impressions dashboards.",
   },
 ];
 

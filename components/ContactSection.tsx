@@ -99,7 +99,7 @@ export function ContactSection() {
             </div>
 
             <p className="text-xl text-white font-bold uppercase leading-snug mb-12 max-w-md border-l-4 border-[#e1e61b] pl-4">
-              Ready to rework your brand? Work with a digital marketing agency in Mumbai and Dubai that actually moves — from first brief to final launch. We respond within one business day.
+              Ready to rework your brand? Work with a digital marketing agency in Mumbai and Dubai that actually moves, from first brief to final launch. We respond within one business day.
             </p>
           </div>
 
@@ -107,9 +107,9 @@ export function ContactSection() {
             {/* Info rows */}
             {[
               { label: "Email", value: "reworks.agency@gmail.com" },
-              { label: "Dubai", value: "Business Bay, Dubai — UAE" },
+              { label: "Dubai", value: "Business Bay, Dubai, UAE" },
               { label: "Mumbai", value: "Bandra West, Mumbai 400050" },
-              { label: "Hours", value: "Sun–Thu • 09:00 – 18:00 GST" },
+              { label: "Hours", value: "Sun to Thu • 09:00 to 18:00 GST" },
             ].map((item, i) => (
               <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-4 border-white/20 group cursor-pointer hover:border-[#e1e61b] transition-colors">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-12">

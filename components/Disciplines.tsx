@@ -21,7 +21,7 @@ const disciplines: Discipline[] = [
     number: "01",
     title: "Branding & Design",
     description:
-      "From scattered visuals to a system that scales — strategy-led, culture-aware, conversion-ready.",
+      "From scattered visuals to a system that scales. Strategy-led, culture-aware, and conversion-ready.",
     tags: ["Brand Identity", "Visual Systems", "Campaign Creative", "Guidelines & Type"],
     bg: "#6c24d6",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
@@ -32,7 +32,7 @@ const disciplines: Discipline[] = [
     number: "02",
     title: "Video, Animation & Motion",
     description:
-      "Brands that move get remembered — TikTok, Instagram, YouTube, ready-to-post.",
+      "Brands that move get remembered. TikTok, Instagram, YouTube, ready-to-post.",
     tags: ["Brand Films", "Social Reels", "2D / 3D Animation", "Motion Graphics"],
     bg: "#111111",
     image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=2564&auto=format&fit=crop",
@@ -43,7 +43,7 @@ const disciplines: Discipline[] = [
     number: "03",
     title: "Social Media Marketing",
     description:
-      "Grow the right audience, not just a big one — Meta, TikTok, Instagram, LinkedIn.",
+      "Grow the right audience, not just a big one. Meta, TikTok, Instagram, LinkedIn.",
     tags: ["Community Management", "Paid Social", "Content Production"],
     bg: "#ffffff",
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2000&auto=format&fit=crop",
@@ -54,7 +54,7 @@ const disciplines: Discipline[] = [
     number: "04",
     title: "Digital Development",
     description:
-      "Websites that look right and convert right — fast, sharp, SEO-ready, mobile-first.",
+      "Websites that look right and convert right. Fast, sharp, SEO-ready, and mobile-first.",
     tags: ["Websites & Landing Pages", "UX / UI", "E-Commerce", "Campaign Builds"],
     bg: "#e1e61b",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2000&auto=format&fit=crop",
