@@ -19,7 +19,7 @@ type Discipline = {
 const disciplines: Discipline[] = [
   {
     number: "01",
-    title: "Branding & Design.",
+    title: "Branding & Design",
     description:
       "From scattered visuals to a system that scales — strategy-led, culture-aware, conversion-ready.",
     tags: ["Brand Identity", "Visual Systems", "Campaign Creative", "Guidelines & Type"],
@@ -30,7 +30,7 @@ const disciplines: Discipline[] = [
   },
   {
     number: "02",
-    title: "Video, Animation & Motion.",
+    title: "Video, Animation & Motion",
     description:
       "Brands that move get remembered — TikTok, Instagram, YouTube, ready-to-post.",
     tags: ["Brand Films", "Social Reels", "2D / 3D Animation", "Motion Graphics"],
@@ -41,7 +41,7 @@ const disciplines: Discipline[] = [
   },
   {
     number: "03",
-    title: "Social Media Marketing.",
+    title: "Social Media Marketing",
     description:
       "Grow the right audience, not just a big one — Meta, TikTok, Instagram, LinkedIn.",
     tags: ["Community Management", "Paid Social", "Content Production"],
@@ -52,7 +52,7 @@ const disciplines: Discipline[] = [
   },
   {
     number: "04",
-    title: "Digital Development.",
+    title: "Digital Development",
     description:
       "Websites that look right and convert right — fast, sharp, SEO-ready, mobile-first.",
     tags: ["Websites & Landing Pages", "UX / UI", "E-Commerce", "Campaign Builds"],

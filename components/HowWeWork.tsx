@@ -11,7 +11,7 @@ import { ReactLenis } from 'lenis/react';
 const steps = [
   {
     step: "01",
-    title: "Audit.",
+    title: "Audit",
     description:
       "Tear down what's not working. We find the gap between how you're showing up and how you should be — fast, sharp, and without the corporate hand-holding.",
     cta: "Start your audit",
@@ -22,7 +22,7 @@ const steps = [
   },
   {
     step: "02",
-    title: "Rework.",
+    title: "Rework",
     description:
       "Reshape the strategy, the story, the system. Clarity over clutter, every time. We don't just tweak — we rebuild the narrative from the ground up.",
     cta: "See case studies",
@@ -33,7 +33,7 @@ const steps = [
   },
   {
     step: "03",
-    title: "Build.",
+    title: "Build",
     description:
       "Design, write, shoot, ship. Fast cycles, AI-powered where it helps, never where it shouldn't. Real deliverables. Real velocity.",
     cta: "View our work",
@@ -44,7 +44,7 @@ const steps = [
   },
   {
     step: "04",
-    title: "Launch.",
+    title: "Launch",
     description:
       "Go live, measure, iterate. The scoreboard is the brief from here on out. We don't disappear after launch — we scale what's working.",
     cta: "Get started",

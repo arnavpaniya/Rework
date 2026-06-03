@@ -244,11 +244,11 @@ export function AboutStudio() {
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] uppercase">
               We don&apos;t do{" "}
-              <span className="text-white bg-black px-2 border-4 border-black transform -rotate-1 inline-block">ordinary.</span>
+              <span className="text-white bg-black px-2 border-4 border-black transform -rotate-1 inline-block">ordinary</span>
               <br />
               We do{" "}
               <span className="relative inline-block bg-[#e1e61b] px-2 border-4 border-black shadow-[6px_6px_0_0_#000] transform rotate-1 mt-2">
-                <span className="relative z-10">conversion.</span>
+                <span className="relative z-10">conversion</span>
               </span>
             </h2>
           </div>
@@ -362,7 +362,7 @@ export function AboutStudio() {
       {/* Decorative Large Chrome Sticker - Left Side peeking out */}
       <motion.div 
         style={{ y: yRose }}
-        className="absolute left-[-100px] bottom-[15%] w-[320px] h-[320px] pointer-events-none select-none hidden 2xl:block opacity-90 z-0"
+        className="absolute left-[-40px] sm:left-[-60px] md:left-[-80px] 2xl:left-[-100px] bottom-[15%] w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
       >
         <motion.div
           animate={{ y: [0, -12, 0] }}
@@ -383,7 +383,7 @@ export function AboutStudio() {
       {/* Decorative Large Chrome Sticker - Right Side peeking out */}
       <motion.div 
         style={{ y: yCherries }}
-        className="absolute right-[-100px] top-[10%] w-[320px] h-[320px] pointer-events-none select-none hidden 2xl:block opacity-90 z-0"
+        className="absolute right-[-40px] sm:right-[-60px] md:right-[-80px] 2xl:right-[-100px] top-[10%] w-[110px] h-[110px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
       >
         <motion.div
           animate={{ y: [0, 12, 0] }}
