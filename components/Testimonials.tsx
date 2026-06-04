@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -74,6 +74,54 @@ const testimonials = [
   },
 ];
 
+// ─── Testimonial Card Component ────────────────────────────────────────────────
+
+interface TestimonialCardProps {
+  item: typeof testimonials[0];
+}
+
+function TestimonialCard({ item }: TestimonialCardProps) {
+  return (
+    <div
+      className="p-6 border-2 border-black flex flex-col justify-between min-h-[200px] h-full"
+      style={{
+        backgroundColor: item.color,
+        color: item.textColor,
+      }}
+    >
+      {/* Quote mark */}
+      <div>
+        <span className="text-3xl font-black leading-none block mb-3 select-none opacity-60">
+          &ldquo;
+        </span>
+        <p className="text-sm font-semibold leading-relaxed">
+          {item.text}
+        </p>
+      </div>
+      {/* Author */}
+      <div className="flex items-center gap-3 mt-5">
+        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-black/20 shrink-0">
+          <Image
+            src={item.image}
+            alt={item.name}
+            fill
+            className="object-cover"
+            sizes="40px"
+          />
+        </div>
+        <div className="flex flex-col">
+          <span className="font-black text-xs uppercase tracking-wider leading-tight">
+            {item.name}
+          </span>
+          <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 leading-tight mt-0.5">
+            {item.role}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Scrolling Column Component ───────────────────────────────────────────────
 
 const TestimonialsColumn = (props: {
@@ -103,44 +151,7 @@ const TestimonialsColumn = (props: {
         {[...new Array(2).fill(0)].map((_, index) => (
           <React.Fragment key={index}>
             {props.testimonials.map((item, i) => (
-              <div
-                className="p-6 border-2 border-black flex flex-col justify-between min-h-[200px]"
-                key={i}
-                style={{
-                  backgroundColor: item.color,
-                  color: item.textColor,
-                }}
-              >
-                {/* Quote mark */}
-                <div>
-                  <span className="text-3xl font-black leading-none block mb-3 select-none opacity-60">
-                    &ldquo;
-                  </span>
-                  <p className="text-sm font-semibold leading-relaxed">
-                    {item.text}
-                  </p>
-                </div>
-                {/* Author */}
-                <div className="flex items-center gap-3 mt-5">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-black/20 shrink-0">
-                    <Image
-                      src={item.image}
-                      alt={item.name}
-                      fill
-                      className="object-cover"
-                      sizes="40px"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-black text-xs uppercase tracking-wider leading-tight">
-                      {item.name}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 leading-tight mt-0.5">
-                      {item.role}
-                    </span>
-                  </div>
-                </div>
-              </div>
+              <TestimonialCard key={i} item={item} />
             ))}
           </React.Fragment>
         ))}
@@ -152,9 +163,61 @@ const TestimonialsColumn = (props: {
 // ─── Main Section ─────────────────────────────────────────────────────────────
 
 export function TestimonialsSection() {
+  const [isRow1Paused, setIsRow1Paused] = useState(false);
+  const [isRow2Paused, setIsRow2Paused] = useState(false);
+
+  const row1TimerRef = useRef<NodeJS.Timeout | null>(null);
+  const row2TimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (row1TimerRef.current) clearTimeout(row1TimerRef.current);
+      if (row2TimerRef.current) clearTimeout(row2TimerRef.current);
+    };
+  }, []);
+
+  const handleRow1Click = () => {
+    setIsRow1Paused((prev) => {
+      const next = !prev;
+      if (next) {
+        if (row1TimerRef.current) clearTimeout(row1TimerRef.current);
+        row1TimerRef.current = setTimeout(() => {
+          setIsRow1Paused(false);
+        }, 4000);
+      } else {
+        if (row1TimerRef.current) {
+          clearTimeout(row1TimerRef.current);
+          row1TimerRef.current = null;
+        }
+      }
+      return next;
+    });
+  };
+
+  const handleRow2Click = () => {
+    setIsRow2Paused((prev) => {
+      const next = !prev;
+      if (next) {
+        if (row2TimerRef.current) clearTimeout(row2TimerRef.current);
+        row2TimerRef.current = setTimeout(() => {
+          setIsRow2Paused(false);
+        }, 4000);
+      } else {
+        if (row2TimerRef.current) {
+          clearTimeout(row2TimerRef.current);
+          row2TimerRef.current = null;
+        }
+      }
+      return next;
+    });
+  };
+
   const col1 = [...testimonials].slice(0, 4);
   const col2 = [...testimonials].slice(2, 6).concat(testimonials.slice(0, 1));
   const col3 = [...testimonials].slice(4, 8).concat(testimonials.slice(0, 2));
+
+  const row1 = [...testimonials].slice(0, 4);
+  const row2 = [...testimonials].slice(4, 8);
 
   return (
     <section
@@ -259,12 +322,12 @@ export function TestimonialsSection() {
           </motion.div>
         </div>
 
-        {/* Right: Scrolling Columns */}
-        <div className="lg:flex-1 w-full h-[320px] sm:h-[600px] lg:h-[800px] flex gap-3 sm:gap-4 lg:gap-5 justify-center relative">
+        {/* Right: Scrolling Columns (Desktop/Tablet View) */}
+        <div className="hidden sm:flex lg:flex-1 w-full h-[600px] lg:h-[800px] gap-3 sm:gap-4 lg:gap-5 justify-center relative">
           <TestimonialsColumn
             testimonials={col1}
             duration={25}
-            className="w-full max-w-[280px] hidden sm:block"
+            className="w-full max-w-[280px]"
           />
           <TestimonialsColumn
             testimonials={col2}
@@ -287,6 +350,70 @@ export function TestimonialsSection() {
               height={130}
               className="object-contain"
             />
+          </div>
+        </div>
+
+        {/* Testimonials Horizontal Marquees (Mobile View only) */}
+        <div className="block sm:hidden w-full relative z-20 flex flex-col gap-4 overflow-hidden py-4">
+          <style>{`
+            @keyframes marquee-ltr {
+              0% { transform: translateX(-50%); }
+              100% { transform: translateX(0); }
+            }
+            @keyframes marquee-rtl {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .mobile-marquee-ltr {
+              animation: marquee-ltr 22s linear infinite;
+            }
+            .mobile-marquee-rtl {
+              animation: marquee-rtl 22s linear infinite;
+            }
+          `}</style>
+
+          {/* Row 1: Left to Right */}
+          <div 
+            className="w-full overflow-hidden select-none cursor-pointer"
+            onClick={handleRow1Click}
+          >
+            <div 
+              className="flex w-max items-stretch mobile-marquee-ltr"
+              style={{
+                animationPlayState: isRow1Paused ? "paused" : "running",
+              }}
+            >
+              {[...row1, ...row1].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-[80vw] max-w-[280px] pr-4"
+                >
+                  <TestimonialCard item={item} />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Right to Left */}
+          <div 
+            className="w-full overflow-hidden select-none cursor-pointer"
+            onClick={handleRow2Click}
+          >
+            <div 
+              className="flex w-max items-stretch mobile-marquee-rtl"
+              style={{
+                animationPlayState: isRow2Paused ? "paused" : "running",
+              }}
+            >
+              {[...row2, ...row2].map((item, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-[80vw] max-w-[280px] pr-4"
+                >
+                  <TestimonialCard item={item} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
