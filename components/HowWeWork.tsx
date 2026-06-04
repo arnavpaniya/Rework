@@ -1,10 +1,9 @@
 "use client";
 
-import { useTransform, motion, useScroll, MotionValue } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { ReactLenis } from 'lenis/react';
+import { motion, useScroll, useTransform } from "framer-motion";
 
 // ─── Step data ────────────────────────────────────────────────────────────────
 
@@ -55,184 +54,202 @@ const steps = [
   },
 ];
 
-// ─── Card Component ───────────────────────────────────────────────────────────
+// ─── Individual Card Component ────────────────────────────────────────────────
 
-interface CardProps {
+interface CardComponentProps {
   i: number;
-  step: string;
-  title: string;
-  description: string;
-  cta: string;
-  color: string;
-  textColor: string;
-  image: string;
-  progress: MotionValue<number>;
-  range: [number, number];
-  targetScale: number;
+  s: typeof steps[0];
+  scrollYProgress: any;
 }
 
-function Card({
-  i,
-  step,
-  title,
-  description,
-  cta,
-  color,
-  textColor,
-  image,
-  progress,
-  range,
-  targetScale,
-}: CardProps) {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start end", "start start"],
-  });
+function CardComponent({ i, s, scrollYProgress }: CardComponentProps) {
+  // 1. yPercent (slide-up animation based on progress intervals)
+  let yPercent;
+  if (i === 0) {
+    yPercent = "0%";
+  } else if (i === 1) {
+    yPercent = useTransform(scrollYProgress, [0, 0.33, 1], ["110%", "0%", "0%"]);
+  } else if (i === 2) {
+    yPercent = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], ["110%", "110%", "0%", "0%"]);
+  } else {
+    yPercent = useTransform(scrollYProgress, [0, 0.66, 1], ["110%", "110%", "0%"]);
+  }
 
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1.4, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
+  // 2. scale (scale-down effect as subsequent cards stack)
+  const targetScale = 1 - (4 - 1 - i) * 0.05;
+  let scale;
+  if (i === 3) {
+    scale = 1;
+  } else if (i === 2) {
+    scale = useTransform(scrollYProgress, [0, 0.66, 0.87, 1], [1, 1, 1, targetScale]);
+  } else if (i === 1) {
+    scale = useTransform(scrollYProgress, [0, 0.33, 0.53, 0.66, 0.87, 1], [1, 1, 1, 0.95, 0.95, targetScale]);
+  } else {
+    scale = useTransform(scrollYProgress, [0, 0.20, 0.33, 0.53, 0.66, 0.87, 1], [1, 1, 0.95, 0.95, 0.90, 0.90, targetScale]);
+  }
+
+  // 3. yOffset (pixel translate upward offset as subsequent cards stack)
+  let yOffset;
+  if (i === 3) {
+    yOffset = 0;
+  } else if (i === 2) {
+    yOffset = useTransform(scrollYProgress, [0, 0.66, 0.87, 1], [0, 0, 0, -20]);
+  } else if (i === 1) {
+    yOffset = useTransform(scrollYProgress, [0, 0.33, 0.53, 0.66, 0.87, 1], [0, 0, 0, -20, -20, -40]);
+  } else {
+    yOffset = useTransform(scrollYProgress, [0, 0.20, 0.33, 0.53, 0.66, 0.87, 1], [0, 0, -20, -20, -40, -40, -60]);
+  }
+
+  // 4. overlayOpacity (dim overlay opacity as cards go to the back - disabled to keep colors vibrant)
+  const overlayOpacity = 0;
 
   return (
-    <div
-      ref={container}
-      className="h-screen flex items-center justify-center sticky top-0 px-4"
+    <motion.div
+      style={{ y: yPercent, zIndex: (i + 1) * 10 }}
+      className="absolute inset-0 w-full h-full"
     >
       <motion.div
         style={{
-          backgroundColor: color,
           scale,
-          top: `calc(-5vh + ${i * 25}px)`,
+          y: yOffset,
+          backgroundColor: s.color,
         }}
-        className="relative flex flex-col md:flex-row top-[-10%] w-full max-w-5xl h-[560px] md:h-[480px] border-4 border-black shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] origin-top overflow-hidden"
+        className="relative w-full h-full border-4 border-black rounded-2xl shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex flex-col md:flex-row overflow-hidden origin-top"
       >
-        {/* ── Left: Text content ─────────────────────────────────────── */}
-        <div
-          className="relative z-2 flex flex-col justify-between p-6 sm:p-8 md:p-12 w-full md:w-[55%] h-[60%] md:h-full"
-        >
-          {/* Step + Title */}
+        {/* Overlay layer to dim cards as they stack back */}
+        <motion.div
+          style={{ opacity: overlayOpacity }}
+          className="absolute inset-0 bg-black pointer-events-none z-30"
+        />
+
+        {/* Left side: Text Details */}
+        <div className="relative z-20 flex flex-col justify-between p-6 sm:p-8 md:p-10 w-full md:w-[55%] h-[60%] md:h-full">
           <div>
             <div
-              className="inline-flex items-center gap-2 border-2 border-current px-3 py-1 mb-6 md:mb-8 text-xs font-black uppercase tracking-widest"
-              style={{ color: textColor }}
+              className="inline-flex items-center gap-2 border-2 border-current px-3 py-1 mb-4 md:mb-6 text-xs font-black uppercase tracking-widest"
+              style={{ color: s.textColor }}
             >
               <span
                 className="w-2 h-2"
-                style={{ backgroundColor: textColor }}
+                style={{ backgroundColor: s.textColor }}
               />
-              STEP {step}
+              STEP {s.step}
             </div>
 
             <h3
-              className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-none mb-4 md:mb-6 uppercase"
-              style={{ color: textColor }}
+              className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight leading-none mb-3 md:mb-4 uppercase"
+              style={{ color: s.textColor }}
             >
-              {title}
+              {s.title}
             </h3>
 
             <p
-              className="text-sm md:text-base font-bold leading-snug max-w-sm"
-              style={{ color: textColor }}
+              className="text-xs sm:text-sm md:text-base font-bold leading-snug max-w-sm"
+              style={{ color: s.textColor }}
             >
-              {description}
+              {s.description}
             </p>
           </div>
 
-          {/* CTA */}
+          {/* CTA Button */}
           <button
-            className="group flex items-center justify-between gap-4 w-fit px-6 py-3 border-4 border-black text-sm font-black uppercase tracking-widest hover:-translate-y-1 hover:translate-x-1 transition-transform"
-            style={{ 
-              backgroundColor: textColor,
-              color: color,
-              boxShadow: `-6px 6px 0px 0px ${color === '#000000' ? '#e1e61b' : '#000'}`
+            className="group flex items-center justify-between gap-4 w-fit px-6 py-3 border-4 border-black text-xs sm:text-sm font-black uppercase tracking-widest hover:-translate-y-1 hover:translate-x-1 transition-transform cursor-pointer"
+            style={{
+              backgroundColor: s.textColor,
+              color: s.color,
+              boxShadow: `-6px 6px 0px 0px ${
+                s.color === "#000000" ? "#e1e61b" : "#000"
+              }`,
             }}
           >
-            {cta}
-            <ArrowRight
-              className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2"
-            />
+            {s.cta}
+            <ArrowRight className="w-4 h-4 sm:w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
           </button>
         </div>
 
-        {/* ── Right: Image ────────────────────────────────────────────── */}
+        {/* Right side: Image content */}
         <div className="relative w-full md:w-[45%] h-[40%] md:h-full border-t-4 md:border-t-0 md:border-l-4 border-black overflow-hidden bg-black">
-          <motion.div className="absolute inset-0" style={{ scale: imageScale }}>
+          <div className="absolute inset-0">
             <Image
-              src={image}
-              alt={title}
+              src={s.image}
+              alt={s.title}
               fill
               className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-          </motion.div>
+          </div>
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
-// ─── Section ─────────────────────────────────────────────────────────────────
+// ─── Main Section Component ──────────────────────────────────────────────────
 
 export function HowWeWork() {
-  const container = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: container,
+    target: containerRef,
     offset: ["start start", "end end"],
   });
 
   return (
-    <ReactLenis root>
-      <div ref={container} className="relative bg-white border-y-4 border-black overflow-hidden">
-        {/* Background grid pattern for brutalist feel */}
-        <div 
-          className="absolute inset-0 opacity-10 pointer-events-none z-0" 
-          style={{ 
-            backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)", 
-            backgroundSize: "40px 40px" 
-          }} 
+    <div ref={containerRef} className="relative w-full" style={{ height: "300vh" }}>
+      {/* Sticky Frame rendering original layout */}
+      <div className="w-full h-screen bg-white sticky top-0 flex flex-col justify-between overflow-hidden border-y-4 border-black">
+        {/* Background grid pattern */}
+        <div
+          className="absolute inset-0 opacity-10 pointer-events-none z-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
         />
-        
-        {/* ── Section header ──────────────────────────────────────── */}
-        <section className="relative z-20 pt-20 sm:pt-32 pb-12 px-4 sm:px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
+
+        {/* Section header */}
+        <div className="relative z-20 w-full pt-12 md:pt-16 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
           <div>
-            <div className="inline-flex items-center gap-2 border-4 border-black px-4 py-1.5 mb-6 bg-black text-white shadow-[4px_4px_0px_0px_rgba(225,230,27,1)]">
+            <div className="inline-flex items-center gap-2 border-4 border-black px-4 py-1.5 mb-4 bg-black text-white shadow-[4px_4px_0px_0px_rgba(225,230,27,1)]">
               <span className="w-2 h-2 bg-[#e1e61b]" />
-              <span className="text-xs font-black uppercase tracking-widest">How We Work</span>
+              <span className="text-xs font-black uppercase tracking-widest">
+                How We Work
+              </span>
             </div>
-            <h2 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-black uppercase leading-[0.9]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter text-black uppercase leading-[0.9]">
               Four steps
               <br />
-              <span className="text-transparent" style={{ WebkitTextStroke: "2px black" }}>Zero fluff</span>
+              <span
+                className="text-transparent"
+                style={{ WebkitTextStroke: "2px black" }}
+              >
+                Zero fluff
+              </span>
             </h2>
           </div>
-          <p className="max-w-sm text-base text-black font-bold uppercase leading-snug lg:pb-3 border-l-4 border-black pl-4">
-            No hand-holding. No ten-week discovery phases. We move at the speed your brand actually needs.
+          <p className="max-w-sm text-sm md:text-base text-black font-bold uppercase leading-snug lg:pb-2 border-l-4 border-black pl-4">
+            No hand-holding. No ten-week discovery phases. We move at the speed
+            your brand actually needs.
           </p>
-        </section>
+        </div>
 
-        {/* ── Stacking cards ─────────────────────────────────────────────── */}
-        <section className="w-full pb-32">
-          {steps.map((s, i) => {
-            const targetScale = 1 - (steps.length - i) * 0.05;
-            return (
-              <Card
-                key={`step_${i}`}
+        {/* Cards Deck */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto flex-grow flex items-center justify-center px-4 py-6 md:py-10">
+          <div className="relative w-full h-[520px] sm:h-[485px] md:h-[440px]">
+            {steps.map((s, i) => (
+              <CardComponent
+                key={s.step}
                 i={i}
-                step={s.step}
-                title={s.title}
-                description={s.description}
-                cta={s.cta}
-                color={s.color}
-                textColor={s.textColor}
-                image={s.image}
-                progress={scrollYProgress}
-                range={[i * 0.25, 1]}
-                targetScale={targetScale}
+                s={s}
+                scrollYProgress={scrollYProgress}
               />
-            );
-          })}
-        </section>
+            ))}
+          </div>
+        </div>
+
+        {/* Spacing alignment */}
+        <div className="h-6 md:h-10 w-full z-10" />
       </div>
-    </ReactLenis>
+    </div>
   );
 }

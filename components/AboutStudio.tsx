@@ -105,7 +105,7 @@ const features = [
   {
     Icon: MapPin,
     name: "Dubai ↔ Mumbai",
-    description: "Rooted in Mumbai. Scaling across Dubai, India, and the UAE.",
+    description: "Rooted in Mumbai, India. Scaling across Dubai and the wider UAE.",
     href: "/#brand-statement",
     cta: "Our story",
     background: <LocationBackground />,

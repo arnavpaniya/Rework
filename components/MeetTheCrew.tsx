@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -56,6 +55,8 @@ const crew = [
     tagColor: "#22c55e",
     bio: "Commands search results. Gets brands seen on the first page.",
     img: "/RwTeam/Asma-SEO Specialist.jpeg",
+    imgScale: "object-top scale-100 group-hover:scale-105",
+    photoBg: "#ffffff",
   },
   {
     name: "Haneena",
@@ -67,104 +68,35 @@ const crew = [
   },
 ];
 
-// Duplicate the array to allow for infinite wrapping
-const extendedCrew = [...crew, ...crew];
-
-const getWaveY = (x: number, t: number) => {
-  const time = t * 0.001;
-  const wave1 = Math.sin(x * 0.002 - time * 1.5) * 45;
-  const wave2 = Math.sin(x * 0.0035 + time * 0.8) * 25;
-  const wave3 = Math.sin(x * 0.001 + time * 2) * 15;
-  return wave1 + wave2 + wave3 + 120;
-};
-
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function MeetTheCrew() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const pathRef = useRef<SVGPathElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const stringsRef = useRef<(SVGLineElement | null)[]>([]);
-
-  useEffect(() => {
-    let animationId: number;
-    const speedX = 40; // Pixels per second horizontal scroll
-
-    const animate = (timestamp: number) => {
-      const timeSec = timestamp * 0.001;
-      const width = containerRef.current?.clientWidth || window.innerWidth;
-      
-      // Draw SVG Path
-      let pathD = "";
-      const points = 150;
-      for (let i = -10; i <= points + 10; i++) {
-        const x = (i / points) * width;
-        const y = getWaveY(x, timestamp);
-        if (i === -10) pathD += `M ${x} ${y} `;
-        else pathD += `L ${x} ${y} `;
-      }
-      if (pathRef.current) {
-        pathRef.current.setAttribute("d", pathD);
-      }
-
-      // Position Cards
-      const spacing = 400;
-      const totalCards = extendedCrew.length;
-      const totalW = totalCards * spacing; // 4000px
-
-      extendedCrew.forEach((_, idx) => {
-        let targetX = (spacing * idx + timeSec * speedX) % totalW;
-        targetX -= spacing; // Start slightly offscreen to the left
-
-        // The card is 260px wide, so its center is targetX + 130
-        const centerX = targetX + 130;
-        const y = getWaveY(centerX, timestamp);
-
-        const stringElem = stringsRef.current[idx];
-        if (stringElem) {
-          stringElem.setAttribute("x1", centerX.toString());
-          stringElem.setAttribute("y1", y.toString());
-          stringElem.setAttribute("x2", centerX.toString());
-          stringElem.setAttribute("y2", (y + 50).toString());
-        }
-
-        const cardElem = cardsRef.current[idx];
-        if (cardElem) {
-          cardElem.style.transform = `translate(${targetX}px, ${y + 50}px)`;
-        }
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, []);
-
   return (
     <section
-      ref={containerRef}
-      className="w-full relative overflow-hidden border-t border-black/10"
-      style={{ backgroundColor: "#111111", minHeight: "800px" }}
+      className="w-full relative overflow-hidden border-t border-black/10 py-24 md:py-32"
+      style={{ backgroundColor: "#111111" }}
       id="team"
     >
       <style>{`
-        @keyframes sway {
-          0% { transform: rotate(-3.5deg); }
-          50% { transform: rotate(3.5deg); }
-          100% { transform: rotate(-3.5deg); }
-        }
         .crew-card {
-          transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 0.25);
         }
         .crew-card:hover {
           box-shadow: 12px 12px 0px 0px var(--hover-color);
           border-color: var(--hover-color) !important;
+          transform: translateY(-4px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto px-6 pt-24 md:pt-32 relative z-20 pointer-events-none">
+      <div className="max-w-7xl mx-auto px-6 mb-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -190,59 +122,39 @@ export function MeetTheCrew() {
         </motion.div>
       </div>
 
-      {/* Physics Container */}
-      <div className="absolute inset-0 top-[200px] pointer-events-none">
-        {/* Thread SVG */}
-        <svg className="absolute inset-0 w-full h-[300px] overflow-visible">
-          <path
-            ref={pathRef}
-            stroke="rgba(255,255,255,0.2)"
-            strokeWidth="2"
-            fill="none"
-          />
-          {extendedCrew.map((_, i) => (
-            <line
-              key={`string-${i}`}
-              ref={(el) => { stringsRef.current[i] = el; }}
-              stroke="rgba(255,255,255,0.4)"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-            />
-          ))}
-        </svg>
-
-        {/* Cards */}
-        {extendedCrew.map((member, i) => (
+      {/* Horizontally Scrollable Cards Container */}
+      <div className="w-full overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth flex gap-6 md:gap-8 pb-12 select-none px-6 md:px-12 scroll-px-6 md:scroll-px-12 xl:px-[calc((100vw-1280px)/2+24px)] xl:scroll-px-[calc((100vw-1280px)/2+24px)]">
+        {crew.map((member, i) => (
           <div
             key={i}
-            ref={(el) => { cardsRef.current[i] = el; }}
-            className="absolute top-0 left-0 pointer-events-auto"
-            style={{ willChange: "transform" }}
+            className="flex-shrink-0 snap-center w-[80vw] sm:w-[260px]"
           >
             <div
-              className="bg-[#111] flex flex-col relative overflow-hidden crew-card group border-4 border-white"
+              className="bg-[#111] flex flex-col relative overflow-hidden crew-card group border-4 border-white w-full"
               style={{
-                width: "260px",
                 height: "380px",
-                transformOrigin: "top center",
-                animation: "sway 4s ease-in-out infinite",
-                animationDelay: `${i * -0.4}s`,
                 "--hover-color": member.tagColor,
               } as React.CSSProperties}
             >
               {/* Photo */}
-              <div className="relative h-56 w-full filter grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden">
+              <div
+                className="relative h-56 w-full filter grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden"
+                style={{ backgroundColor: (member as any).photoBg || "#111" }}
+              >
                 <Image
                   src={member.img}
                   alt={member.name}
                   fill
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                  sizes="260px"
+                  className={cn(
+                    "object-cover transition-transform duration-500",
+                    !(member as any).imgScale && "object-center scale-100 group-hover:scale-105",
+                    (member as any).imgScale
+                  )}
+                  sizes="(max-width: 640px) 80vw, 260px"
                 />
               </div>
 
-              {/* Pin/tape visual at top center */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-5 bg-white/30 backdrop-blur-md border border-white/20 -mt-2.5 rotate-[-2deg] z-30 shadow-sm transition-all duration-300 group-hover:bg-white/50 group-hover:rotate-[1deg]" />
+
 
               {/* Tag pill */}
               <div

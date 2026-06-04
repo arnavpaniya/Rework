@@ -44,6 +44,7 @@ export const metadata: Metadata = {
 import { Footer } from "@/components/Footer";
 import { GamifiedPreloader } from "@/components/GamifiedPreloader";
 import { LeadPopup } from "@/components/LeadPopup";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
 export default function RootLayout({
   children,
@@ -155,10 +156,12 @@ export default function RootLayout({
         />
       </head>
       <body className="relative min-h-full flex flex-col">
-        <GamifiedPreloader />
-        <LeadPopup />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SmoothScrollProvider>
+          <GamifiedPreloader />
+          <LeadPopup />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </SmoothScrollProvider>
       </body>
     </html>
   );
