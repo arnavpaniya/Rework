@@ -248,6 +248,7 @@ export function AboutStudio() {
               src="/y2k/chrome-rose.png" 
               alt="Chrome Rose Sticker"
               fill
+              sizes="(min-width: 1536px) 320px, (min-width: 1280px) 260px, 100vw"
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>
@@ -272,13 +273,14 @@ export function AboutStudio() {
               src="/y2k/chrome-face-2.png" 
               alt="Chrome Face Sticker"
               fill
+              sizes="(min-width: 1536px) 320px, (min-width: 1280px) 260px, 100vw"
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>
         </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 sm:px-6 relative z-10 bg-transparent lg:bg-[#f4f4f0]">
+      <div className="max-w-7xl mx-auto px-8 sm:px-6 relative z-10">
 
         {/* Header */}
         <motion.div

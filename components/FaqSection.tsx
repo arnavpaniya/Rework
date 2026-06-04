@@ -63,18 +63,57 @@ export function FaqSection() {
         
         {/* Header */}
         <div className="mb-12">
-          {/* FAQ Tagline Badge with purple neobrutalist offset shadow */}
-          <div className="inline-flex items-center gap-2.5 border-[2.5px] border-black px-4 py-2 mb-8 bg-white text-black font-black shadow-[4px_4px_0px_0px_#6c24d6] relative z-10 select-none">
-            <span className="w-2.5 h-2.5 bg-[#6c24d6] flex-shrink-0" />
-            <span className="text-xs sm:text-sm font-black uppercase tracking-widest leading-none">
-              FAQ
-            </span>
+          {/* Tag and Rose Row on Mobile */}
+          <div className="flex flex-row items-center justify-between sm:justify-start gap-4 mb-8">
+            {/* FAQ Tagline Badge with purple neobrutalist offset shadow */}
+            <div className="inline-flex items-center gap-2.5 border-[2.5px] border-black px-4 py-2 bg-white text-black font-black shadow-[4px_4px_0px_0px_#6c24d6] relative z-10 select-none">
+              <span className="w-2.5 h-2.5 bg-[#6c24d6] flex-shrink-0" />
+              <span className="text-xs sm:text-sm font-black uppercase tracking-widest leading-none">
+                FAQ
+              </span>
+            </div>
+
+            {/* Horizontal Rose Stem Sticker - Mobile only (placed right next to FAQ Tag) */}
+            <div className="block sm:hidden relative w-[180px] h-[45px] overflow-visible select-none pointer-events-none z-20">
+              <motion.div
+                whileHover={{ scale: 1.08 }}
+                style={{ rotate: -90 }}
+                className="absolute top-1/2 left-[calc(50%-200px)] -translate-x-1/2 -translate-y-1/2 w-[45px] h-[180px] pointer-events-auto cursor-pointer"
+              >
+                <Image 
+                  src="/y2k/chrome-rose-stem.png" 
+                  alt="Premium Chrome Rose Stem"
+                  fill
+                  sizes="180px"
+                  className="object-contain scale-[2.5] origin-top filter drop-shadow-[5px_5px_0_rgba(0,0,0,0.05)]"
+                />
+              </motion.div>
+            </div>
           </div>
 
           {/* Main Title Matching Screenshot Layout */}
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-black tracking-tighter uppercase leading-[0.95] mb-5 font-heading">
-            COMMON <span className="text-transparent" style={{ WebkitTextStroke: "2.5px black" }}>QUESTIONS</span>
-          </h2>
+          <div className="relative w-fit mb-5">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-black tracking-tighter uppercase leading-[0.95] font-heading">
+              COMMON <span className="text-transparent" style={{ WebkitTextStroke: "2.5px black" }}>QUESTIONS</span>
+            </h2>
+
+            {/* Horizontal Rose Stem Sticker acting as underline - Desktop only */}
+            <div className="hidden sm:block absolute sm:right-[290px] sm:bottom-[-90px] sm:w-[320px] sm:h-[100px] overflow-visible select-none pointer-events-none z-20">
+              <motion.div
+                whileHover={{ scale: 1.08 }}
+                style={{ rotate: -90 }}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sm:w-[100px] sm:h-[320px] pointer-events-auto cursor-pointer"
+              >
+                <Image 
+                  src="/y2k/chrome-rose-stem.png" 
+                  alt="Premium Chrome Rose Stem"
+                  fill
+                  sizes="320px"
+                  className="object-contain scale-[2.5] origin-top filter drop-shadow-[5px_5px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110"
+                />
+              </motion.div>
+            </div>
+          </div>
           
           {/* Subtitle */}
           <p className="text-neutral-500 text-xs sm:text-sm font-black uppercase tracking-widest mb-5">
@@ -132,38 +171,28 @@ export function FaqSection() {
           })}
         </div>
 
-      </div>
-
-      {/* Decorative Large Premium Chrome Rose Stem Sticker - Left Side */}
-      <div className="hidden xl:block absolute xl:left-[calc(50%-828px)] 2xl:left-[calc(50%-860px)] top-[18%] xl:w-[360px] xl:h-[580px] pointer-events-none select-none z-0">
-        {/* Soft Purple Radial Glow Backdrop */}
-        <div className="absolute top-[20%] left-[20%] w-[80px] h-[80px] lg:w-[280px] lg:h-[280px] bg-[#6c24d6] rounded-full blur-[30px] lg:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
-        
-        <motion.div 
-          style={{ y: yRoseStem }}
-          className="w-full h-full relative z-10"
-        >
+        {/* Chrome Rose Sticker - Mobile only (placed after FAQ accordion list) */}
+        <div className="block sm:hidden relative w-full h-[180px] overflow-visible select-none pointer-events-none mt-8 mb-4">
           <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ scale: 1.06, rotate: -4 }}
-            className="w-full h-full pointer-events-auto flex items-center justify-center relative"
+            whileHover={{ scale: 1.08 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180px] h-[180px] pointer-events-auto cursor-pointer"
           >
             <Image 
-              src="/y2k/chrome-rose-stem.png" 
-              alt="Premium Chrome Rose Stem Sticker"
+              src="/y2k/chrome-rose.png" 
+              alt="Premium Chrome Rose"
               fill
-              className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
+              sizes="180px"
+              className="object-contain filter drop-shadow-[5px_5px_0_rgba(0,0,0,0.05)]"
             />
           </motion.div>
-        </motion.div>
+        </div>
 
       </div>
 
-      {/* Decorative Large Premium Chrome Rose Sticker - Right Side */}
-      <div className="hidden xl:block absolute xl:right-[calc(50%-828px)] 2xl:right-[calc(50%-860px)] bottom-[8%] xl:w-[360px] xl:h-[360px] pointer-events-none select-none z-0">
+      {/* Decorative Large Premium Chrome Rose Sticker - Right Side - Desktop only */}
+      <div className="hidden sm:block absolute right-[80px] bottom-[5%] w-[320px] h-[320px] pointer-events-none select-none z-0">
         {/* Soft Purple Radial Glow Backdrop */}
-        <div className="absolute top-[15%] left-[20%] w-[70px] h-[70px] lg:w-[300px] lg:h-[300px] bg-[#6c24d6] rounded-full blur-[30px] lg:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
+        <div className="absolute top-[15%] left-[20%] w-[100px] h-[100px] sm:w-[300px] sm:h-[300px] bg-[#6c24d6] rounded-full blur-[40px] sm:blur-[110px] opacity-[0.25] mix-blend-screen z-0 animate-pulse" />
         
         <motion.div 
           style={{ y: yRosePremium }}
@@ -179,6 +208,7 @@ export function FaqSection() {
               src="/y2k/chrome-rose.png" 
               alt="Premium Chrome Rose Sticker"
               fill
+              sizes="(min-width: 640px) 320px, 200px"
               className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.05)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
             />
           </motion.div>
