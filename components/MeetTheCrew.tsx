@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -71,6 +73,100 @@ const crew = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function MeetTheCrew() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPageScrolling, setIsPageScrolling] = useState(false);
+  const [isHoverPaused, setIsHoverPaused] = useState(false);
+  const [isTapPaused, setIsTapPaused] = useState(false);
+
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const tapTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const DURATION = 1800;
+
+  // Handle scroll auto-pause and clear timeout on unmount
+  useEffect(() => {
+    const handlePageScroll = () => {
+      setIsPageScrolling(true);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsPageScrolling(false);
+      }, 150);
+    };
+
+    window.addEventListener("scroll", handlePageScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handlePageScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+    };
+  }, []);
+
+  const isProgressing = !isPageScrolling && !isHoverPaused && !isTapPaused;
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isProgressing) {
+      interval = setInterval(() => {
+        setActiveIndex((idx) => idx + 1);
+      }, DURATION);
+    }
+    return () => clearInterval(interval);
+  }, [isProgressing]);
+
+  const handleMouseEnter = () => {
+    if (typeof window !== "undefined") {
+      const isTouch = window.matchMedia("(pointer: coarse)").matches;
+      if (!isTouch) {
+        setIsHoverPaused(true);
+      }
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHoverPaused(false);
+  };
+
+  const handleMarqueeClick = (e: React.MouseEvent) => {
+    if (typeof window !== "undefined") {
+      const isTouch = window.matchMedia("(pointer: coarse)").matches;
+      if (isTouch) {
+        setIsTapPaused((prev) => {
+          const next = !prev;
+          if (next) {
+            if (tapTimerRef.current) clearTimeout(tapTimerRef.current);
+            tapTimerRef.current = setTimeout(() => {
+              setIsTapPaused(false);
+            }, 4000);
+          } else {
+            if (tapTimerRef.current) {
+              clearTimeout(tapTimerRef.current);
+              tapTimerRef.current = null;
+            }
+          }
+          return next;
+        });
+      }
+    }
+  };
+
+  const getOffset = (i: number, active: number, num: number) => {
+    const normalizedActive = ((active % num) + num) % num;
+    let offset = (i - normalizedActive + num) % num;
+    if (offset > num / 2) offset -= num;
+    return offset;
+  };
+
+  const getXCalc = (offset: number) => {
+    const abs = Math.abs(offset);
+    if (abs === 0) return "0px";
+    
+    // Multipliers for scale [1, 0.85, 0.7, 0.7, ...]
+    const multipliers = [0, 0.9, 1.6, 2.2, 2.8, 3.4, 4.0, 4.6];
+    const mult = multipliers[abs] || (4.6 + (abs - 7) * 0.6);
+    const sign = offset > 0 ? 1 : -1;
+    return `calc(${sign} * (${mult} * var(--card-width) + ${abs * 24}px))`;
+  };
+
   return (
     <section
       className="w-full relative overflow-hidden border-t border-black/10 py-24 md:py-32"
@@ -87,12 +183,13 @@ export function MeetTheCrew() {
           border-color: var(--hover-color) !important;
           transform: translateY(-4px);
         }
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
+        .team-carousel-container {
+          --card-width: 260px;
         }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+        @media (min-width: 768px) {
+          .team-carousel-container {
+            --card-width: 300px;
+          }
         }
       `}</style>
 
@@ -122,71 +219,108 @@ export function MeetTheCrew() {
         </motion.div>
       </div>
 
-      {/* Horizontally Scrollable Cards Container */}
-      <div className="w-full overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth flex gap-6 md:gap-8 pb-12 select-none px-6 md:px-12 scroll-px-6 md:scroll-px-12 xl:px-[calc((100vw-1280px)/2+24px)] xl:scroll-px-[calc((100vw-1280px)/2+24px)]">
-        {crew.map((member, i) => (
-          <div
-            key={i}
-            className="flex-shrink-0 snap-center w-[80vw] sm:w-[260px]"
-          >
-            <div
-              className="bg-[#111] flex flex-col relative overflow-hidden crew-card group border-4 border-white w-full"
-              style={{
-                height: "380px",
-                "--hover-color": member.tagColor,
-              } as React.CSSProperties}
+      {/* 3D Spring-Animated Carousel Container */}
+      <div 
+        className="team-carousel-container relative w-full h-[450px] flex items-center justify-center overflow-hidden my-12"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleMarqueeClick}
+      >
+        {/* Central glow behind active card */}
+        <div className="absolute w-[250px] h-[250px] md:w-[350px] md:h-[350px] rounded-full bg-[#e1e61b]/10 blur-[60px] pointer-events-none" />
+
+        {crew.map((member, i) => {
+          const offset = getOffset(i, activeIndex, crew.length);
+          const isCenter = offset === 0;
+          const scale = isCenter ? 1 : Math.max(0.6, 1 - Math.abs(offset) * 0.2);
+          const x = getXCalc(offset);
+          const opacity = Math.abs(offset) > 2 ? 0 : 1;
+          const zIndex = 10 - Math.abs(offset);
+
+          return (
+            <motion.div
+              key={i}
+              className="absolute w-[var(--card-width)] flex-shrink-0 cursor-pointer pointer-events-auto"
+              initial={false}
+              animate={{
+                x,
+                scale,
+                opacity,
+                zIndex,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 80,
+                damping: 14,
+                mass: 1.6,
+              }}
             >
-              {/* Photo */}
               <div
-                className="relative h-56 w-full filter grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden"
-                style={{ backgroundColor: (member as any).photoBg || "#111" }}
-              >
-                <Image
-                  src={member.img}
-                  alt={member.name}
-                  fill
-                  className={cn(
-                    "object-cover transition-transform duration-500",
-                    !(member as any).imgScale && "object-center scale-100 group-hover:scale-105",
-                    (member as any).imgScale
-                  )}
-                  sizes="(max-width: 640px) 80vw, 260px"
-                />
-              </div>
-
-
-
-              {/* Tag pill */}
-              <div
-                className="absolute top-3 right-3 px-2.5 py-1 text-[9px] font-black uppercase tracking-widest border-2 border-black z-20 shadow-[2px_2px_0_0_#000]"
+                className="bg-[#111] flex flex-col relative overflow-hidden crew-card group border-4 border-white w-full"
                 style={{
-                  backgroundColor: member.tagColor,
-                  color: (member as { tagText?: string }).tagText ?? "#fff",
-                }}
+                  height: "380px",
+                  "--hover-color": member.tagColor,
+                } as React.CSSProperties}
               >
-                {member.tag}
-              </div>
+                {/* Photo */}
+                <div
+                  className="relative h-56 w-full filter grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden"
+                  style={{ backgroundColor: (member as any).photoBg || "#111" }}
+                >
+                  <Image
+                    src={member.img}
+                    alt={member.name}
+                    fill
+                    className={cn(
+                      "object-cover transition-transform duration-500",
+                      !(member as any).imgScale && "object-center scale-100 group-hover:scale-105",
+                      (member as any).imgScale
+                    )}
+                    sizes="(max-width: 640px) 260px, 300px"
+                  />
+                </div>
 
-              {/* Details */}
-              <div
-                className="p-5 flex-1 flex flex-col justify-between border-t-4 border-white transition-all duration-300 group-hover:border-t-[var(--hover-color)] bg-[#111]"
-              >
-                <div>
-                  <h3 className="font-black text-xl tracking-tight text-white transition-colors duration-300 group-hover:text-[var(--hover-color)]">
-                    {member.name}
-                  </h3>
-                  <p className="text-[#e1e61b] text-[10px] font-black uppercase tracking-widest mt-1">
-                    {member.role}
+                {/* Tag pill */}
+                <div
+                  className="absolute top-3 right-3 px-2.5 py-1 text-[9px] font-black uppercase tracking-widest border-2 border-black z-20 shadow-[2px_2px_0_0_#000]"
+                  style={{
+                    backgroundColor: member.tagColor,
+                    color: (member as { tagText?: string }).tagText ?? "#fff",
+                  }}
+                >
+                  {member.tag}
+                </div>
+
+                {/* Details */}
+                <div
+                  className="p-5 flex-1 flex flex-col justify-between border-t-4 border-white transition-all duration-300 group-hover:border-t-[var(--hover-color)] bg-[#111]"
+                >
+                  <div>
+                    <h3 className="font-black text-xl tracking-tight text-white transition-colors duration-300 group-hover:text-[var(--hover-color)]">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#e1e61b] text-[10px] font-black uppercase tracking-widest mt-1">
+                      {member.role}
+                    </p>
+                  </div>
+                  <p className="text-sm font-semibold text-white/60 leading-tight transition-colors duration-300 group-hover:text-white/80">
+                    {member.bio}
                   </p>
                 </div>
-                <p className="text-sm font-semibold text-white/60 leading-tight transition-colors duration-300 group-hover:text-white/80">
-                  {member.bio}
-                </p>
+
+                {/* Dark overlay for non-center items to create focus */}
+                {!isCenter && (
+                  <motion.div 
+                    className="absolute inset-0 bg-black/40 pointer-events-none z-30"
+                    animate={{ opacity: Math.abs(offset) * 0.3 }}
+                  />
+                )}
               </div>
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
+
     </section>
   );
 }

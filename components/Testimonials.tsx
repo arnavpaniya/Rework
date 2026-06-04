@@ -171,10 +171,10 @@ export function TestimonialsSection() {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex flex-col lg:flex-row gap-10 sm:gap-12 lg:gap-8 items-center lg:items-stretch relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:h-full flex flex-col lg:flex-row gap-10 sm:gap-12 lg:gap-8 items-center lg:items-stretch relative z-10">
         
         {/* Left: Content */}
-        <div className="flex-1 flex flex-col justify-center max-w-lg lg:max-w-md w-full shrink-0 z-20">
+        <div className="lg:flex-1 flex flex-col justify-center max-w-lg lg:max-w-md w-full shrink-0 z-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -260,7 +260,7 @@ export function TestimonialsSection() {
         </div>
 
         {/* Right: Scrolling Columns */}
-        <div className="flex-1 w-full h-[320px] sm:h-[600px] lg:h-[800px] flex gap-3 sm:gap-4 lg:gap-5 justify-center relative">
+        <div className="lg:flex-1 w-full h-[320px] sm:h-[600px] lg:h-[800px] flex gap-3 sm:gap-4 lg:gap-5 justify-center relative">
           <TestimonialsColumn
             testimonials={col1}
             duration={25}
