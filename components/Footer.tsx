@@ -14,9 +14,9 @@ const QUICK_LINKS = [
 ];
 
 const SIGNALS = [
-  { name: "Testimonials", href: "#testimonials" },
-  { name: "Newsletter", href: "#" },
-  { name: "Instagram", href: "#" },
+  { name: "Instagram", href: "https://www.instagram.com/reworks.agency?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=100090152066732&ref=NONE_xav_ig_profile_page_web#" },
+  { name: "GitHub", href: "https://github.com/reworksagency-dev" },
   { name: "LinkedIn", href: "#" },
 ];
 
@@ -51,10 +51,11 @@ export function Footer() {
         <motion.div 
           className="flex whitespace-nowrap text-black font-black text-xl sm:text-4xl md:text-5xl leading-none tracking-tighter items-center uppercase"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
+          transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
         >
-          <span className="pr-12">REWORKS AGENCY •</span>
-          <span className="pr-12">REWORKS AGENCY •</span>
+          {Array.from({ length: 20 }).map((_, i) => (
+            <span key={i} className="pr-12 shrink-0">REWORKS AGENCY •</span>
+          ))}
         </motion.div>
       </div>
 
@@ -106,14 +107,23 @@ export function Footer() {
               Connect
             </h3>
             <ul className="flex flex-col gap-2.5 sm:gap-4">
-              {SIGNALS.map(link => (
-                <li key={link.name}>
-                  <Link href={link.href} className="group flex items-center gap-2 sm:gap-3 text-sm sm:text-lg font-black uppercase tracking-tighter text-black hover:text-[#6c24d6] transition-colors">
-                    <span className="w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4 sm:group-hover:w-6" />
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {SIGNALS.map(link => {
+                const isExternal = link.href.startsWith("http");
+                const LinkComponent = isExternal ? "a" : Link;
+                return (
+                  <li key={link.name}>
+                    <LinkComponent 
+                      href={link.href} 
+                      target={isExternal ? "_blank" : undefined}
+                      rel={isExternal ? "noopener noreferrer" : undefined}
+                      className="group flex items-center gap-2 sm:gap-3 text-sm sm:text-lg font-black uppercase tracking-tighter text-black hover:text-[#6c24d6] transition-colors"
+                    >
+                      <span className="w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-4 sm:group-hover:w-6" />
+                      {link.name}
+                    </LinkComponent>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

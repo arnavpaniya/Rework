@@ -126,13 +126,20 @@ export function ContactSection() {
 
             {/* Social pills */}
             <div className="flex flex-wrap gap-4 mt-6">
-              {["Instagram", "Behance", "LinkedIn", "Dribbble", "Vimeo", "GitHub"].map((social) => (
+              {[
+                { name: "Instagram", href: "https://www.instagram.com/reworks.agency?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
+                { name: "Facebook", href: "https://www.facebook.com/profile.php?id=100090152066732&ref=NONE_xav_ig_profile_page_web#" },
+                { name: "LinkedIn", href: "#" },
+                { name: "GitHub", href: "https://github.com/reworksagency-dev" }
+              ].map((social) => (
                 <a 
-                  key={social}
-                  href="#"
+                  key={social.name}
+                  href={social.href}
+                  target={social.href !== "#" ? "_blank" : undefined}
+                  rel={social.href !== "#" ? "noopener noreferrer" : undefined}
                   className="flex items-center gap-2 px-4 py-2 border-4 border-white text-sm font-black uppercase tracking-widest text-white hover:bg-[#e1e61b] hover:text-black hover:border-[#e1e61b] hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 transition-all"
                 >
-                  {social}
+                  {social.name}
                 </a>
               ))}
             </div>

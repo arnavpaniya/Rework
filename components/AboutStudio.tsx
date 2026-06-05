@@ -388,26 +388,28 @@ export function AboutStudio() {
           </div>
         </motion.div>
 
-        {/* Footer CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="mt-16 flex flex-wrap items-center gap-6"
-        >
-          {/* Yellow primary button */}
-          <Link href="/#brand-statement" className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
-            Our Story
-            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
+        {/* Footer CTAs - Hidden for now, needed later */}
+        {false && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="mt-16 flex flex-wrap items-center gap-6"
+          >
+            {/* Yellow primary button */}
+            <Link href="/#brand-statement" className="group flex items-center gap-3 bg-[#e1e61b] px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-black hover:text-[#e1e61b] hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
+              Our Story
+              <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
 
-          {/* White secondary button */}
-          <Link href="/case-study" className="group flex items-center gap-3 bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
-            Read Case Studies
-            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-          </Link>
-        </motion.div>
+            {/* White secondary button */}
+            <Link href="/case-study" className="group flex items-center gap-3 bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
+              Read Case Studies
+              <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        )}
 
       </div>
     </section>

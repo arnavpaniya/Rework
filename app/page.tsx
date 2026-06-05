@@ -71,10 +71,11 @@ export default function Home() {
           <MeetTheCrew />
         </div>
 
-        {/* Testimonials */}
+        {/* Testimonials - Removed for now
         <div id="testimonials">
           <TestimonialsSection />
         </div>
+        */}
 
         {/* Marquee Separator */}
         <ContactMarquee />

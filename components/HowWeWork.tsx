@@ -208,7 +208,7 @@ export function HowWeWork() {
         />
 
         {/* Section header */}
-        <div className="relative z-20 w-full pt-12 md:pt-16 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
+        <div className="relative z-20 w-full pt-8 md:pt-12 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
           <div>
             <div className="inline-flex items-center gap-2 border-4 border-black px-4 py-1.5 mb-4 bg-black text-white shadow-[4px_4px_0px_0px_rgba(225,230,27,1)]">
               <span className="w-2 h-2 bg-[#e1e61b]" />
@@ -234,8 +234,8 @@ export function HowWeWork() {
         </div>
 
         {/* Cards Deck */}
-        <div className="relative z-10 w-full max-w-5xl mx-auto flex-grow flex items-center justify-center px-4 py-6 md:py-10">
-          <div className="relative w-full h-[520px] sm:h-[485px] md:h-[440px]">
+        <div className="relative z-10 w-full max-w-5xl mx-auto flex-grow flex items-end justify-center px-4 pt-2 pb-6 md:pb-8">
+          <div className="relative w-full h-[420px] sm:h-[400px] md:h-[400px]">
             {steps.map((s, i) => (
               <CardComponent
                 key={s.step}
@@ -248,7 +248,7 @@ export function HowWeWork() {
         </div>
 
         {/* Spacing alignment */}
-        <div className="h-6 md:h-10 w-full z-10" />
+        <div className="h-4 md:h-6 w-full z-10" />
       </div>
     </div>
   );
