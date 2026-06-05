@@ -149,7 +149,9 @@ export default function RootLayout({
               ],
               "sameAs": [
                 "https://www.instagram.com/reworks.agency",
-                "https://www.linkedin.com/company/reworks-agency",
+                "https://www.linkedin.com/company/reworks-marketing-agency/",
+                "https://x.com/ReWorksAgency",
+                "https://www.facebook.com/profile.php?id=100090152066732&ref=1"
               ],
             }),
           }}
