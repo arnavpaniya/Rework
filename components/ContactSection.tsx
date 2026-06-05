@@ -128,8 +128,6 @@ export function ContactSection() {
             <div className="flex flex-wrap gap-4 mt-6">
               {[
                 { name: "Instagram", href: "https://www.instagram.com/reworks.agency?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" },
-                { name: "Facebook", href: "https://www.facebook.com/profile.php?id=100090152066732&ref=NONE_xav_ig_profile_page_web#" },
-                { name: "LinkedIn", href: "#" },
                 { name: "GitHub", href: "https://github.com/reworksagency-dev" }
               ].map((social) => (
                 <a 
