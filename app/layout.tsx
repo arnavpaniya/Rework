@@ -54,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${metropolis.variable} ${syne.variable} font-sans h-full antialiased`}
+      className={`${metropolis.variable} ${syne.variable} font-sans min-h-full antialiased`}
     >
       <head>
         {/* FAQ Page JSON-LD Schema (Change 10) */}
