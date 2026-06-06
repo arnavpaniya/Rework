@@ -261,6 +261,7 @@ export function AboutStudio() {
                 alt="Chrome Cherry Sticker"
                 width={258}
                 height={258}
+                style={{ width: "auto", height: "auto" }}
                 className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)]"
               />
             </div>
@@ -309,6 +310,7 @@ export function AboutStudio() {
               alt="Chrome Ribbon Brooch"
               width={170}
               height={170}
+              style={{ width: "auto", height: "auto" }}
               className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.25)]"
             />
           </div>
