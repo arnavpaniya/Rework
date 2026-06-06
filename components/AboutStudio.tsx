@@ -291,7 +291,7 @@ export function AboutStudio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-12 bg-black border-4 border-black text-white p-8 md:p-12 shadow-[8px_8px_0_0_#000] relative overflow-hidden"
+          className="mt-12 bg-black border-4 border-black text-white p-8 md:p-12 shadow-[8px_8px_0_0_#000] relative overflow-visible"
         >
           {/* Subtle grid backdrop */}
           <div 
@@ -301,6 +301,18 @@ export function AboutStudio() {
               backgroundSize: "20px 20px" 
             }} 
           />
+
+          {/* Chrome Ribbon Brooch */}
+          <div className="absolute top-[-89px] right-[-64px] md:top-[-114px] md:right-[-89px] w-[110px] h-[110px] md:w-[170px] md:h-[170px] pointer-events-none select-none z-20 rotate-[15deg]">
+            <Image 
+              src="/y2k/chrom-ribbon.png" 
+              alt="Chrome Ribbon Brooch"
+              width={170}
+              height={170}
+              className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.25)]"
+            />
+          </div>
+
           <div className="relative z-10 w-full">
             <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-center md:text-left mb-8 text-[#e1e61b]">
               Why Brands in Mumbai &amp; Dubai Choose ReWorks
