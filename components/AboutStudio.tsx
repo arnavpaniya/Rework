@@ -255,7 +255,7 @@ export function AboutStudio() {
             </h2>
             
             {/* Static Chrome Cherry Sticker - Centered to the right of the heading */}
-            <div className="absolute right-[16px] md:right-[-12px] top-[20%] -translate-y-1/2 w-[150px] h-[150px] md:w-[258px] md:h-[258px] pointer-events-none select-none z-20 -rotate-[22deg]">
+            <div className="absolute right-[-22px] md:right-[-12px] top-[20%] -translate-y-1/2 mt-[57px] md:mt-0 w-[144px] h-[144px] md:w-[258px] md:h-[258px] pointer-events-none select-none z-20 rotate-[5deg]">
               <Image 
                 src="/y2k/double-chrome-cherries.png" 
                 alt="Chrome Cherry Sticker"
