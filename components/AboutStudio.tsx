@@ -257,7 +257,7 @@ export function AboutStudio() {
 
       {/* Decorative Large Chrome Sticker - Right Side peeking out */}
       <div 
-        className="hidden xl:block absolute xl:right-[calc(50%-920px)] 2xl:right-[calc(50%-980px)] top-[10%] w-[260px] h-[260px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
+        className="hidden xl:block absolute xl:right-[calc(50%-270px)] 2xl:right-[calc(50%-330px)] top-[10%] w-[260px] h-[260px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
       >
         <motion.div 
           style={{ y: yFace }}
@@ -301,6 +301,28 @@ export function AboutStudio() {
               We do{" "}
               <span className="relative inline-block bg-[#e1e61b] px-2 border-4 border-black shadow-[6px_6px_0_0_#000] transform rotate-1 mt-2">
                 <span className="relative z-10">conversion</span>
+                
+                {/* Floating Chrome Cherry */}
+                <motion.div 
+                  className="absolute -right-12 sm:-right-20 md:-right-24 -top-8 sm:-top-12 md:-top-16 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 pointer-events-none select-none z-20"
+                  animate={{ 
+                    y: [0, -6, 0],
+                    rotate: [-5, 5, -5]
+                  }}
+                  transition={{ 
+                    duration: 5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                >
+                  <Image 
+                    src="/y2k/chrome-cherry.png" 
+                    alt="Chrome Cherry Sticker"
+                    width={96}
+                    height={96}
+                    className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)]"
+                  />
+                </motion.div>
               </span>
             </h2>
           </div>
