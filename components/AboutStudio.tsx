@@ -255,12 +255,12 @@ export function AboutStudio() {
             </h2>
             
             {/* Static Chrome Cherry Sticker - Centered to the right of the heading */}
-            <div className="absolute right-[-40px] md:right-[-128px] top-[60%] -translate-y-1/2 w-16 h-16 md:w-28 md:h-28 pointer-events-none select-none z-20">
+            <div className="absolute right-[16px] md:right-[-12px] top-[20%] -translate-y-1/2 w-[150px] h-[150px] md:w-[258px] md:h-[258px] pointer-events-none select-none z-20 -rotate-[22deg]">
               <Image 
-                src="/y2k/chrome-cherry.png" 
+                src="/y2k/double-chrome-cherries.png" 
                 alt="Chrome Cherry Sticker"
-                width={112}
-                height={112}
+                width={258}
+                height={258}
                 className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)]"
               />
             </div>
