@@ -217,8 +217,6 @@ export function AboutStudio() {
   });
 
   const yHeader = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const yRose = useTransform(scrollYProgress, [0, 1], [150, -150]);
-  const yFace = useTransform(scrollYProgress, [0, 1], [-120, 120]);
 
   return (
     <section
@@ -230,55 +228,7 @@ export function AboutStudio() {
         `,
       }}
     >
-      {/* Decorative Large Chrome Sticker - Left Side peeking out */}
-      <div 
-        className="hidden xl:block absolute xl:left-[calc(50%-920px)] 2xl:left-[calc(50%-980px)] bottom-[15%] w-[260px] h-[260px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
-      >
-        <motion.div 
-          style={{ y: yRose }}
-          className="w-full h-full relative z-10"
-        >
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ scale: 1.08, rotate: -5 }}
-            className="w-full h-full pointer-events-auto relative"
-          >
-            <Image 
-              src="/y2k/chrome-rose.png" 
-              alt="Chrome Rose Sticker"
-              fill
-              sizes="(min-width: 1536px) 320px, (min-width: 1280px) 260px, 100vw"
-              className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
-            />
-          </motion.div>
-        </motion.div>
-      </div>
 
-      {/* Decorative Large Chrome Sticker - Right Side peeking out */}
-      <div 
-        className="hidden xl:block absolute xl:right-[calc(50%-270px)] 2xl:right-[calc(50%-330px)] top-[10%] w-[260px] h-[260px] 2xl:w-[320px] 2xl:h-[320px] pointer-events-none select-none opacity-90 z-0"
-      >
-        <motion.div 
-          style={{ y: yFace }}
-          className="w-full h-full relative z-10"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ scale: 1.08, rotate: 25 }}
-            className="w-full h-full pointer-events-auto relative"
-          >
-            <Image 
-              src="/y2k/chrome-face-2.png" 
-              alt="Chrome Face Sticker"
-              fill
-              sizes="(min-width: 1536px) 320px, (min-width: 1280px) 260px, 100vw"
-              className="object-contain filter drop-shadow-[10px_10px_0_rgba(0,0,0,0.1)] transition-all duration-300 hover:brightness-110 hover:contrast-105"
-            />
-          </motion.div>
-        </motion.div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-8 sm:px-6 relative z-10">
 
@@ -287,7 +237,7 @@ export function AboutStudio() {
           style={{ y: yHeader }}
           className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8 z-10 relative"
         >
-          <div>
+          <div className="relative inline-block">
             <div className="inline-flex items-center gap-2 border-2 border-black px-4 py-2 mb-6 bg-white shadow-[4px_4px_0_0_#000] relative">
               <span className="w-3 h-3 bg-[#6c24d6] border border-black" />
               <span className="text-xs font-black uppercase tracking-widest text-black">
@@ -301,30 +251,19 @@ export function AboutStudio() {
               We do{" "}
               <span className="relative inline-block bg-[#e1e61b] px-2 border-4 border-black shadow-[6px_6px_0_0_#000] transform rotate-1 mt-2">
                 <span className="relative z-10">conversion</span>
-                
-                {/* Floating Chrome Cherry */}
-                <motion.div 
-                  className="absolute -right-12 sm:-right-20 md:-right-24 -top-8 sm:-top-12 md:-top-16 w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 pointer-events-none select-none z-20"
-                  animate={{ 
-                    y: [0, -6, 0],
-                    rotate: [-5, 5, -5]
-                  }}
-                  transition={{ 
-                    duration: 5, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                >
-                  <Image 
-                    src="/y2k/chrome-cherry.png" 
-                    alt="Chrome Cherry Sticker"
-                    width={96}
-                    height={96}
-                    className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)]"
-                  />
-                </motion.div>
               </span>
             </h2>
+            
+            {/* Static Chrome Cherry Sticker - Centered to the right of the heading */}
+            <div className="absolute right-[-40px] md:right-[-128px] top-[60%] -translate-y-1/2 w-16 h-16 md:w-28 md:h-28 pointer-events-none select-none z-20">
+              <Image 
+                src="/y2k/chrome-cherry.png" 
+                alt="Chrome Cherry Sticker"
+                width={112}
+                height={112}
+                className="object-contain filter drop-shadow-[4px_4px_0_rgba(0,0,0,0.15)]"
+              />
+            </div>
           </div>
 
           <p className="text-base md:text-xl text-black font-bold leading-relaxed max-w-sm md:max-w-sm border-l-4 border-black pl-4">
