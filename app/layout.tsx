@@ -36,9 +36,9 @@ const metropolis = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ReWorks | Digital Marketing Agency in Mumbai & Dubai & India UAE",
+  title: "GenZ Digital Marketing Agency, Dubai UAE | ReWorks",
   description:
-    "ReWorks is a digital marketing agency in Mumbai & Dubai offering branding, social media, video, and digital development for FMCG, entertainment, and hospitality brands. Let's build something.",
+    "ReWorks is a digital marketing agency in Dubai offering branding, social media, video, and digital development for brands. Let's build something",
 };
 
 import { Footer } from "@/components/Footer";
@@ -67,18 +67,18 @@ export default function RootLayout({
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "What does a digital marketing agency in Mumbai and Dubai do?",
+                  "name": "What does a digital marketing agency in Dubai do?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "They handle branding, social media, video production, and digital development, helping brands build presence and convert audiences across India and the UAE.",
+                    "text": "They handle branding, social media, video production, and digital development, helping brands build presence and convert audiences across the UAE.",
                   },
                 },
                 {
                   "@type": "Question",
-                  "name": "How is ReWorks different from other agencies in India and the UAE?",
+                  "name": "How is ReWorks different from other agencies in the UAE?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "ReWorks combines Gen Z cultural instinct with AI-powered creative systems. We move faster, think sharper, and operate across Mumbai & Dubai. One team, two markets.",
+                    "text": "ReWorks combines Gen Z cultural instinct with AI-powered creative systems. We move faster, think sharper, and operate primarily in Dubai, UAE.",
                   },
                 },
                 {
@@ -86,15 +86,15 @@ export default function RootLayout({
                   "name": "Which industries does ReWorks work with?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "We specialise in entertainment, FMCG, and hospitality, three of India and the UAE's most competitive brand categories.",
+                    "text": "We specialise in entertainment, FMCG, and hospitality, three of the UAE's most competitive brand categories.",
                   },
                 },
                 {
                   "@type": "Question",
-                  "name": "Do you work with brands outside Mumbai and Dubai?",
+                  "name": "Do you work with brands outside Dubai?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. While we're rooted in Mumbai and Dubai, we work with brands across India, the UAE, and internationally.",
+                    "text": "Yes. While we are based in Dubai, we work with brands across the UAE, GCC, and internationally.",
                   },
                 },
                 {
@@ -121,11 +121,11 @@ export default function RootLayout({
               "url": "https://rework-delta-umber.vercel.app",
               "logo": "https://rework-delta-umber.vercel.app/logo-black.png",
               "description":
-                "A Gen Z-led digital marketing agency in Mumbai & Dubai offering branding, social media, video, and digital development for FMCG, entertainment, and hospitality brands.",
+                "A Gen Z-led digital marketing agency in Dubai offering branding, social media, video, and digital development for FMCG, entertainment, and hospitality brands.",
               "email": "reworks.agency@gmail.com",
               "foundingDate": "2019",
               "numberOfEmployees": "38",
-              "areaServed": ["Mumbai", "Dubai", "India", "UAE"],
+              "areaServed": ["Dubai", "UAE", "Mumbai", "India", "GCC"],
               "serviceType": [
                 "Branding & Design",
                 "Social Media Marketing",
