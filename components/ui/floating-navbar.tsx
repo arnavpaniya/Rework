@@ -161,19 +161,20 @@ export const FloatingNav = ({
                     {/* Brutalist Dropdown Menu for SERVICES */}
                     {isServices && (
                       <div className="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto">
-                        <div className="w-[280px] bg-[#f8f8f5] border-[3px] border-black rounded-xl shadow-[6px_6px_0px_#2563eb] overflow-hidden flex flex-col p-3 gap-1">
+                        <div className="w-[300px] bg-[#f8f8f5] border-[3px] border-black rounded-xl shadow-[6px_6px_0px_#6c24d6] overflow-hidden flex flex-col p-3 gap-1">
                           {[
-                            "BRANDING & DESIGN",
-                            "VIDEO & MOTION",
-                            "SOCIAL MEDIA",
-                            "DIGITAL DEVELOPMENT"
+                            { name: "BRANDING & DESIGN", id: "branding-design" },
+                            { name: "CREATIVES & CONTENT", id: "creatives-content" },
+                            { name: "VIDEO, ANIMATION & MOTION", id: "video-animation-motion" },
+                            { name: "SOCIAL MEDIA MARKETING", id: "social-media-marketing" },
+                            { name: "DIGITAL DEVELOPMENT", id: "digital-development" },
                           ].map((service) => (
                             <Link 
-                              key={service} 
-                              href={`#${service.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} 
-                              className="flex items-center justify-between px-4 py-3 text-[13px] font-black uppercase tracking-widest text-black hover:bg-black/5 rounded-lg transition-colors group/item"
+                              key={service.id} 
+                              href={`/services#${service.id}`} 
+                              className="flex items-center justify-between px-4 py-3 text-[12px] font-black uppercase tracking-widest text-black hover:bg-black/5 rounded-lg transition-colors group/item"
                             >
-                              <span>{service}</span>
+                              <span>{service.name}</span>
                               <span className="opacity-60 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all">→</span>
                             </Link>
                           ))}

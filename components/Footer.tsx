@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 
 const QUICK_LINKS = [
-  { name: "About", href: "/#about" },
+  { name: "About", href: "/about" },
   { name: "Case Studies", href: "/case-study" },
   { name: "Team", href: "/#team" },
   { name: "Contact", href: "/#contact" },
