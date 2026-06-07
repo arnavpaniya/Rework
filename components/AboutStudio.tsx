@@ -377,12 +377,6 @@ export function AboutStudio() {
               Our Story
               <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
-
-            {/* White secondary button */}
-            <Link href="/case-study" className="group flex items-center gap-3 bg-white px-8 py-4 text-sm font-black uppercase tracking-widest text-black border-4 border-black shadow-[6px_6px_0_0_#000] transition-all duration-200 hover:bg-[#6c24d6] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[4px_4px_0_0_#000]">
-              Read Case Studies
-              <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-            </Link>
           </motion.div>
         )}
 

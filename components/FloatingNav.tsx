@@ -19,10 +19,6 @@ export function FloatingNavDemo() {
       link: "/services",
     },
     {
-      name: "CASE STUDY",
-      link: "/case-study",
-    },
-    {
       name: "TEAM",
       link: "/#team",
     },
