@@ -99,7 +99,7 @@ export function ContactSection() {
             </div>
 
             <p className="text-xl text-white font-bold uppercase leading-snug mb-12 max-w-md border-l-4 border-[#e1e61b] pl-4">
-              Ready to rework your brand? Work with a digital marketing agency in Dubai that actually moves, from first brief to final launch. We respond within one business day.
+              Ready to rework your brand? Work with a digital marketing agency in Mumbai and Dubai that actually moves, from first brief to final launch. We respond within one business day.
             </p>
           </div>
 
@@ -216,7 +216,7 @@ export function ContactSection() {
                 <button
                   className="w-full flex items-center justify-center gap-4 bg-[#e1e61b] border-4 border-black px-8 py-5 text-xl font-black uppercase tracking-widest text-black shadow-[8px_8px_0px_0px_#fff] transition-transform hover:-translate-y-1 hover:translate-x-1 hover:shadow-[12px_12px_0px_0px_#fff] active:translate-y-1 active:-translate-x-1 active:shadow-[0px_0px_0px_0px_#fff]"
                 >
-                  START YOUR REWORK <ArrowUpRight className="w-8 h-8" strokeWidth={3} />
+                  PING US <ArrowUpRight className="w-8 h-8" strokeWidth={3} />
                 </button>
               </div>
 

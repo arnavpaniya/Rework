@@ -12,15 +12,15 @@ export function FloatingNavDemo() {
     },
     {
       name: "ABOUT",
-      link: "/about",
+      link: "/#about",
     },
     {
       name: "SERVICES",
       link: "/services",
     },
     {
-      name: "OUR WORK",
-      link: "/our-work",
+      name: "CASE STUDY",
+      link: "/case-study",
     },
     {
       name: "TEAM",

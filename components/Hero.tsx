@@ -93,22 +93,12 @@ export function Hero() {
             className="text-black text-[13vw] sm:text-[10vw] md:text-[8vw] leading-[0.85] font-black uppercase tracking-tighter mix-blend-normal z-30 relative"
           >
             <span className="block text-[6vw] sm:text-[4.5vw] md:text-[3.6vw] leading-tight font-black tracking-tight mb-2">DIGITAL MARKETING AGENCY IN</span>
-            <span className="block text-transparent text-[11vw] sm:text-[9vw] md:text-[7.2vw] font-black leading-none" style={{ WebkitTextStroke: "2.5px black" }}>DUBAI, UAE</span>
+            <span className="block text-transparent text-[11vw] sm:text-[9vw] md:text-[7.2vw] font-black leading-none" style={{ WebkitTextStroke: "2.5px black" }}>MUMBAI &amp; DUBAI</span>
             <span className="block bg-black text-white text-[3vw] sm:text-[2.2vw] md:text-[1.6vw] tracking-wider px-6 py-2.5 inline-block mt-8 border-4 border-black transform -rotate-1 relative z-30 font-black uppercase shadow-[6px_6px_0px_0px_#6c24d6]">
-              WHERE STRATEGY LEADS TO CONVERSION
+              WHERE STRATEGY MEETS CULTURE
             </span>
           </motion.h1>
         </div>
-
-        {/* Subheading Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="mt-8 text-black text-sm sm:text-base md:text-lg font-bold max-w-2xl text-center leading-relaxed pointer-events-auto border-l-4 border-[#6c24d6] pl-4 md:pl-6 max-w-[90%] md:max-w-[650px] mx-auto uppercase"
-        >
-          Rework to Revolutionize. We turn scattered brands into sharp, scroll-stopping systems. Built to move brands in Dubai and across the UAE.
-        </motion.p>
 
         {/* Center Tapes */}
         <motion.div
@@ -116,7 +106,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
-          className="mt-12 sm:mt-16 relative flex flex-col sm:flex-row items-center gap-6 z-20 pointer-events-auto"
+          className="mt-16 sm:mt-24 relative flex flex-col sm:flex-row items-center gap-6 z-20 pointer-events-auto"
         >
           <Tape color="purple" text="STRATEGIC MIND" rotate={-3} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
           <Tape color="pink" text="CREATIVE HEART" rotate={2} className="text-xl px-6 py-3 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] border-2 border-black" />
@@ -128,10 +118,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="mt-16 sm:mt-24 pointer-events-auto"
+          className="mt-20 sm:mt-32 pointer-events-auto"
         >
-          <Link href="#contact" className="group relative px-8 py-5 bg-[#e1e61b] text-black font-black text-lg md:text-xl uppercase tracking-widest inline-block border-4 border-black transition-all hover:bg-black hover:text-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-            Start Your Rework
+          <Link href="#contact" className="group relative px-8 py-5 bg-white text-black font-black text-lg md:text-xl uppercase tracking-widest inline-block border-4 border-black transition-all hover:bg-[#e1e61b] hover:text-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            Let's Build What's Next
           </Link>
         </motion.div>
 

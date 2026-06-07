@@ -107,7 +107,7 @@ export function Disciplines() {
             <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight text-black leading-[1.05] uppercase relative z-10 pointer-events-none">
               <span className="block pointer-events-auto">Digital Marketing Services</span>
               <span className="block pointer-events-auto">
-                We Offer in <span className="text-[#6c24d6] font-black pointer-events-auto">Dubai, UAE</span>
+                We Offer in <span className="text-[#e1e61b] drop-shadow-lg italic font-black" style={{ WebkitTextStroke: "1px #282727ff" }} >Mumbai</span> &amp; <span className="text-[#6c24d6] font-black pointer-events-auto">Dubai</span>
               </span>
             </h2>
           </div>

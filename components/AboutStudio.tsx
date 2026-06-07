@@ -104,8 +104,8 @@ const features = [
   },
   {
     Icon: MapPin,
-    name: "Dubai, UAE",
-    description: "A Gen Z digital agency in Dubai, rooted in Mumbai, scaling across the UAE.",
+    name: "Dubai ↔ Mumbai",
+    description: "Rooted in Mumbai, India. Scaling across Dubai and the wider UAE.",
     href: "/#brand-statement",
     cta: "Our story",
     background: <LocationBackground />,
@@ -131,7 +131,7 @@ const features = [
   {
     Icon: Users,
     name: "Gen-z led Agency",
-    description: "Gen Z led with Global Standard. We don't study culture; we live it. Our team brings native understanding of what works in Dubai right now, not six months ago.",
+    description: "Gen Z led with Global Standard. We don't study culture; we live it. Our team brings native understanding of what works in Dubai and Mumbai right now, not six months ago.",
     href: "#team",
     cta: "Meet the team",
     background: <HeadlineBackground />,
@@ -268,7 +268,7 @@ export function AboutStudio() {
           </div>
 
           <p className="text-base md:text-xl text-black font-bold leading-relaxed max-w-sm md:max-w-sm border-l-4 border-black pl-4">
-            A Gen Z-led digital marketing agency in Dubai, partnering with founders and CMOs across the UAE to rework scattered ideas into bold, conversion-ready brands, focusing on FMCG, entertainment, and hospitality.
+            A Gen Z-led digital marketing agency in Mumbai & Dubai, partnering with founders and CMOs across India and the UAE to rework scattered ideas into bold, conversion-ready brands, focusing on FMCG, entertainment, and hospitality.
           </p>
         </motion.div>
 
@@ -317,7 +317,7 @@ export function AboutStudio() {
 
           <div className="relative z-10 w-full">
             <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-center md:text-left mb-8 text-[#e1e61b]">
-              Why Brands Choose ReWorks
+              Why Brands in Mumbai &amp; Dubai Choose ReWorks
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
@@ -353,10 +353,10 @@ export function AboutStudio() {
                   03. Presence
                 </span>
                 <h4 className="text-lg font-black uppercase tracking-tight text-white mb-2">
-                  From Mumbai to Dubai
+                  Mumbai to Dubai
                 </h4>
                 <p className="text-white/60 text-sm font-semibold leading-relaxed">
-                  ➔ Same agency from one of the world&apos;s fastest-growing brand markets to another. Built to move seamlessly across India &amp; the UAE.
+                  ➔ One agency across two of the world&apos;s fastest-growing brand markets. Built to move seamlessly across India &amp; the UAE.
                 </p>
               </div>
             </div>

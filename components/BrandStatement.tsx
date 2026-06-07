@@ -300,7 +300,7 @@ export function BrandStatement() {
               </span>
             </h2>
             <p className="block mt-6 text-xs sm:text-sm md:text-base font-bold tracking-normal normal-case leading-relaxed text-black/80 pointer-events-auto max-w-sm sm:max-w-md mx-auto">
-              We turn scattered brands into sharp, scroll-stopping systems. Built to move brands in Dubai and across the UAE.
+              We turn scattered brands into sharp, scroll-stopping systems. Our work is built to move brands from <strong className="font-black text-black">Mumbai to Dubai</strong> and across <strong className="font-black text-black">India</strong> and <strong className="font-black text-black">the UAE</strong>.
             </p>
           </motion.div>
 
