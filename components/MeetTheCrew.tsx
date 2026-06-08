@@ -9,14 +9,14 @@ import Image from "next/image";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const crew = [
-  {
-    name: "Sneha",
-    role: "CEO",
-    tag: "FOUNDER",
-    tagColor: "#f43f5e",
-    bio: "Founding visionary. Scaling brands across Mumbai & Dubai.",
-    img: "/RwTeam/Sneha-CEO.jpeg",
-  },
+  // {
+  //   name: "Sneha",
+  //   role: "CEO",
+  //   tag: "FOUNDER",
+  //   tagColor: "#f43f5e",
+  //   bio: "Founding visionary. Scaling brands across Mumbai & Dubai.",
+  //   img: "/RwTeam/Sneha-CEO.jpeg",
+  // },
   {
     name: "Renzy",
     role: "Content Lead",
