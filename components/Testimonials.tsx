@@ -9,34 +9,37 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    text: "ReWorks brought a Gen Z energy that completely redefined our market presence.",
-    name: "Omar Farooq",
-    role: "CEO, Desert Ventures",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+    text: "The ReWorks team handled everything from branding and content marketing to SEO and performance advertising. Their creative approach and data-driven strategies helped us grow our online visibility and customer engagement.",
+    name: "Biju",
+    role: "CEO Qamar Al Nahda",
     color: "#fff",
     textColor: "#000",
   },
   {
-    text: "I've worked with top-tier global agencies, but ReWorks brought a Gen Z energy that completely redefined our market presence.",
-    name: "Emily Chen",
-    role: "Director of Marketing, Nexa",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop",
+    text: "\"From strategy to execution, ReWorks delivered exceptional results. Their communication was excellent, and every milestone was completed on time.\"",
+    name: "KrishnaMalar",
+    role: "Business Owner",
     color: "#0ea5e9",
     textColor: "#fff",
   },
   {
-    text: "If you want traditional, slow-moving advertising, go elsewhere. If you want results yesterday, hire them.",
-    name: "Nina Kraviz",
-    role: "VP Growth, Sonic",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop",
+    text: "ReWorks understood our brand from day one. The design is clean, engaging, and user-friendly. We've received great feedback from our customers since launch.",
+    name: "John Cheriyan",
+    role: "CEO Jaya's Kitchen",
     color: "#22c55e",
     textColor: "#fff",
+  },
+  {
+    text: "ReWorks brought a Gen Z energy that completely redefined our market presence.",
+    name: "Omar Farooq",
+    role: "CEO, Desert Ventures",
+    color: "#fff",
+    textColor: "#000",
   },
   {
     text: "They didn't just build us a brand. They built us a cult following. Our conversion rate tripled in exactly 4 weeks.",
     name: "Alex Sterling",
     role: "Founder, Zenith Tech",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=150&auto=format&fit=crop",
     color: "#e1e61b",
     textColor: "#000",
   },
@@ -44,7 +47,6 @@ const testimonials = [
     text: "They took our scattered, confused brand guidelines and turned them into a conversion machine.",
     name: "Marcus Thorne",
     role: "Co-Founder, Catalyst",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150&auto=format&fit=crop",
     color: "#6c24d6",
     textColor: "#fff",
   },
@@ -52,7 +54,6 @@ const testimonials = [
     text: "Brutal honesty combined with brilliant execution. They scrapped our 10-week discovery phase and just started shipping hits.",
     name: "Sarah Jenkins",
     role: "CMO, Bloom Studio",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop",
     color: "#ec4899",
     textColor: "#fff",
   },
@@ -60,17 +61,8 @@ const testimonials = [
     text: "The speed and quality are unmatched. It feels less like an agency and more like having a world-class team in your own office.",
     name: "Emily Chen",
     role: "Director of Marketing, Nexa",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop",
     color: "#0ea5e9",
     textColor: "#fff",
-  },
-  {
-    text: "If you want traditional, slow-moving advertising, go elsewhere. If you want results yesterday, hire them.",
-    name: "Nina Kraviz",
-    role: "VP Growth, Sonic",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop",
-    color: "#e1e61b",
-    textColor: "#000",
   },
 ];
 
@@ -99,16 +91,7 @@ function TestimonialCard({ item }: TestimonialCardProps) {
         </p>
       </div>
       {/* Author */}
-      <div className="flex items-center gap-3 mt-5">
-        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-black/20 shrink-0">
-          <Image
-            src={item.image}
-            alt={item.name}
-            fill
-            className="object-cover"
-            sizes="40px"
-          />
-        </div>
+      <div className="flex items-center gap-3 mt-5 border-t-2 border-current/20 pt-4">
         <div className="flex flex-col">
           <span className="font-black text-xs uppercase tracking-wider leading-tight">
             {item.name}
@@ -270,27 +253,6 @@ export function TestimonialsSection() {
 
             {/* Avatars + Stars */}
             <div className="flex items-center gap-4 mb-12">
-              <div className="flex -space-x-3">
-                {[
-                  "1573497019940-1c28c88b4f3e",
-                  "1580489944761-15a19d654956",
-                  "1507003211169-0a1dd7228f2d",
-                  "1534528741775-53994a69daeb",
-                ].map((id, i) => (
-                  <div
-                    key={i}
-                    className="w-11 h-11 rounded-full border-2 border-black overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10"
-                  >
-                    <Image
-                      src={`https://images.unsplash.com/photo-${id}?q=80&w=150&auto=format&fit=crop`}
-                      alt="Client avatar"
-                      fill
-                      className="object-cover"
-                      sizes="44px"
-                    />
-                  </div>
-                ))}
-              </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-0.5 text-[#e1e61b]">
                   {[1, 2, 3, 4, 5].map((i) => (

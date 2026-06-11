@@ -3,14 +3,13 @@ import { BrandStatement } from "../components/BrandStatement";
 import { ContactSection } from "@/components/ContactSection";
 import { ContactMarquee } from "@/components/ContactMarquee";
 import { FloatingNavDemo } from "@/components/FloatingNav";
-import { LogoTicker } from "@/components/LogoTicker";
 import { Disciplines } from "@/components/Disciplines";
 import { HowWeWork } from "@/components/HowWeWork";
 import { VelocityScrollSection } from "@/components/VelocityScroll";
 import { AboutStudio } from "@/components/AboutStudio";
 import ShowreelSection from "@/components/ShowreelSection";
 import { MeetTheCrew } from "@/components/MeetTheCrew";
-import { ClientLogosSection } from "@/components/ClientLogos";
+import { TestimonialsSection } from "@/components/Testimonials";
 import { IndustriesSection } from "@/components/IndustriesSection";
 import { FaqSection } from "@/components/FaqSection";
 
@@ -73,7 +72,7 @@ export default function Home() {
 
         {/* Testimonials */}
         <div id="testimonials" className="scroll-mt-24">
-          <ClientLogosSection />
+          <TestimonialsSection />
         </div>
 
         {/* Marquee Separator */}
