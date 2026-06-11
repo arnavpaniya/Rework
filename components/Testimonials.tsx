@@ -9,81 +9,54 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    text: "ReWorks brought a Gen Z energy that completely redefined our market presence.",
-    name: "Omar Farooq",
-    role: "CEO, Desert Ventures",
+    text: "The ReWorks team handled everything from branding and content marketing to SEO and performance advertising. Their creative approach and data-driven strategies helped us grow our online visibility and customer engagement.",
+    name: "Biju",
+    role: "CEO Qamar Al Nahda",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
     color: "#fff",
     textColor: "#000",
   },
   {
-    text: "I've worked with top-tier global agencies, but ReWorks brought a Gen Z energy that completely redefined our market presence.",
-    name: "Emily Chen",
-    role: "Director of Marketing, Nexa",
+    text: "\"From strategy to execution, ReWorks delivered exceptional results. Their communication was excellent, and every milestone was completed on time.\"",
+    name: "KrishnaMalar",
+    role: "Business Owner",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop",
     color: "#0ea5e9",
     textColor: "#fff",
   },
   {
-    text: "If you want traditional, slow-moving advertising, go elsewhere. If you want results yesterday, hire them.",
-    name: "Nina Kraviz",
-    role: "VP Growth, Sonic",
+    text: "ReWorks understood our brand from day one. The design is clean, engaging, and user-friendly. We've received great feedback from our customers since launch.",
+    name: "John Cheriyan",
+    role: "CEO Jaya's Kitchen",
     image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop",
     color: "#22c55e",
     textColor: "#fff",
   },
-  {
-    text: "They didn't just build us a brand. They built us a cult following. Our conversion rate tripled in exactly 4 weeks.",
-    name: "Alex Sterling",
-    role: "Founder, Zenith Tech",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=150&auto=format&fit=crop",
-    color: "#e1e61b",
-    textColor: "#000",
-  },
-  {
-    text: "They took our scattered, confused brand guidelines and turned them into a conversion machine.",
-    name: "Marcus Thorne",
-    role: "Co-Founder, Catalyst",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=150&auto=format&fit=crop",
-    color: "#6c24d6",
-    textColor: "#fff",
-  },
-  {
-    text: "Brutal honesty combined with brilliant execution. They scrapped our 10-week discovery phase and just started shipping hits.",
-    name: "Sarah Jenkins",
-    role: "CMO, Bloom Studio",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop",
-    color: "#ec4899",
-    textColor: "#fff",
-  },
-  {
-    text: "The speed and quality are unmatched. It feels less like an agency and more like having a world-class team in your own office.",
-    name: "Emily Chen",
-    role: "Director of Marketing, Nexa",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop",
-    color: "#0ea5e9",
-    textColor: "#fff",
-  },
-  {
-    text: "If you want traditional, slow-moving advertising, go elsewhere. If you want results yesterday, hire them.",
-    name: "Nina Kraviz",
-    role: "VP Growth, Sonic",
-    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=150&auto=format&fit=crop",
-    color: "#e1e61b",
-    textColor: "#000",
-  },
 ];
 
-// ─── Testimonial Card Component ────────────────────────────────────────────────
+// Duplicate to ensure enough items for scrolling
+const allTestimonials = [...testimonials, ...testimonials, ...testimonials];
 
 interface TestimonialCardProps {
   item: typeof testimonials[0];
+  index: number;
 }
 
-function TestimonialCard({ item }: TestimonialCardProps) {
+function TestimonialCard({ item, index }: TestimonialCardProps) {
+  // Give them an asymmetrical neo-brutalist feel on desktop
+  const rotations = [
+    "md:rotate-[-3deg] md:translate-y-2",
+    "md:rotate-[2deg] md:-translate-y-4",
+    "md:rotate-[-1deg] md:translate-y-8"
+  ];
+  const offsetClass = rotations[index % rotations.length];
+
   return (
     <div
-      className="p-6 border-2 border-black flex flex-col justify-between min-h-[200px] h-full"
+      className={cn(
+        "p-6 sm:p-8 border-[3px] border-black flex flex-col justify-between h-full transition-all hover:rotate-0 hover:-translate-y-1 hover:scale-[1.02] duration-300 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]",
+        offsetClass
+      )}
       style={{
         backgroundColor: item.color,
         color: item.textColor,
@@ -91,29 +64,20 @@ function TestimonialCard({ item }: TestimonialCardProps) {
     >
       {/* Quote mark */}
       <div>
-        <span className="text-3xl font-black leading-none block mb-3 select-none opacity-60">
+        <span className="text-5xl font-black leading-none block mb-2 select-none opacity-40">
           &ldquo;
         </span>
-        <p className="text-sm font-semibold leading-relaxed">
+        <p className="text-base sm:text-lg font-bold leading-relaxed">
           {item.text}
         </p>
       </div>
       {/* Author */}
-      <div className="flex items-center gap-3 mt-5">
-        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-black/20 shrink-0">
-          <Image
-            src={item.image}
-            alt={item.name}
-            fill
-            className="object-cover"
-            sizes="40px"
-          />
-        </div>
+      <div className="flex items-center gap-3 mt-8 pt-4 border-t-2 border-current/20">
         <div className="flex flex-col">
-          <span className="font-black text-xs uppercase tracking-wider leading-tight">
+          <span className="font-black text-sm uppercase tracking-wider leading-tight">
             {item.name}
           </span>
-          <span className="text-[10px] font-bold uppercase tracking-widest opacity-70 leading-tight mt-0.5">
+          <span className="text-[11px] font-bold uppercase tracking-widest opacity-80 leading-tight mt-1">
             {item.role}
           </span>
         </div>
@@ -122,103 +86,9 @@ function TestimonialCard({ item }: TestimonialCardProps) {
   );
 }
 
-// ─── Scrolling Column Component ───────────────────────────────────────────────
-
-const TestimonialsColumn = (props: {
-  className?: string;
-  testimonials: typeof testimonials;
-  duration?: number;
-  reverse?: boolean;
-}) => {
-  return (
-    <div className={cn("h-full overflow-hidden relative", props.className)}>
-      {/* Top and Bottom faded masks */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
-
-      <motion.div
-        animate={{
-          translateY: props.reverse ? ["-50%", "0%"] : ["0%", "-50%"],
-        }}
-        transition={{
-          duration: props.duration || 20,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        className="flex flex-col gap-4 pb-4 pt-4"
-      >
-        {[...new Array(2).fill(0)].map((_, index) => (
-          <React.Fragment key={index}>
-            {props.testimonials.map((item, i) => (
-              <TestimonialCard key={i} item={item} />
-            ))}
-          </React.Fragment>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
-
 // ─── Main Section ─────────────────────────────────────────────────────────────
 
 export function TestimonialsSection() {
-  const [isRow1Paused, setIsRow1Paused] = useState(false);
-  const [isRow2Paused, setIsRow2Paused] = useState(false);
-
-  const row1TimerRef = useRef<NodeJS.Timeout | null>(null);
-  const row2TimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (row1TimerRef.current) clearTimeout(row1TimerRef.current);
-      if (row2TimerRef.current) clearTimeout(row2TimerRef.current);
-    };
-  }, []);
-
-  const handleRow1Click = () => {
-    setIsRow1Paused((prev) => {
-      const next = !prev;
-      if (next) {
-        if (row1TimerRef.current) clearTimeout(row1TimerRef.current);
-        row1TimerRef.current = setTimeout(() => {
-          setIsRow1Paused(false);
-        }, 4000);
-      } else {
-        if (row1TimerRef.current) {
-          clearTimeout(row1TimerRef.current);
-          row1TimerRef.current = null;
-        }
-      }
-      return next;
-    });
-  };
-
-  const handleRow2Click = () => {
-    setIsRow2Paused((prev) => {
-      const next = !prev;
-      if (next) {
-        if (row2TimerRef.current) clearTimeout(row2TimerRef.current);
-        row2TimerRef.current = setTimeout(() => {
-          setIsRow2Paused(false);
-        }, 4000);
-      } else {
-        if (row2TimerRef.current) {
-          clearTimeout(row2TimerRef.current);
-          row2TimerRef.current = null;
-        }
-      }
-      return next;
-    });
-  };
-
-  const col1 = [...testimonials].slice(0, 4);
-  const col2 = [...testimonials].slice(2, 6).concat(testimonials.slice(0, 1));
-  const col3 = [...testimonials].slice(4, 8).concat(testimonials.slice(0, 2));
-
-  const row1 = [...testimonials].slice(0, 4);
-  const row2 = [...testimonials].slice(4, 8);
-
   return (
     <section
       id="testimonials"
@@ -270,27 +140,6 @@ export function TestimonialsSection() {
 
             {/* Avatars + Stars */}
             <div className="flex items-center gap-4 mb-12">
-              <div className="flex -space-x-3">
-                {[
-                  "1573497019940-1c28c88b4f3e",
-                  "1580489944761-15a19d654956",
-                  "1507003211169-0a1dd7228f2d",
-                  "1534528741775-53994a69daeb",
-                ].map((id, i) => (
-                  <div
-                    key={i}
-                    className="w-11 h-11 rounded-full border-2 border-black overflow-hidden relative shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] z-10"
-                  >
-                    <Image
-                      src={`https://images.unsplash.com/photo-${id}?q=80&w=150&auto=format&fit=crop`}
-                      alt="Client avatar"
-                      fill
-                      className="object-cover"
-                      sizes="44px"
-                    />
-                  </div>
-                ))}
-              </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-0.5 text-[#e1e61b]">
                   {[1, 2, 3, 4, 5].map((i) => (
@@ -322,24 +171,13 @@ export function TestimonialsSection() {
           </motion.div>
         </div>
 
-        {/* Right: Scrolling Columns (Desktop/Tablet View) */}
-        <div className="hidden sm:flex lg:flex-1 w-full h-[600px] lg:h-[800px] gap-3 sm:gap-4 lg:gap-5 justify-center relative">
-          <TestimonialsColumn
-            testimonials={col1}
-            duration={25}
-            className="w-full max-w-[280px]"
-          />
-          <TestimonialsColumn
-            testimonials={col2}
-            duration={35}
-            reverse
-            className="w-full max-w-[280px]"
-          />
-          <TestimonialsColumn
-            testimonials={col3}
-            duration={30}
-            className="w-full max-w-[280px] hidden md:block"
-          />
+        {/* Right: Static Grid */}
+        <div className="flex-1 w-full flex flex-col md:flex-row gap-8 lg:gap-8 justify-center items-center md:items-stretch lg:items-center z-20 mt-12 lg:mt-0 pt-4 pb-12">
+          {testimonials.map((item, index) => (
+            <div key={index} className="flex-1 w-full min-w-[260px] max-w-[360px] mx-auto md:mx-0">
+              <TestimonialCard item={item} index={index} />
+            </div>
+          ))}
 
           {/* Chrome Star decorative element - bottom right */}
           <div className="absolute -bottom-8 -right-4 w-[100px] h-[100px] sm:w-[130px] sm:h-[130px] select-none pointer-events-none hidden md:block z-20">
@@ -350,70 +188,6 @@ export function TestimonialsSection() {
               height={130}
               className="object-contain"
             />
-          </div>
-        </div>
-
-        {/* Testimonials Horizontal Marquees (Mobile View only) */}
-        <div className="block sm:hidden w-full relative z-20 flex flex-col gap-4 overflow-hidden py-4">
-          <style>{`
-            @keyframes marquee-ltr {
-              0% { transform: translateX(-50%); }
-              100% { transform: translateX(0); }
-            }
-            @keyframes marquee-rtl {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            .mobile-marquee-ltr {
-              animation: marquee-ltr 22s linear infinite;
-            }
-            .mobile-marquee-rtl {
-              animation: marquee-rtl 22s linear infinite;
-            }
-          `}</style>
-
-          {/* Row 1: Left to Right */}
-          <div 
-            className="w-full overflow-hidden select-none cursor-pointer"
-            onClick={handleRow1Click}
-          >
-            <div 
-              className="flex w-max items-stretch mobile-marquee-ltr"
-              style={{
-                animationPlayState: isRow1Paused ? "paused" : "running",
-              }}
-            >
-              {[...row1, ...row1].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex-shrink-0 w-[80vw] max-w-[280px] pr-4"
-                >
-                  <TestimonialCard item={item} />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Row 2: Right to Left */}
-          <div 
-            className="w-full overflow-hidden select-none cursor-pointer"
-            onClick={handleRow2Click}
-          >
-            <div 
-              className="flex w-max items-stretch mobile-marquee-rtl"
-              style={{
-                animationPlayState: isRow2Paused ? "paused" : "running",
-              }}
-            >
-              {[...row2, ...row2].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex-shrink-0 w-[80vw] max-w-[280px] pr-4"
-                >
-                  <TestimonialCard item={item} />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
